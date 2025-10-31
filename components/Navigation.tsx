@@ -5,15 +5,33 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
-// import { ThemeToggle } from '@/components/ThemeToggle'; // Temporarily hidden
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Navigation({ className = '' }: { className?: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
+
+    // Check for dark mode
+    const checkDarkMode = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      setIsDark(isDarkMode);
+    };
+
+    checkDarkMode();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Close mobile menu when route changes
@@ -44,14 +62,28 @@ export function Navigation({ className = '' }: { className?: string }) {
 
   return (
     <nav
-      className={`sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-700 dark:bg-gray-900/95 dark:supports-[backdrop-filter]:bg-gray-900/60 ${className}`}
+      className={`sticky top-0 z-50 w-full border-b backdrop-blur border-gray-200 dark:border-gray-800 ${className}`}
+      style={{
+        backgroundColor: isDark ? 'rgba(0, 0, 0, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(8px)',
+      }}
+      data-theme-nav="true"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo/Brand */}
           <Link
             href="/"
-            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors dark:text-gray-100 dark:hover:text-blue-400 font-inter"
+            className="text-xl font-bold transition-colors font-inter"
+            style={{
+              color: isDark ? '#ffffff' : '#111827',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = isDark ? '#60a5fa' : '#2563eb';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = isDark ? '#ffffff' : '#111827';
+            }}
           >
             LS.
           </Link>
@@ -63,9 +95,9 @@ export function Navigation({ className = '' }: { className?: string }) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${isActive(item.href)
-                      ? 'text-primary'
-                      : 'text-foreground/60'
+                    className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${isActive(item.href)
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-600 dark:text-gray-300'
                       }`}
                   >
                     {item.label}
@@ -74,20 +106,18 @@ export function Navigation({ className = '' }: { className?: string }) {
               ))}
             </ul>
 
-            {/* Theme Toggle - Temporarily Hidden */}
-            {/* <div className="ml-4 flex items-center">
+            <div className="ml-4 flex items-center">
               <ThemeToggle />
-            </div> */}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
-            {/* Theme Toggle for Mobile - Temporarily Hidden */}
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-md p-2 text-foreground hover:bg-accent transition-colors"
+              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -130,7 +160,7 @@ export function Navigation({ className = '' }: { className?: string }) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden border-t border-border/40 bg-background"
+            className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
           >
             <motion.ul
               initial={{ opacity: 0 }}
@@ -149,8 +179,8 @@ export function Navigation({ className = '' }: { className?: string }) {
                   <Link
                     href={item.href}
                     className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isActive(item.href)
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-foreground/60 hover:bg-accent hover:text-foreground'
+                      ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
                       }`}
                   >
                     {item.label}
