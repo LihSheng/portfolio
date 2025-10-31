@@ -147,16 +147,18 @@
   - _Requirements: 6.2-6.4, 9.1-9.6_
 
 - [x] 19. Create sample blog post MDX files
-
-
-
   - Add 3-4 sample blog posts in content/blog/
   - Include frontmatter with title, date, excerpt, tags, and coverImage
   - Write posts with code examples to test syntax highlighting
   - Add headings for table of contents generation
   - _Requirements: 13.1-13.5_
 
-- [ ] 20. Build About page with skills and timeline
+- [x] 20. Build About page with skills and timeline
+
+
+
+
+
   - Create app/about/page.tsx with introduction section
   - Implement SkillBadge component for skills matrix
   - Create Timeline component for experience and education

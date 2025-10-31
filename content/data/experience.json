@@ -1,0 +1,41 @@
+{
+  "work": [
+    {
+      "date": "2022 - Present",
+      "title": "Senior Full Stack Developer",
+      "organization": "Tech Innovations Inc.",
+      "description": "Lead development of modern web applications using React, Next.js, and Node.js. Mentored junior developers and implemented best practices for code quality and performance.",
+      "type": "work"
+    },
+    {
+      "date": "2020 - 2022",
+      "title": "Frontend Developer",
+      "organization": "Digital Solutions Co.",
+      "description": "Built responsive web applications with React and TypeScript. Collaborated with design teams to implement pixel-perfect UIs and improved application performance by 40%.",
+      "type": "work"
+    },
+    {
+      "date": "2019 - 2020",
+      "title": "Junior Web Developer",
+      "organization": "StartupXYZ",
+      "description": "Developed and maintained company website and internal tools. Gained experience with modern JavaScript frameworks and agile development methodologies.",
+      "type": "work"
+    }
+  ],
+  "education": [
+    {
+      "date": "2015 - 2019",
+      "title": "Bachelor of Science in Computer Science",
+      "organization": "University of Technology",
+      "description": "Graduated with honors. Focused on software engineering, algorithms, and web development. Completed capstone project building a full-stack e-commerce platform.",
+      "type": "education"
+    },
+    {
+      "date": "2018",
+      "title": "AWS Certified Developer",
+      "organization": "Amazon Web Services",
+      "description": "Earned certification demonstrating proficiency in developing and maintaining applications on AWS platform.",
+      "type": "education"
+    }
+  ]
+}

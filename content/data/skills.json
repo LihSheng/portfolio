@@ -1,0 +1,28 @@
+{
+  "frontend": [
+    { "name": "React", "level": "expert", "icon": "⚛️" },
+    { "name": "Next.js", "level": "expert", "icon": "▲" },
+    { "name": "TypeScript", "level": "advanced", "icon": "🔷" },
+    { "name": "JavaScript", "level": "expert", "icon": "🟨" },
+    { "name": "HTML5", "level": "expert", "icon": "🌐" },
+    { "name": "CSS3", "level": "expert", "icon": "🎨" },
+    { "name": "Tailwind CSS", "level": "advanced", "icon": "💨" },
+    { "name": "Framer Motion", "level": "intermediate", "icon": "🎭" }
+  ],
+  "backend": [
+    { "name": "Node.js", "level": "advanced", "icon": "🟢" },
+    { "name": "Express.js", "level": "advanced", "icon": "🚂" },
+    { "name": "Python", "level": "intermediate", "icon": "🐍" },
+    { "name": "PostgreSQL", "level": "intermediate", "icon": "🐘" },
+    { "name": "MongoDB", "level": "intermediate", "icon": "🍃" },
+    { "name": "Redis", "level": "beginner", "icon": "🔴" }
+  ],
+  "tools": [
+    { "name": "Git", "level": "advanced", "icon": "📝" },
+    { "name": "Docker", "level": "intermediate", "icon": "🐳" },
+    { "name": "AWS", "level": "intermediate", "icon": "☁️" },
+    { "name": "Vercel", "level": "advanced", "icon": "▲" },
+    { "name": "Figma", "level": "intermediate", "icon": "🎨" },
+    { "name": "VS Code", "level": "expert", "icon": "💻" }
+  ]
+}

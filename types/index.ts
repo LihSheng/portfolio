@@ -78,3 +78,26 @@ export interface MDXFrontmatter {
   coverImage?: string;
   [key: string]: any;
 }
+
+export interface Skill {
+  name: string;
+  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  icon?: string;
+}
+
+export interface SkillCategory {
+  [category: string]: Skill[];
+}
+
+export interface TimelineItem {
+  date: string;
+  title: string;
+  organization: string;
+  description: string;
+  type: 'work' | 'education' | 'project';
+}
+
+export interface ExperienceData {
+  work: TimelineItem[];
+  education: TimelineItem[];
+}

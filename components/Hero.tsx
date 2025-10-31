@@ -33,7 +33,7 @@ export default function Hero() {
             variants={fadeInUp}
             className="text-lg sm:text-xl text-muted-foreground font-medium"
           >
-            Hi, I'm Lih Sheng
+            Hi, I'm
           </motion.p>
 
           {/* Name */}
