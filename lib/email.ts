@@ -178,13 +178,13 @@ export function createEmailService(): EmailService {
       config.smtp = {
         host: process.env.SMTP_HOST || '',
         port: parseInt(process.env.SMTP_PORT || '587'),
-        secure: process.env.SMTP_SECURE === 'true',
+        secure: process.env.SMTP_PORT === '465', // Use secure for port 465
         auth: {
           user: process.env.SMTP_USER || '',
-          pass: process.env.SMTP_PASSWORD || '',
+          pass: process.env.SMTP_PASS || '',
         },
       };
-      config.from = process.env.SMTP_FROM;
+      config.from = process.env.SMTP_USER;
       config.to = process.env.CONTACT_EMAIL;
       break;
       

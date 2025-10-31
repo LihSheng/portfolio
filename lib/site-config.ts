@@ -53,7 +53,7 @@ export const siteConfig: SiteConfig = {
   name: 'Lih Sheng',
   title: 'Lih Sheng - Full Stack Developer',
   description: 'Full-stack developer specializing in modern web technologies. Building scalable applications with React, Next.js, and TypeScript.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yoursite.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.space',
   author: {
     name: 'Lih Sheng',
     email: 'your.email@example.com',

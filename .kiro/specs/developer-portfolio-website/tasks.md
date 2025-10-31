@@ -253,14 +253,14 @@
   - Test keyboard navigation
   - _Requirements: 11.5, 14.4_
 
-- [ ] 34. Configure environment variables
+- [x] 34. Configure environment variables
   - Create .env.local with SMTP credentials and API keys
   - Add .env.example with placeholder values
   - Configure Vercel environment variables
   - Document required environment variables in README
   - _Requirements: 7.3, 12.2, 15.4_
 
-- [ ] 35. Set up Vercel deployment configuration
+- [x] 35. Set up Vercel deployment configuration
   - Create vercel.json with build and deployment settings
   - Configure build command and output directory
   - Set up preview deployments for pull requests
