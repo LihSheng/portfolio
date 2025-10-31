@@ -7,7 +7,14 @@
         "@executeautomation/playwright-mcp-server@latest"
       ],
       "disabled": false,
-      "autoApprove": [],
+      "autoApprove": [
+        "playwright_navigate",
+        "playwright_screenshot",
+        "playwright_evaluate",
+        "playwright_evaluate",
+        "playwright_console_logs",
+        "playwright_close"
+      ],
       "disabledTools": []
     }
   }
