@@ -76,7 +76,12 @@
   - Create content directory structure (content/projects, content/blog)
   - _Requirements: 13.1-13.5_
 
-- [ ] 10. Build Hero section for homepage
+- [x] 10. Build Hero section for homepage
+
+
+
+
+
   - Create components/Hero.tsx with name, tagline, and CTA
   - Implement Framer Motion entrance animations
   - Add responsive layout for mobile/desktop
