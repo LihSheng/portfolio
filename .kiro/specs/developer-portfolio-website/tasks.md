@@ -76,8 +76,6 @@
   - _Requirements: 2.1-2.5_
 
 - [x] 11. Create ProjectCard component
-
-
   - Build components/ProjectCard.tsx with image, title, description, and tags
   - Add hover animations with Framer Motion
   - Include links to demo and repository
@@ -133,8 +131,10 @@
   - _Requirements: 6.1, 6.5, 6.6_
 
 - [x] 18. Create blog post detail page with MDX
+
   - Implement app/writing/[slug]/page.tsx with dynamic routing
   - Add generateStaticParams for all blog post slugs
+
   - Render MDX content with syntax highlighting
   - Display post metadata (date, tags, reading time)
   - Add table of contents component

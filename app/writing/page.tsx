@@ -14,14 +14,15 @@ export const metadata: Metadata = {
 };
 
 interface WritingPageProps {
-  searchParams: {
+  searchParams: Promise<{
     tag?: string;
     search?: string;
-  };
+  }>;
 }
 
 export default async function WritingPage({ searchParams }: WritingPageProps) {
   const allPosts = await getAllBlogPosts();
+  const { tag, search } = await searchParams;
   
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -39,8 +40,8 @@ export default async function WritingPage({ searchParams }: WritingPageProps) {
         <Suspense fallback={<div className="text-center">Loading posts...</div>}>
           <WritingClient 
             posts={allPosts} 
-            initialTag={searchParams.tag}
-            initialSearch={searchParams.search}
+            initialTag={tag}
+            initialSearch={search}
           />
         </Suspense>
       </div>

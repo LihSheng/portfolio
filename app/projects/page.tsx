@@ -13,14 +13,15 @@ export const metadata = {
 };
 
 interface ProjectsPageProps {
-  searchParams: { 
+  searchParams: Promise<{ 
     tag?: string;
     search?: string;
-  };
+  }>;
 }
 
 export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
   const allProjects = await getAllProjects();
+  const { tag, search } = await searchParams;
   
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -40,8 +41,8 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
         <Suspense fallback={<ProjectsLoading />}>
           <ProjectsClient 
             projects={allProjects} 
-            initialTag={searchParams.tag}
-            initialSearch={searchParams.search}
+            initialTag={tag}
+            initialSearch={search}
           />
         </Suspense>
       </div>

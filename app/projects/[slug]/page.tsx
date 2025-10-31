@@ -9,9 +9,9 @@ import { compileMDXWithPlugins } from '@/lib/mdx';
 import { Project } from '@/types';
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all projects
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   
   if (!project) {
     return {
@@ -71,7 +72,8 @@ async function getProjectNavigation(currentSlug: string) {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   
   if (!project) {
     notFound();
@@ -83,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   );
 
   // Get navigation
-  const navigation = await getProjectNavigation(params.slug);
+  const navigation = await getProjectNavigation(slug);
 
   return (
     <div className="min-h-screen bg-background">

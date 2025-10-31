@@ -77,7 +77,16 @@ export async function compileMDXWithPlugins<TFrontmatter>(source: string) {
       mdxOptions: {
         remarkPlugins: [remarkGfm],
         rehypePlugins: [
-          rehypePrism,
+          [
+            rehypePrism,
+            {
+              ignoreMissing: true, // Don't throw errors for unknown languages
+              alias: {
+                vue: 'html', // Map Vue to HTML syntax highlighting
+                svelte: 'html', // Map Svelte to HTML syntax highlighting
+              },
+            },
+          ],
           rehypeSlug,
           [
             rehypeAutolinkHeadings,

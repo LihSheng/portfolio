@@ -9,9 +9,9 @@ import { compileMDXWithPlugins } from '@/lib/mdx';
 import { BlogPost } from '@/types';
 
 interface BlogPostPageProps {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 // Generate static params for all blog posts
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-    const post = await getBlogPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPostBySlug(slug);
 
     if (!post) {
         return {
@@ -114,7 +115,8 @@ async function getPostNavigation(currentSlug: string) {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const post = await getBlogPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPostBySlug(slug);
 
     if (!post) {
         notFound();
@@ -126,7 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     );
 
     // Get navigation
-    const navigation = await getPostNavigation(params.slug);
+    const navigation = await getPostNavigation(slug);
 
     return (
         <div className="min-h-screen bg-background">
