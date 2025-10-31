@@ -56,7 +56,6 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your.email@gmail.com
 SMTP_PASS=your-app-password
-CONTACT_EMAIL=your.email@gmail.com
 ```
 
 **Option 2: Formspree**

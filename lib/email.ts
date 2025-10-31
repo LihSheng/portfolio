@@ -185,7 +185,7 @@ export function createEmailService(): EmailService {
         },
       };
       config.from = process.env.SMTP_USER;
-      config.to = process.env.CONTACT_EMAIL;
+      config.to = process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL;
       break;
       
     case 'formspree':
