@@ -14,7 +14,14 @@
     "preview": "npm run build && npm run start",
     "pre-deploy": "node scripts/pre-deploy-check.mjs",
     "deploy": "npm run pre-deploy && vercel --prod",
-    "deploy:preview": "vercel"
+    "deploy:preview": "vercel",
+    "git:feature": "node scripts/git-workflow.mjs create-feature",
+    "git:dev": "node scripts/git-workflow.mjs switch-dev",
+    "git:main": "node scripts/git-workflow.mjs switch-main",
+    "git:merge-dev": "node scripts/git-workflow.mjs merge-to-dev",
+    "git:merge-main": "node scripts/git-workflow.mjs merge-to-main",
+    "git:status": "node scripts/git-workflow.mjs status",
+    "git:help": "node scripts/git-workflow.mjs help"
   },
   "keywords": [],
   "author": "",

@@ -24,7 +24,7 @@ export function Navigation({ className = '' }: { className?: string }) {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (!mounted) return;
-    
+
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -51,9 +51,9 @@ export function Navigation({ className = '' }: { className?: string }) {
           {/* Logo/Brand */}
           <Link
             href="/"
-            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors dark:text-gray-100 dark:hover:text-blue-400"
+            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors dark:text-gray-100 dark:hover:text-blue-400 font-inter"
           >
-            Portfolio
+            LS.
           </Link>
 
           {/* Desktop Navigation */}
@@ -63,11 +63,10 @@ export function Navigation({ className = '' }: { className?: string }) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${
-                      isActive(item.href)
+                    className={`text-sm font-medium transition-colors hover:text-primary ${isActive(item.href)
                         ? 'text-primary'
                         : 'text-foreground/60'
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -102,9 +101,8 @@ export function Navigation({ className = '' }: { className?: string }) {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className={`transition-transform duration-300 ${
-                  isMobileMenuOpen ? 'rotate-90' : ''
-                }`}
+                className={`transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''
+                  }`}
               >
                 {isMobileMenuOpen ? (
                   <>
@@ -150,11 +148,10 @@ export function Navigation({ className = '' }: { className?: string }) {
                 >
                   <Link
                     href={item.href}
-                    className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${
-                      isActive(item.href)
+                    className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isActive(item.href)
                         ? 'bg-primary/10 text-primary'
                         : 'text-foreground/60 hover:bg-accent hover:text-foreground'
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </Link>
