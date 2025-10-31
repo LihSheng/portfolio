@@ -207,12 +207,12 @@ Once configured, you can use Playwright through Kiro to:
 
 ## Recent Changes
 
-### Font Fix (2024-10-31)
+### Font Fix (2025-10-31)
 - Fixed typography issue where Times New Roman was displaying instead of Inter
 - Updated `tailwind.config.ts` to properly reference the Inter font variable
 - Site now uses modern Inter font for improved readability and professional appearance
 
-### Footer Component (2024-10-31)
+### Footer Component (2025-10-31)
 - Implemented responsive footer with social links (GitHub, LinkedIn, Twitter, Email)
 - Added quick navigation links and RSS feed link
 - Included copyright information with dynamic year
