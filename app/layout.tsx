@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Analytics } from '@/components/Analytics';
 import { StructuredData } from '@/components/StructuredData';
 import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/lib/site-config';
 
 const inter = Inter({
@@ -97,7 +98,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -105,7 +106,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          {children}
+          <main className="flex-1">{children}</main>
+          <Footer />
         </ThemeProvider>
         <Analytics />
       </body>
