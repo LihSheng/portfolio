@@ -1,0 +1,57 @@
+---
+title: "E-commerce Platform"
+description: "A full-stack e-commerce platform with payment integration, inventory management, and admin dashboard"
+image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop"
+tags: ["E-commerce", "Full-stack", "Payment"]
+techStack: ["React", "Node.js", "PostgreSQL", "Stripe", "Docker"]
+demoUrl: "https://ecommerce-demo.example.com"
+repoUrl: "https://github.com/username/ecommerce-platform"
+featured: true
+date: "2024-02-20"
+---
+
+# E-commerce Platform
+
+A comprehensive e-commerce solution built with modern web technologies, featuring secure payment processing, real-time inventory management, and a powerful admin dashboard.
+
+## Key Features
+
+- **User Authentication**: Secure login/registration with JWT tokens
+- **Product Catalog**: Dynamic product listings with search and filtering
+- **Shopping Cart**: Persistent cart with real-time updates
+- **Payment Processing**: Stripe integration for secure transactions
+- **Admin Dashboard**: Comprehensive management interface
+- **Inventory Management**: Real-time stock tracking and alerts
+
+## Technical Implementation
+
+```typescript
+// Payment processing with Stripe
+export async function processPayment(paymentData: PaymentData) {
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: paymentData.amount,
+    currency: 'usd',
+    metadata: {
+      orderId: paymentData.orderId,
+    },
+  });
+  
+  return paymentIntent;
+}
+```
+
+## Architecture
+
+The platform follows a microservices architecture with:
+- Frontend: React with TypeScript
+- Backend: Node.js with Express
+- Database: PostgreSQL with Prisma ORM
+- Payment: Stripe API integration
+- Deployment: Docker containers on AWS
+
+## Results
+
+- 99.9% uptime with load balancing
+- Sub-2-second page load times
+- PCI DSS compliant payment processing
+- Scalable to handle 10,000+ concurrent users

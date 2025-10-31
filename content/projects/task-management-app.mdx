@@ -1,0 +1,56 @@
+---
+title: "Task Management App"
+description: "A collaborative task management application with real-time updates, team workspaces, and project tracking"
+image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop"
+tags: ["Productivity", "Collaboration", "Real-time"]
+techStack: ["Vue.js", "Firebase", "Vuetify", "PWA"]
+demoUrl: "https://taskmanager-demo.example.com"
+repoUrl: "https://github.com/username/task-management-app"
+featured: false
+date: "2024-01-10"
+---
+
+# Task Management App
+
+A modern task management application designed for teams, featuring real-time collaboration, project organization, and productivity tracking.
+
+## Features
+
+- **Real-time Collaboration**: Live updates across all team members
+- **Project Organization**: Hierarchical project and task structure
+- **Team Workspaces**: Separate spaces for different teams
+- **Progress Tracking**: Visual progress indicators and analytics
+- **Mobile Support**: Progressive Web App with offline capabilities
+
+## Technical Stack
+
+```javascript
+// Real-time updates with Firebase
+import { onSnapshot, collection } from 'firebase/firestore';
+
+export function subscribeToTasks(projectId, callback) {
+  const tasksRef = collection(db, 'projects', projectId, 'tasks');
+  
+  return onSnapshot(tasksRef, (snapshot) => {
+    const tasks = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    callback(tasks);
+  });
+}
+```
+
+## Key Challenges
+
+1. **Real-time Synchronization**: Implemented Firebase Firestore for live updates
+2. **Offline Support**: Service worker caching for PWA functionality
+3. **Performance**: Virtualized lists for handling large datasets
+4. **User Experience**: Intuitive drag-and-drop interface
+
+## Impact
+
+- 40% increase in team productivity
+- 95% user satisfaction rating
+- Used by 500+ teams worldwide
+- Featured in Vue.js community showcase

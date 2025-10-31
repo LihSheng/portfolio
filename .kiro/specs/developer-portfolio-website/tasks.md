@@ -98,7 +98,9 @@
   - Implement static generation with proper metadata
   - _Requirements: 2.1-2.5_
 
-- [ ] 13. Build projects listing page with filtering
+- [x] 13. Build projects listing page with filtering
+
+
   - Create app/projects/page.tsx with project grid
   - Implement client-side filtering by technology tags
   - Add search functionality for project titles

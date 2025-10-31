@@ -1,0 +1,62 @@
+---
+title: "Weather Dashboard"
+description: "An interactive weather dashboard with forecasts, maps, and historical data visualization"
+image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=400&fit=crop"
+tags: ["Data Visualization", "API Integration", "Dashboard"]
+techStack: ["React", "D3.js", "OpenWeather API", "Chart.js"]
+demoUrl: "https://weather-dashboard-demo.example.com"
+repoUrl: "https://github.com/username/weather-dashboard"
+featured: false
+date: "2023-12-15"
+---
+
+# Weather Dashboard
+
+An interactive weather dashboard that provides comprehensive weather information with beautiful data visualizations and forecasting capabilities.
+
+## Features
+
+- **Current Weather**: Real-time weather conditions for any location
+- **7-Day Forecast**: Detailed weather predictions with hourly breakdowns
+- **Interactive Maps**: Weather radar and satellite imagery
+- **Historical Data**: Weather trends and historical comparisons
+- **Data Visualization**: Charts and graphs for weather patterns
+
+## API Integration
+
+```javascript
+// Weather data fetching
+export async function fetchWeatherData(coordinates) {
+  const { lat, lon } = coordinates;
+  
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+  );
+  
+  return response.json();
+}
+```
+
+## Visualizations
+
+The dashboard includes:
+- Temperature trend charts with D3.js
+- Precipitation probability graphs
+- Wind speed and direction indicators
+- UV index and air quality meters
+- Interactive weather maps
+
+## Performance Optimizations
+
+- Data caching to reduce API calls
+- Lazy loading for map components
+- Debounced search for location input
+- Responsive design for all devices
+
+## Technologies Used
+
+- **Frontend**: React with TypeScript
+- **Charts**: D3.js and Chart.js
+- **Maps**: Leaflet with weather overlays
+- **API**: OpenWeather API
+- **Styling**: Tailwind CSS with custom animations
