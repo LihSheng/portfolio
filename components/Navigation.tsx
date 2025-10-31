@@ -9,7 +9,12 @@ import { navigationItems } from '@/lib/site-config';
 
 export function Navigation({ className = '' }: { className?: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -18,6 +23,8 @@ export function Navigation({ className = '' }: { className?: string }) {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
+    if (!mounted) return;
+    
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -26,7 +33,7 @@ export function Navigation({ className = '' }: { className?: string }) {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, mounted]);
 
   const isActive = (href: string) => {
     if (href === '/') {

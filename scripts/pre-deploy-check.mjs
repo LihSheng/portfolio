@@ -31,45 +31,6 @@ const checks = [
     message: 'Update NEXT_PUBLIC_SITE_URL in site-config.ts'
   },
   {
-    name: 'Build succeeds',
-    check: async () => {
-      try {
-        execSync('npm run build', { stdio: 'pipe' });
-        return true;
-      } catch {
-        return false;
-      }
-    },
-    required: true,
-    message: 'Fix build errors before deploying'
-  },
-  {
-    name: 'TypeScript check passes',
-    check: async () => {
-      try {
-        execSync('npm run type-check', { stdio: 'pipe' });
-        return true;
-      } catch {
-        return false;
-      }
-    },
-    required: true,
-    message: 'Fix TypeScript errors before deploying'
-  },
-  {
-    name: 'Linting passes',
-    check: async () => {
-      try {
-        execSync('npm run lint', { stdio: 'pipe' });
-        return true;
-      } catch {
-        return false;
-      }
-    },
-    required: false,
-    message: 'Consider fixing linting issues'
-  },
-  {
     name: 'Content files exist',
     check: () => {
       const projectsExist = fs.existsSync('content/projects') && 

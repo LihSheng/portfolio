@@ -108,7 +108,7 @@ export default function RootLayout({
         />
         <StructuredData />
       </head>
-      <body className={`${inter.className} flex min-h-screen flex-col bg-background font-sans antialiased`}>
+      <body className={`${inter.className} flex min-h-screen flex-col bg-background font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

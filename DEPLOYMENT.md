@@ -45,6 +45,7 @@ In your Vercel dashboard, go to Project Settings > Environment Variables and add
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://lihsheng.space
+NEXT_PUBLIC_CONTACT_EMAIL=your.email@example.com
 ```
 
 ### Contact Form (Choose one method)
