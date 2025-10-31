@@ -130,9 +130,6 @@
   - _Requirements: 6.1, 6.4_
 
 - [x] 17. Implement blog listing page
-
-
-
   - Create app/writing/page.tsx with blog post list
   - Add filtering by tags using searchParams
   - Display posts in reverse chronological order
@@ -140,7 +137,12 @@
   - Implement search functionality
   - _Requirements: 6.1, 6.5, 6.6_
 
-- [ ] 18. Create blog post detail page with MDX
+- [x] 18. Create blog post detail page with MDX
+
+
+
+
+
   - Implement app/writing/[slug]/page.tsx with dynamic routing
   - Add generateStaticParams for all blog post slugs
   - Render MDX content with syntax highlighting
