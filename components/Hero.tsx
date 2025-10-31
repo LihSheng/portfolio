@@ -71,13 +71,13 @@ export default function Hero() {
           >
             <Link
               href="/projects"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200 min-w-[160px]"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 min-w-[160px] shadow-lg"
             >
               View My Work
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg border border-border hover:bg-accent hover:text-accent-foreground transition-colors duration-200 min-w-[160px]"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg border-2 border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors duration-200 min-w-[160px]"
             >
               Get In Touch
             </Link>

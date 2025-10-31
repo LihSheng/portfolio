@@ -40,6 +40,13 @@
   }
 }
 
+/* Ensure Tailwind utilities are applied */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 @layer base {
   * {
     border-color: hsl(var(--border));
@@ -73,6 +80,16 @@
   
   /* Ensure all text elements use the correct font */
   * {
+    font-family: inherit;
+  }
+  
+  /* Debug: Ensure buttons get proper styling */
+  button {
+    font-family: inherit;
+  }
+  
+  /* Debug: Ensure links get proper styling */
+  a {
     font-family: inherit;
   }
 }
