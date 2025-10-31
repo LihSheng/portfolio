@@ -99,8 +99,6 @@
   - _Requirements: 2.1-2.5_
 
 - [x] 13. Build projects listing page with filtering
-
-
   - Create app/projects/page.tsx with project grid
   - Implement client-side filtering by technology tags
   - Add search functionality for project titles
@@ -108,7 +106,12 @@
   - Animate project cards on load with Framer Motion
   - _Requirements: 3.1-3.6_
 
-- [ ] 14. Create project detail page with MDX support
+- [x] 14. Create project detail page with MDX support
+
+
+
+
+
   - Implement app/projects/[slug]/page.tsx with dynamic routing
   - Add generateStaticParams for all project slugs
   - Render MDX content with syntax highlighting
