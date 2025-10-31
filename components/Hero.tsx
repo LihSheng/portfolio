@@ -31,7 +31,7 @@ export default function Hero() {
           {/* Greeting */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl text-muted-foreground font-medium"
+            className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 font-medium"
           >
             Hi, I'm
           </motion.p>
@@ -39,27 +39,25 @@ export default function Hero() {
           {/* Name */}
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white"
           >
-            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              {siteConfig.author.name}
-            </span>
+            {siteConfig.author.name}
           </motion.h1>
 
           {/* Tagline */}
           <motion.h2
             variants={fadeInUp}
-            className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-xl sm:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Full-stack developer specializing in{' '}
-            <span className="text-foreground font-semibold">modern web technologies</span>.
+            <span className="text-gray-900 dark:text-white font-semibold">modern web technologies</span>.
             Building scalable applications with React, Next.js, and TypeScript.
           </motion.h2>
 
           {/* Bio */}
           <motion.p
             variants={fadeInUp}
-            className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
           >
             {siteConfig.author.bio}
           </motion.p>
@@ -77,7 +75,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg border-2 border-gray-300 hover:bg-gray-100 hover:border-gray-400 transition-colors duration-200 min-w-[160px]"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 min-w-[160px]"
             >
               Get In Touch
             </Link>
@@ -91,9 +89,9 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="mx-auto w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center"
+              className="mx-auto w-6 h-10 border-2 border-gray-300 dark:border-gray-600 rounded-full flex justify-center"
             >
-              <div className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2" />
+              <div className="w-1 h-3 bg-gray-400 dark:bg-gray-500 rounded-full mt-2" />
             </motion.div>
           </motion.div>
         </motion.div>
