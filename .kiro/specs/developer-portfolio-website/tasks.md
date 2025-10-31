@@ -138,11 +138,6 @@
   - _Requirements: 6.1, 6.5, 6.6_
 
 - [x] 18. Create blog post detail page with MDX
-
-
-
-
-
   - Implement app/writing/[slug]/page.tsx with dynamic routing
   - Add generateStaticParams for all blog post slugs
   - Render MDX content with syntax highlighting
@@ -151,7 +146,10 @@
   - Implement generateMetadata for OpenGraph and Twitter cards
   - _Requirements: 6.2-6.4, 9.1-9.6_
 
-- [ ] 19. Create sample blog post MDX files
+- [x] 19. Create sample blog post MDX files
+
+
+
   - Add 3-4 sample blog posts in content/blog/
   - Include frontmatter with title, date, excerpt, tags, and coverImage
   - Write posts with code examples to test syntax highlighting

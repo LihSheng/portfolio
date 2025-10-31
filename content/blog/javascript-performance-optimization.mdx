@@ -1,0 +1,504 @@
+---
+title: "JavaScript Performance Optimization: From Basics to Advanced"
+excerpt: "Learn essential techniques to optimize JavaScript performance, from code-level improvements to advanced bundling strategies"
+date: "2024-01-25"
+tags: ["JavaScript", "Performance", "Optimization", "Web Development", "Bundle Analysis"]
+author:
+  name: "John Developer"
+  avatar: "/images/avatar.jpg"
+published: true
+coverImage: "/images/blog/js-performance.jpg"
+---
+
+# JavaScript Performance Optimization: From Basics to Advanced
+
+Performance is crucial for user experience. Let's explore techniques to make your JavaScript applications faster and more efficient.
+
+## Understanding Performance Metrics
+
+### Core Web Vitals
+
+- **Largest Contentful Paint (LCP)**: Loading performance
+- **First Input Delay (FID)**: Interactivity
+- **Cumulative Layout Shift (CLS)**: Visual stability
+
+### JavaScript-Specific Metrics
+
+- **Time to Interactive (TTI)**: When the page becomes fully interactive
+- **Total Blocking Time (TBT)**: Time the main thread is blocked
+- **Bundle Size**: JavaScript payload size
+
+## Code-Level Optimizations
+
+### Efficient DOM Manipulation
+
+```javascript
+// ❌ Inefficient - multiple reflows
+function updateList(items) {
+  const list = document.getElementById('list');
+  items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.name;
+    list.appendChild(li); // Triggers reflow each time
+  });
+}
+
+// ✅ Efficient - single reflow
+function updateListOptimized(items) {
+  const list = document.getElementById('list');
+  const fragment = document.createDocumentFragment();
+  
+  items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item.name;
+    fragment.appendChild(li);
+  });
+  
+  list.appendChild(fragment); // Single reflow
+}
+```
+
+### Debouncing and Throttling
+
+```javascript
+// Debounce - wait for pause in events
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+// Throttle - limit execution frequency
+function throttle(func, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Usage
+const searchInput = document.getElementById('search');
+const debouncedSearch = debounce(performSearch, 300);
+searchInput.addEventListener('input', debouncedSearch);
+
+const scrollHandler = throttle(handleScroll, 16); // ~60fps
+window.addEventListener('scroll', scrollHandler);
+```
+
+### Memory Management
+
+```javascript
+// ❌ Memory leaks
+class ComponentWithLeak {
+  constructor() {
+    this.data = new Array(1000000).fill('data');
+    
+    // Event listener not removed
+    window.addEventListener('resize', this.handleResize);
+    
+    // Timer not cleared
+    this.interval = setInterval(() => {
+      console.log('Still running...');
+    }, 1000);
+  }
+  
+  handleResize = () => {
+    // Handler logic
+  }
+}
+
+// ✅ Proper cleanup
+class ComponentOptimized {
+  constructor() {
+    this.data = new Array(1000000).fill('data');
+    this.handleResize = this.handleResize.bind(this);
+    
+    window.addEventListener('resize', this.handleResize);
+    this.interval = setInterval(() => {
+      console.log('Running...');
+    }, 1000);
+  }
+  
+  destroy() {
+    // Clean up event listeners
+    window.removeEventListener('resize', this.handleResize);
+    
+    // Clear timers
+    clearInterval(this.interval);
+    
+    // Clear references
+    this.data = null;
+  }
+  
+  handleResize() {
+    // Handler logic
+  }
+}
+```
+
+## Asynchronous Programming Optimization
+
+### Efficient Promise Handling
+
+```javascript
+// ❌ Sequential execution
+async function fetchUserDataSlow(userIds) {
+  const users = [];
+  for (const id of userIds) {
+    const user = await fetchUser(id); // Waits for each request
+    users.push(user);
+  }
+  return users;
+}
+
+// ✅ Parallel execution
+async function fetchUserDataFast(userIds) {
+  const promises = userIds.map(id => fetchUser(id));
+  return Promise.all(promises);
+}
+
+// ✅ Controlled concurrency
+async function fetchUserDataControlled(userIds, concurrency = 3) {
+  const results = [];
+  
+  for (let i = 0; i < userIds.length; i += concurrency) {
+    const batch = userIds.slice(i, i + concurrency);
+    const batchPromises = batch.map(id => fetchUser(id));
+    const batchResults = await Promise.all(batchPromises);
+    results.push(...batchResults);
+  }
+  
+  return results;
+}
+```
+
+### Web Workers for Heavy Computation
+
+```javascript
+// main.js
+function processLargeDataset(data) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker('worker.js');
+    
+    worker.postMessage(data);
+    
+    worker.onmessage = (e) => {
+      resolve(e.data);
+      worker.terminate();
+    };
+    
+    worker.onerror = (error) => {
+      reject(error);
+      worker.terminate();
+    };
+  });
+}
+
+// worker.js
+self.onmessage = function(e) {
+  const data = e.data;
+  
+  // Heavy computation that would block main thread
+  const result = data.map(item => {
+    // Complex calculations
+    return heavyProcessing(item);
+  });
+  
+  self.postMessage(result);
+};
+
+function heavyProcessing(item) {
+  // Simulate heavy computation
+  let result = 0;
+  for (let i = 0; i < 1000000; i++) {
+    result += Math.sqrt(item.value * i);
+  }
+  return result;
+}
+```
+
+## Bundle Optimization
+
+### Code Splitting
+
+```javascript
+// Dynamic imports for route-based splitting
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+
+// Component-based splitting
+const HeavyChart = lazy(() => import('./components/HeavyChart'));
+
+function App() {
+  return (
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+}
+
+// Feature-based splitting
+async function loadAnalytics() {
+  if (process.env.NODE_ENV === 'production') {
+    const { initAnalytics } = await import('./analytics');
+    initAnalytics();
+  }
+}
+```
+
+### Tree Shaking Optimization
+
+```javascript
+// ❌ Imports entire library
+import _ from 'lodash';
+import * as utils from './utils';
+
+// ✅ Import only what you need
+import { debounce, throttle } from 'lodash';
+import { formatDate, validateEmail } from './utils';
+
+// ❌ Side effects prevent tree shaking
+import './styles.css'; // Always included
+console.log('Module loaded'); // Side effect
+
+// ✅ Mark as side-effect free in package.json
+{
+  "sideEffects": false
+}
+
+// Or specify which files have side effects
+{
+  "sideEffects": ["*.css", "./src/polyfills.js"]
+}
+```
+
+## Runtime Performance Monitoring
+
+### Performance API
+
+```javascript
+class PerformanceMonitor {
+  static measureFunction(name, fn) {
+    return function (...args) {
+      const start = performance.now();
+      const result = fn.apply(this, args);
+      const end = performance.now();
+      
+      console.log(`${name} took ${end - start} milliseconds`);
+      
+      // Send to analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'timing_complete', {
+          name: name,
+          value: Math.round(end - start)
+        });
+      }
+      
+      return result;
+    };
+  }
+  
+  static measureAsync(name, promise) {
+    const start = performance.now();
+    
+    return promise.finally(() => {
+      const end = performance.now();
+      console.log(`${name} took ${end - start} milliseconds`);
+    });
+  }
+  
+  static observeLongTasks() {
+    if ('PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.duration > 50) {
+            console.warn(`Long task detected: ${entry.duration}ms`);
+            
+            // Report to monitoring service
+            this.reportLongTask(entry);
+          }
+        }
+      });
+      
+      observer.observe({ entryTypes: ['longtask'] });
+    }
+  }
+  
+  static reportLongTask(entry) {
+    // Send to your monitoring service
+    fetch('/api/performance', {
+      method: 'POST',
+      body: JSON.stringify({
+        type: 'longtask',
+        duration: entry.duration,
+        startTime: entry.startTime,
+        url: window.location.href
+      })
+    });
+  }
+}
+
+// Usage
+const optimizedFunction = PerformanceMonitor.measureFunction(
+  'dataProcessing',
+  processData
+);
+
+PerformanceMonitor.measureAsync('api-call', fetch('/api/data'));
+PerformanceMonitor.observeLongTasks();
+```
+
+## Advanced Optimization Techniques
+
+### Virtual Scrolling
+
+```javascript
+class VirtualList {
+  constructor(container, items, itemHeight, renderItem) {
+    this.container = container;
+    this.items = items;
+    this.itemHeight = itemHeight;
+    this.renderItem = renderItem;
+    
+    this.visibleStart = 0;
+    this.visibleEnd = 0;
+    this.scrollTop = 0;
+    
+    this.init();
+  }
+  
+  init() {
+    this.container.style.height = `${this.items.length * this.itemHeight}px`;
+    this.container.style.position = 'relative';
+    this.container.style.overflow = 'auto';
+    
+    this.viewport = document.createElement('div');
+    this.viewport.style.position = 'absolute';
+    this.viewport.style.top = '0';
+    this.viewport.style.left = '0';
+    this.viewport.style.right = '0';
+    
+    this.container.appendChild(this.viewport);
+    this.container.addEventListener('scroll', this.handleScroll.bind(this));
+    
+    this.updateVisibleItems();
+  }
+  
+  handleScroll() {
+    this.scrollTop = this.container.scrollTop;
+    this.updateVisibleItems();
+  }
+  
+  updateVisibleItems() {
+    const containerHeight = this.container.clientHeight;
+    const startIndex = Math.floor(this.scrollTop / this.itemHeight);
+    const endIndex = Math.min(
+      startIndex + Math.ceil(containerHeight / this.itemHeight) + 1,
+      this.items.length
+    );
+    
+    if (startIndex !== this.visibleStart || endIndex !== this.visibleEnd) {
+      this.visibleStart = startIndex;
+      this.visibleEnd = endIndex;
+      this.renderVisibleItems();
+    }
+  }
+  
+  renderVisibleItems() {
+    this.viewport.innerHTML = '';
+    
+    for (let i = this.visibleStart; i < this.visibleEnd; i++) {
+      const item = this.items[i];
+      const element = this.renderItem(item, i);
+      element.style.position = 'absolute';
+      element.style.top = `${i * this.itemHeight}px`;
+      element.style.height = `${this.itemHeight}px`;
+      this.viewport.appendChild(element);
+    }
+  }
+}
+
+// Usage
+const items = Array.from({ length: 10000 }, (_, i) => ({ id: i, name: `Item ${i}` }));
+
+const virtualList = new VirtualList(
+  document.getElementById('list-container'),
+  items,
+  50, // item height
+  (item) => {
+    const div = document.createElement('div');
+    div.textContent = item.name;
+    return div;
+  }
+);
+```
+
+## Performance Testing
+
+### Automated Performance Testing
+
+```javascript
+// performance.test.js
+import { performance } from 'perf_hooks';
+
+describe('Performance Tests', () => {
+  test('function should execute within time limit', () => {
+    const start = performance.now();
+    
+    // Function under test
+    const result = expensiveFunction(largeDataset);
+    
+    const end = performance.now();
+    const duration = end - start;
+    
+    expect(duration).toBeLessThan(100); // Should complete in under 100ms
+    expect(result).toBeDefined();
+  });
+  
+  test('memory usage should be reasonable', () => {
+    const initialMemory = process.memoryUsage().heapUsed;
+    
+    // Create many objects
+    const objects = Array.from({ length: 10000 }, () => ({ data: 'test' }));
+    
+    const peakMemory = process.memoryUsage().heapUsed;
+    
+    // Clean up
+    objects.length = 0;
+    
+    // Force garbage collection if available
+    if (global.gc) {
+      global.gc();
+    }
+    
+    const finalMemory = process.memoryUsage().heapUsed;
+    
+    expect(peakMemory - initialMemory).toBeLessThan(50 * 1024 * 1024); // Less than 50MB
+    expect(finalMemory - initialMemory).toBeLessThan(10 * 1024 * 1024); // Less than 10MB after cleanup
+  });
+});
+```
+
+## Conclusion
+
+JavaScript performance optimization is an ongoing process that requires:
+
+1. **Measurement**: Use performance APIs and tools
+2. **Analysis**: Identify bottlenecks and opportunities
+3. **Implementation**: Apply appropriate optimization techniques
+4. **Monitoring**: Continuously track performance in production
+
+Remember: premature optimization is the root of all evil. Always measure first, optimize second, and focus on the biggest impact areas for your specific application.
+
+The key is to build performance consciousness into your development workflow from the start, rather than treating it as an afterthought.

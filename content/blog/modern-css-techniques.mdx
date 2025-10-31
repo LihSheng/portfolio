@@ -1,0 +1,345 @@
+---
+title: "Modern CSS Techniques for 2024"
+excerpt: "Discover the latest CSS features and techniques that will transform your web development workflow, from container queries to cascade layers"
+date: "2024-01-20"
+tags: ["CSS", "Web Development", "Frontend", "Design", "Performance"]
+author:
+  name: "John Developer"
+  avatar: "/images/avatar.jpg"
+published: true
+coverImage: "/images/blog/modern-css.jpg"
+---
+
+# Modern CSS Techniques for 2024
+
+CSS has evolved dramatically in recent years. Let's explore the modern techniques that are changing how we build user interfaces.
+
+## Container Queries
+
+Finally, we can style elements based on their container size, not just the viewport:
+
+```css
+.card-container {
+  container-type: inline-size;
+  container-name: card;
+}
+
+@container card (min-width: 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+  }
+}
+```
+
+### Use Cases
+
+- **Responsive components**: Style based on available space
+- **Modular design**: Components adapt to any container
+- **Complex layouts**: Different styles for different contexts
+
+## CSS Grid Subgrid
+
+Subgrid allows nested grids to participate in their parent's grid:
+
+```css
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.nested-grid {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+```
+
+## Cascade Layers
+
+Control the cascade with explicit layer ordering:
+
+```css
+@layer reset, base, components, utilities;
+
+@layer reset {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+  }
+}
+
+@layer utilities {
+  .text-center {
+    text-align: center;
+  }
+}
+```
+
+### Benefits
+
+- **Predictable cascade**: Explicit layer ordering
+- **Better organization**: Separate concerns clearly
+- **Easier maintenance**: Reduce specificity wars
+
+## CSS Nesting
+
+Write nested CSS like Sass, natively:
+
+```css
+.card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  
+  & .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  & .content {
+    margin-top: 0.5rem;
+    
+    & p {
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+## Custom Properties (CSS Variables) Advanced Usage
+
+### Dynamic theming
+
+```css
+:root {
+  --primary-hue: 220;
+  --primary-saturation: 100%;
+  --primary-lightness: 50%;
+  
+  --primary: hsl(
+    var(--primary-hue) 
+    var(--primary-saturation) 
+    var(--primary-lightness)
+  );
+}
+
+.theme-blue {
+  --primary-hue: 220;
+}
+
+.theme-green {
+  --primary-hue: 120;
+}
+```
+
+### Responsive custom properties
+
+```css
+:root {
+  --spacing: 1rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --spacing: 2rem;
+  }
+}
+
+.container {
+  padding: var(--spacing);
+}
+```
+
+## Modern Layout Techniques
+
+### Intrinsic Web Design
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+```
+
+### Flexbox Gap
+
+```css
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Much cleaner than margins! */
+}
+```
+
+### Aspect Ratio
+
+```css
+.video-container {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.square-image {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+```
+
+## Advanced Selectors
+
+### :has() - The Parent Selector
+
+```css
+/* Style cards that contain images */
+.card:has(img) {
+  padding: 0;
+}
+
+/* Style form with errors */
+.form:has(.error) {
+  border-color: red;
+}
+
+/* Style navigation with active links */
+.nav:has(.active) {
+  background-color: var(--primary);
+}
+```
+
+### :is() and :where()
+
+```css
+/* :is() - maintains specificity */
+:is(h1, h2, h3) {
+  margin-top: 0;
+}
+
+/* :where() - zero specificity */
+:where(h1, h2, h3) {
+  margin-bottom: 1rem;
+}
+```
+
+## Performance Optimizations
+
+### content-visibility
+
+```css
+.long-content {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+```
+
+### will-change
+
+```css
+.animated-element {
+  will-change: transform;
+}
+
+/* Remove after animation */
+.animated-element.animation-complete {
+  will-change: auto;
+}
+```
+
+## Color Functions
+
+### Modern color spaces
+
+```css
+.element {
+  /* P3 color space for wider gamut */
+  color: color(display-p3 1 0 0);
+  
+  /* LCH for perceptual uniformity */
+  background: lch(70% 50 180);
+  
+  /* Relative colors */
+  border-color: hsl(from var(--primary) h s calc(l * 0.8));
+}
+```
+
+## Logical Properties
+
+Write CSS that works for all writing modes:
+
+```css
+.element {
+  /* Instead of margin-left */
+  margin-inline-start: 1rem;
+  
+  /* Instead of margin-top */
+  margin-block-start: 1rem;
+  
+  /* Instead of border-left */
+  border-inline-start: 1px solid black;
+  
+  /* Instead of width */
+  inline-size: 100%;
+  
+  /* Instead of height */
+  block-size: 200px;
+}
+```
+
+## Browser Support Strategy
+
+### Feature Detection
+
+```css
+@supports (container-type: inline-size) {
+  /* Container query styles */
+}
+
+@supports not (container-type: inline-size) {
+  /* Fallback styles */
+}
+```
+
+### Progressive Enhancement
+
+```css
+/* Base styles for all browsers */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Enhanced styles for modern browsers */
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+```
+
+## Conclusion
+
+Modern CSS gives us powerful tools for creating responsive, maintainable, and performant user interfaces. Start incorporating these techniques gradually, always considering browser support for your target audience.
+
+The future of CSS is bright, with even more exciting features on the horizon. Stay curious and keep experimenting!

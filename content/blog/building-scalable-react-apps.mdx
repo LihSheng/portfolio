@@ -1,0 +1,710 @@
+---
+title: "Building Scalable React Applications: Architecture and Best Practices"
+excerpt: "Learn how to structure and organize React applications for long-term maintainability, performance, and team collaboration"
+date: "2024-01-30"
+tags: ["React", "Architecture", "Scalability", "TypeScript", "State Management", "Testing"]
+author:
+  name: "John Developer"
+  avatar: "/images/avatar.jpg"
+published: true
+coverImage: "/images/blog/scalable-react.jpg"
+---
+
+# Building Scalable React Applications: Architecture and Best Practices
+
+As React applications grow in complexity, proper architecture becomes crucial for maintainability, performance, and team productivity.
+
+## Project Structure
+
+### Feature-Based Organization
+
+```
+src/
+├── components/           # Shared UI components
+│   ├── ui/              # Basic UI elements (Button, Input, etc.)
+│   ├── layout/          # Layout components (Header, Sidebar, etc.)
+│   └── common/          # Common business components
+├── features/            # Feature-based modules
+│   ├── auth/
+│   │   ├── components/  # Feature-specific components
+│   │   ├── hooks/       # Feature-specific hooks
+│   │   ├── services/    # API calls and business logic
+│   │   ├── types/       # TypeScript types
+│   │   └── index.ts     # Public API
+│   ├── dashboard/
+│   └── profile/
+├── hooks/               # Shared custom hooks
+├── services/            # Shared services (API, storage, etc.)
+├── utils/               # Utility functions
+├── types/               # Shared TypeScript types
+├── constants/           # Application constants
+└── stores/              # State management
+```
+
+### Component Architecture
+
+```tsx
+// components/ui/Button/Button.tsx
+import { forwardRef } from 'react';
+import { cn } from '@/utils/cn';
+import { ButtonProps } from './Button.types';
+import { buttonVariants } from './Button.styles';
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = 'default', size = 'md', children, ...props }, ref) => {
+    return (
+      <button
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = 'Button';
+```
+
+```tsx
+// components/ui/Button/Button.types.ts
+import { ButtonHTMLAttributes } from 'react';
+import { VariantProps } from 'class-variance-authority';
+import { buttonVariants } from './Button.styles';
+
+export interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  children: React.ReactNode;
+}
+```
+
+```tsx
+// components/ui/Button/Button.styles.ts
+import { cva } from 'class-variance-authority';
+
+export const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        outline: 'border border-input hover:bg-accent hover:text-accent-foreground',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'underline-offset-4 hover:underline text-primary',
+      },
+      size: {
+        sm: 'h-9 px-3 rounded-md',
+        md: 'h-10 py-2 px-4',
+        lg: 'h-11 px-8 rounded-md',
+        icon: 'h-10 w-10',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+    },
+  }
+);
+```
+
+## State Management Architecture
+
+### Context + Reducer Pattern
+
+```tsx
+// features/auth/context/AuthContext.tsx
+import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { AuthState, AuthAction } from './auth.types';
+import { authReducer, initialAuthState } from './authReducer';
+
+interface AuthContextType {
+  state: AuthState;
+  dispatch: React.Dispatch<AuthAction>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(authReducer, initialAuthState);
+
+  return (
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}
+```
+
+```tsx
+// features/auth/context/authReducer.ts
+import { AuthState, AuthAction } from './auth.types';
+
+export const initialAuthState: AuthState = {
+  user: null,
+  isLoading: false,
+  error: null,
+  isAuthenticated: false,
+};
+
+export function authReducer(state: AuthState, action: AuthAction): AuthState {
+  switch (action.type) {
+    case 'AUTH_START':
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    
+    case 'AUTH_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload.user,
+        isAuthenticated: true,
+        error: null,
+      };
+    
+    case 'AUTH_ERROR':
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload.error,
+        isAuthenticated: false,
+        user: null,
+      };
+    
+    case 'AUTH_LOGOUT':
+      return initialAuthState;
+    
+    default:
+      return state;
+  }
+}
+```
+
+### Custom Hooks for Business Logic
+
+```tsx
+// features/auth/hooks/useAuthActions.ts
+import { useCallback } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { authService } from '../services/authService';
+import { LoginCredentials, RegisterData } from '../types';
+
+export function useAuthActions() {
+  const { dispatch } = useAuth();
+
+  const login = useCallback(async (credentials: LoginCredentials) => {
+    dispatch({ type: 'AUTH_START' });
+    
+    try {
+      const user = await authService.login(credentials);
+      dispatch({ 
+        type: 'AUTH_SUCCESS', 
+        payload: { user } 
+      });
+      return { success: true };
+    } catch (error) {
+      dispatch({ 
+        type: 'AUTH_ERROR', 
+        payload: { error: error.message } 
+      });
+      return { success: false, error: error.message };
+    }
+  }, [dispatch]);
+
+  const register = useCallback(async (data: RegisterData) => {
+    dispatch({ type: 'AUTH_START' });
+    
+    try {
+      const user = await authService.register(data);
+      dispatch({ 
+        type: 'AUTH_SUCCESS', 
+        payload: { user } 
+      });
+      return { success: true };
+    } catch (error) {
+      dispatch({ 
+        type: 'AUTH_ERROR', 
+        payload: { error: error.message } 
+      });
+      return { success: false, error: error.message };
+    }
+  }, [dispatch]);
+
+  const logout = useCallback(async () => {
+    try {
+      await authService.logout();
+      dispatch({ type: 'AUTH_LOGOUT' });
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  }, [dispatch]);
+
+  return { login, register, logout };
+}
+```
+
+## API Layer Architecture
+
+### Service Layer Pattern
+
+```tsx
+// services/api/apiClient.ts
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+
+class ApiClient {
+  private client: AxiosInstance;
+
+  constructor(baseURL: string) {
+    this.client = axios.create({
+      baseURL,
+      timeout: 10000,
+    });
+
+    this.setupInterceptors();
+  }
+
+  private setupInterceptors() {
+    // Request interceptor
+    this.client.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    // Response interceptor
+    this.client.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          // Handle unauthorized access
+          localStorage.removeItem('authToken');
+          window.location.href = '/login';
+        }
+        return Promise.reject(error);
+      }
+    );
+  }
+
+  async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.client.get<T>(url, config);
+    return response.data;
+  }
+
+  async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.client.post<T>(url, data, config);
+    return response.data;
+  }
+
+  async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.client.put<T>(url, data, config);
+    return response.data;
+  }
+
+  async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response = await this.client.delete<T>(url, config);
+    return response.data;
+  }
+}
+
+export const apiClient = new ApiClient(process.env.REACT_APP_API_URL || '');
+```
+
+```tsx
+// features/users/services/userService.ts
+import { apiClient } from '@/services/api/apiClient';
+import { User, CreateUserData, UpdateUserData } from '../types';
+
+export const userService = {
+  async getUsers(): Promise<User[]> {
+    return apiClient.get<User[]>('/users');
+  },
+
+  async getUserById(id: string): Promise<User> {
+    return apiClient.get<User>(`/users/${id}`);
+  },
+
+  async createUser(data: CreateUserData): Promise<User> {
+    return apiClient.post<User>('/users', data);
+  },
+
+  async updateUser(id: string, data: UpdateUserData): Promise<User> {
+    return apiClient.put<User>(`/users/${id}`, data);
+  },
+
+  async deleteUser(id: string): Promise<void> {
+    return apiClient.delete<void>(`/users/${id}`);
+  },
+};
+```
+
+## Error Handling
+
+### Error Boundary
+
+```tsx
+// components/common/ErrorBoundary.tsx
+import { Component, ErrorInfo, ReactNode } from 'react';
+
+interface Props {
+  children: ReactNode;
+  fallback?: ReactNode;
+  onError?: (error: Error, errorInfo: ErrorInfo) => void;
+}
+
+interface State {
+  hasError: boolean;
+  error?: Error;
+}
+
+export class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    
+    // Log to error reporting service
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        this.props.fallback || (
+          <div className="error-boundary">
+            <h2>Something went wrong.</h2>
+            <details style={{ whiteSpace: 'pre-wrap' }}>
+              {this.state.error && this.state.error.toString()}
+            </details>
+          </div>
+        )
+      );
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+### Global Error Handler
+
+```tsx
+// hooks/useErrorHandler.ts
+import { useCallback } from 'react';
+import { toast } from 'sonner';
+
+interface ErrorHandlerOptions {
+  showToast?: boolean;
+  logError?: boolean;
+  reportError?: boolean;
+}
+
+export function useErrorHandler() {
+  const handleError = useCallback((
+    error: Error | string,
+    options: ErrorHandlerOptions = {}
+  ) => {
+    const {
+      showToast = true,
+      logError = true,
+      reportError = true,
+    } = options;
+
+    const errorMessage = typeof error === 'string' ? error : error.message;
+
+    if (logError) {
+      console.error('Application Error:', error);
+    }
+
+    if (showToast) {
+      toast.error(errorMessage);
+    }
+
+    if (reportError && typeof error !== 'string') {
+      // Report to error monitoring service
+      reportErrorToService(error);
+    }
+  }, []);
+
+  return { handleError };
+}
+
+function reportErrorToService(error: Error) {
+  // Implementation depends on your error monitoring service
+  // e.g., Sentry, LogRocket, etc.
+}
+```
+
+## Performance Optimization
+
+### Memoization Strategies
+
+```tsx
+// components/UserList.tsx
+import { memo, useMemo, useCallback } from 'react';
+import { User } from '@/types';
+
+interface UserListProps {
+  users: User[];
+  onUserSelect: (user: User) => void;
+  searchTerm: string;
+}
+
+export const UserList = memo<UserListProps>(({ users, onUserSelect, searchTerm }) => {
+  // Memoize filtered users
+  const filteredUsers = useMemo(() => {
+    if (!searchTerm) return users;
+    
+    return users.filter(user =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [users, searchTerm]);
+
+  // Memoize event handlers
+  const handleUserClick = useCallback((user: User) => {
+    onUserSelect(user);
+  }, [onUserSelect]);
+
+  return (
+    <div className="user-list">
+      {filteredUsers.map(user => (
+        <UserCard
+          key={user.id}
+          user={user}
+          onClick={handleUserClick}
+        />
+      ))}
+    </div>
+  );
+});
+
+UserList.displayName = 'UserList';
+```
+
+### Code Splitting
+
+```tsx
+// App.tsx
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+
+// Lazy load route components
+const Dashboard = lazy(() => import('@/features/dashboard/pages/Dashboard'));
+const Profile = lazy(() => import('@/features/profile/pages/Profile'));
+const Settings = lazy(() => import('@/features/settings/pages/Settings'));
+
+function App() {
+  return (
+    <Router>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+## Testing Strategy
+
+### Component Testing
+
+```tsx
+// components/ui/Button/Button.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('renders with correct text', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument();
+  });
+
+  it('calls onClick handler when clicked', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    fireEvent.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('applies correct variant classes', () => {
+    render(<Button variant="destructive">Delete</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toHaveClass('bg-destructive');
+  });
+
+  it('is disabled when disabled prop is true', () => {
+    render(<Button disabled>Disabled</Button>);
+    expect(screen.getByRole('button')).toBeDisabled();
+  });
+});
+```
+
+### Hook Testing
+
+```tsx
+// features/auth/hooks/useAuth.test.tsx
+import { renderHook, act } from '@testing-library/react';
+import { AuthProvider } from '../context/AuthContext';
+import { useAuthActions } from './useAuthActions';
+
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <AuthProvider>{children}</AuthProvider>
+);
+
+describe('useAuthActions', () => {
+  it('should login successfully', async () => {
+    const { result } = renderHook(() => useAuthActions(), { wrapper });
+
+    await act(async () => {
+      const response = await result.current.login({
+        email: 'test@example.com',
+        password: 'password123',
+      });
+      expect(response.success).toBe(true);
+    });
+  });
+});
+```
+
+## TypeScript Best Practices
+
+### Strict Type Definitions
+
+```tsx
+// types/api.ts
+export interface ApiResponse<T> {
+  data: T;
+  message: string;
+  success: boolean;
+}
+
+export interface PaginatedResponse<T> extends ApiResponse<T[]> {
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+// Utility types
+export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;
+
+// Form types
+export type FormState<T> = {
+  values: T;
+  errors: Partial<Record<keyof T, string>>;
+  touched: Partial<Record<keyof T, boolean>>;
+  isSubmitting: boolean;
+  isValid: boolean;
+};
+```
+
+### Generic Components
+
+```tsx
+// components/common/DataTable.tsx
+interface Column<T> {
+  key: keyof T;
+  header: string;
+  render?: (value: T[keyof T], item: T) => React.ReactNode;
+}
+
+interface DataTableProps<T> {
+  data: T[];
+  columns: Column<T>[];
+  onRowClick?: (item: T) => void;
+  loading?: boolean;
+}
+
+export function DataTable<T extends Record<string, any>>({
+  data,
+  columns,
+  onRowClick,
+  loading = false,
+}: DataTableProps<T>) {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          {columns.map((column) => (
+            <th key={String(column.key)}>{column.header}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr
+            key={index}
+            onClick={() => onRowClick?.(item)}
+            className={onRowClick ? 'cursor-pointer' : ''}
+          >
+            {columns.map((column) => (
+              <td key={String(column.key)}>
+                {column.render
+                  ? column.render(item[column.key], item)
+                  : String(item[column.key])
+                }
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+```
+
+## Conclusion
+
+Building scalable React applications requires:
+
+1. **Clear Architecture**: Feature-based organization and separation of concerns
+2. **Type Safety**: Comprehensive TypeScript usage
+3. **Performance**: Memoization, code splitting, and optimization
+4. **Error Handling**: Robust error boundaries and global error management
+5. **Testing**: Comprehensive test coverage for components and business logic
+6. **Maintainability**: Consistent patterns and clear abstractions
+
+The key is to establish these patterns early and maintain consistency as your application grows. Remember that scalability is not just about handling more users—it's about handling more developers, features, and complexity over time.
