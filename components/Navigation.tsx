@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
-import { ThemeToggle } from '@/components/ThemeToggle';
+// import { ThemeToggle } from '@/components/ThemeToggle'; // Temporarily hidden
 
 export function Navigation({ className = '' }: { className?: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -68,16 +68,16 @@ export function Navigation({ className = '' }: { className?: string }) {
               ))}
             </ul>
 
-            {/* Theme Toggle */}
-            <div className="ml-4 flex items-center">
+            {/* Theme Toggle - Temporarily Hidden */}
+            {/* <div className="ml-4 flex items-center">
               <ThemeToggle />
-            </div>
+            </div> */}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
-            {/* Theme Toggle for Mobile */}
-            <ThemeToggle />
+            {/* Theme Toggle for Mobile - Temporarily Hidden */}
+            {/* <ThemeToggle /> */}
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
