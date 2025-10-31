@@ -1,0 +1,83 @@
+---
+title: "Web Accessibility: A Developer's Guide"
+excerpt: "Learn how to build accessible web applications that work for everyone, including users with disabilities"
+date: "2024-01-05"
+tags: ["Accessibility", "Web Development", "UX", "HTML"]
+author:
+  name: "John Developer"
+  avatar: "/images/avatar.jpg"
+published: true
+coverImage: "/images/blog/web-accessibility.jpg"
+---
+
+# Web Accessibility: A Developer's Guide
+
+Building accessible web applications is not just good practice—it's essential for creating inclusive digital experiences.
+
+## Why Accessibility Matters
+
+- **Legal compliance**: Many countries have accessibility laws
+- **Better UX**: Accessible design benefits all users
+- **SEO benefits**: Screen readers and search engines have similar needs
+- **Larger audience**: Don't exclude users with disabilities
+
+## Key Principles (WCAG)
+
+### 1. Perceivable
+- Provide text alternatives for images
+- Use sufficient color contrast
+- Make content adaptable to different presentations
+
+### 2. Operable
+- Make all functionality keyboard accessible
+- Give users enough time to read content
+- Don't use content that causes seizures
+
+### 3. Understandable
+- Make text readable and understandable
+- Make content appear and operate predictably
+- Help users avoid and correct mistakes
+
+### 4. Robust
+- Maximize compatibility with assistive technologies
+
+## Practical Implementation
+
+### Semantic HTML
+
+```html
+<nav aria-label="Main navigation">
+  <ul>
+    <li><a href="/home">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+```
+
+### ARIA Labels
+
+```html
+<button aria-label="Close dialog" onclick="closeDialog()">
+  ×
+</button>
+```
+
+### Focus Management
+
+```css
+.button:focus {
+  outline: 2px solid #007acc;
+  outline-offset: 2px;
+}
+```
+
+## Testing Your Accessibility
+
+1. **Keyboard navigation**: Tab through your entire site
+2. **Screen reader testing**: Use NVDA, JAWS, or VoiceOver
+3. **Automated tools**: axe-core, Lighthouse accessibility audit
+4. **Color contrast**: Use tools like WebAIM's contrast checker
+
+## Conclusion
+
+Accessibility should be considered from the start of any project, not as an afterthought. By following these guidelines, you'll create better experiences for all users.

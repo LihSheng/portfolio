@@ -116,22 +116,23 @@
   - _Requirements: 4.1-4.5, 9.1-9.6_
 
 - [x] 15. Create sample project MDX files
-
-
   - Add 3-4 sample projects in content/projects/
   - Include frontmatter with title, date, tags, images, and links
   - Write project descriptions with challenges and solutions
   - Add code snippets to demonstrate syntax highlighting
   - _Requirements: 13.1-13.5_
 
-- [ ] 16. Build BlogPostCard component
+- [x] 16. Build BlogPostCard component
   - Create components/BlogPostCard.tsx with title, excerpt, date, and tags
   - Display reading time estimate
   - Add hover effects and animations
   - Make card responsive
   - _Requirements: 6.1, 6.4_
 
-- [ ] 17. Implement blog listing page
+- [x] 17. Implement blog listing page
+
+
+
   - Create app/writing/page.tsx with blog post list
   - Add filtering by tags using searchParams
   - Display posts in reverse chronological order
