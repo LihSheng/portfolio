@@ -243,3 +243,41 @@ code[class*='language-'] {
   background-color: rgb(59 130 246 / 0.4); /* blue-500 with opacity */
   color: inherit;
 }
+/* Error page animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out 0.2s both;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+  }
+}

@@ -206,7 +206,9 @@
   - Reference sitemap location
   - _Requirements: 9.4_
 
-- [ ] 28. Add 404 and error pages
+- [x] 28. Add 404 and error pages
+
+
   - Create app/not-found.tsx with custom 404 page
   - Implement app/error.tsx for route-level errors
   - Add helpful navigation links
