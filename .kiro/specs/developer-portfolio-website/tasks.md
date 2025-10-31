@@ -77,18 +77,15 @@
   - _Requirements: 13.1-13.5_
 
 - [x] 10. Build Hero section for homepage
-
-
-
-
-
   - Create components/Hero.tsx with name, tagline, and CTA
   - Implement Framer Motion entrance animations
   - Add responsive layout for mobile/desktop
   - Include call-to-action button linking to projects or contact
   - _Requirements: 2.1-2.5_
 
-- [ ] 11. Create ProjectCard component
+- [x] 11. Create ProjectCard component
+
+
   - Build components/ProjectCard.tsx with image, title, description, and tags
   - Add hover animations with Framer Motion
   - Include links to demo and repository
