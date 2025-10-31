@@ -12,6 +12,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -96,9 +97,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <StructuredData />
       </head>
-      <body className="flex min-h-screen flex-col bg-background font-sans antialiased">
+      <body className={`${inter.className} flex min-h-screen flex-col bg-background font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
