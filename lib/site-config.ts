@@ -28,12 +28,12 @@ export const navigationItems: NavigationItem[] = [
 export const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/LihSheng',
     icon: 'github',
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/yourusername',
+    url: 'https://www.linkedin.com/in/lihshengng/',
     icon: 'linkedin',
   },
   {
@@ -50,19 +50,18 @@ export const socialLinks: SocialLink[] = [
 
 // Main site configuration
 export const siteConfig: SiteConfig = {
-  name: 'Your Name',
-  title: 'Your Name - Full Stack Developer',
+  name: 'Lih Sheng',
+  title: 'Lih Sheng - Full Stack Developer',
   description: 'Full-stack developer specializing in modern web technologies. Building scalable applications with React, Next.js, and TypeScript.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yoursite.com',
   author: {
-    name: 'Your Name',
+    name: 'Lih Sheng',
     email: 'your.email@example.com',
     avatar: '/images/avatar.jpg',
     bio: 'Full-stack developer passionate about creating elegant solutions to complex problems. Experienced in React, Next.js, TypeScript, and Node.js.',
     social: {
-      github: 'https://github.com/yourusername',
-      linkedin: 'https://linkedin.com/in/yourusername',
-      twitter: 'https://twitter.com/yourusername',
+      github: 'https://github.com/LihSheng',
+      linkedin: 'https://www.linkedin.com/in/lihshengng/',
     },
   },
   navigation: navigationItems,

@@ -107,11 +107,6 @@
   - _Requirements: 3.1-3.6_
 
 - [x] 14. Create project detail page with MDX support
-
-
-
-
-
   - Implement app/projects/[slug]/page.tsx with dynamic routing
   - Add generateStaticParams for all project slugs
   - Render MDX content with syntax highlighting
@@ -120,7 +115,9 @@
   - Implement generateMetadata for SEO
   - _Requirements: 4.1-4.5, 9.1-9.6_
 
-- [ ] 15. Create sample project MDX files
+- [x] 15. Create sample project MDX files
+
+
   - Add 3-4 sample projects in content/projects/
   - Include frontmatter with title, date, tags, images, and links
   - Write project descriptions with challenges and solutions
