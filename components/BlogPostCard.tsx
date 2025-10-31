@@ -34,11 +34,11 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       animate="animate"
       whileHover="hover"
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="group relative bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-800"
+      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
     >
       <div className="p-6">
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2">
           {post.title}
         </h3>
 

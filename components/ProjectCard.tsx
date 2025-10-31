@@ -32,7 +32,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
       animate="animate"
       whileHover="hover"
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="group relative bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-800"
+      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
     >
       {/* Project Image */}
       <div className="relative aspect-video overflow-hidden">
@@ -84,7 +84,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
       <div className="p-6">
         {/* Title and Description */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
             {project.title}
           </h3>
           <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">

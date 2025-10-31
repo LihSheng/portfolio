@@ -39,7 +39,7 @@ export default function Hero() {
           {/* Name */}
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white"
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
           >
             {siteConfig.author.name}
           </motion.h1>
@@ -50,7 +50,7 @@ export default function Hero() {
             className="text-xl sm:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Full-stack developer specializing in{' '}
-            <span className="text-gray-900 dark:text-white font-semibold">modern web technologies</span>.
+            <span className="text-gray-900 dark:text-gray-100 font-semibold">modern web technologies</span>.
             Building scalable applications with React, Next.js, and TypeScript.
           </motion.h2>
 
