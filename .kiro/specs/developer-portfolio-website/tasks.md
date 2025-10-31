@@ -183,7 +183,7 @@
   - Make layout responsive
   - _Requirements: 7.1, 7.6_
 
-- [ ] 24. Create contact form API route
+- [x] 24. Create contact form API route
   - Implement app/api/contact/route.ts with POST handler
   - Validate form data using Zod schema
   - Integrate Nodemailer or Formspree for email sending

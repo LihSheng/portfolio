@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import SkillBadge from '@/components/SkillBadge';
 import Timeline from '@/components/Timeline';
 import { siteConfig } from '@/lib/site-config';
-import type { SkillCategory, ExperienceData } from '@/types';
+import type { SkillCategory, ExperienceData, TimelineItem } from '@/types';
 
 // Import data
 import skillsData from '@/content/data/skills.json';
@@ -27,6 +27,27 @@ const staggerContainer = {
 export default function AboutContent() {
   const skills = skillsData as SkillCategory;
   const experience = experienceData as ExperienceData;
+
+  // Transform work experience to timeline items
+  const workTimelineItems: TimelineItem[] = experience.work.map(work => ({
+    date: work.current ? `${work.startDate} - Present` : `${work.startDate} - ${work.endDate}`,
+    title: work.title,
+    organization: work.company,
+    description: work.description,
+    type: 'work' as const,
+    technologies: work.technologies,
+    achievements: work.achievements,
+  }));
+
+  // Transform education to timeline items
+  const educationTimelineItems: TimelineItem[] = experience.education.map(edu => ({
+    date: `${edu.startDate} - ${edu.endDate}`,
+    title: edu.degree,
+    organization: edu.institution,
+    description: edu.description,
+    type: 'education' as const,
+    achievements: edu.achievements,
+  }));
 
   return (
     <div className="min-h-screen py-12">
@@ -122,12 +143,12 @@ export default function AboutContent() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Timeline
-              items={experience.work}
+              items={workTimelineItems}
               title="Work Experience"
             />
             
             <Timeline
-              items={experience.education}
+              items={educationTimelineItems}
               title="Education & Certifications"
             />
           </div>

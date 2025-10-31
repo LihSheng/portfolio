@@ -95,6 +95,10 @@ export interface SkillsData {
   tools: Skill[];
 }
 
+export interface SkillCategory {
+  [category: string]: Skill[];
+}
+
 // Experience data structures
 export interface WorkExperience {
   id: string;

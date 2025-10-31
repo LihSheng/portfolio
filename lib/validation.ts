@@ -25,10 +25,3 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
-
-// Form submission response types
-export interface ContactFormResponse {
-  success: boolean;
-  message: string;
-  errors?: Record<string, string>;
-}
