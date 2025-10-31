@@ -20,9 +20,10 @@
 ├── components/              # Reusable React components
 │   ├── Navigation.tsx       # Main navigation with mobile menu
 │   ├── Footer.tsx           # Site footer
-│   ├── ThemeToggle.tsx      # Dark/light mode toggle
-│   ├── ProjectCard.tsx      # Project card component
-│   ├── BlogPostCard.tsx     # Blog post card component
+│   ├── ThemeToggle.tsx      # Dark/light mode toggle (temporarily hidden)
+│   ├── ProjectCard.tsx      # Project card component with optimized images
+│   ├── BlogPostCard.tsx     # Blog post card component with optimized images
+│   ├── OptimizedImage.tsx   # Wrapper component for Next.js Image with fallbacks
 │   ├── ContactForm.tsx      # Contact form with validation
 │   └── ui/                  # shadcn/ui components
 ├── content/                 # Content files
@@ -32,9 +33,12 @@
 │   ├── content.ts           # Content loading utilities
 │   ├── mdx.ts               # MDX parsing and utilities
 │   ├── animations.ts        # Framer Motion animation configs
+│   ├── image-utils.ts       # Image optimization utilities and placeholders
 │   └── validation.ts        # Form validation schemas
 ├── public/                  # Static assets
 │   ├── images/              # Image assets
+│   │   ├── projects/        # Project screenshots and images
+│   │   └── blog/            # Blog post cover images (optional)
 │   └── fonts/               # Custom fonts (if any)
 ├── styles/                  # Global styles
 │   └── globals.css          # Global CSS and Tailwind imports

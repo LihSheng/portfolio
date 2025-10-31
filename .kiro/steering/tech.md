@@ -74,21 +74,34 @@ npx playwright test      # Run E2E tests
 
 ## Configuration Files
 
-- `next.config.mjs` - Next.js configuration with MDX support
+- `next.config.mjs` - Next.js configuration with MDX support and image optimization
 - `tailwind.config.ts` - Tailwind CSS configuration
 - `tsconfig.json` - TypeScript configuration
 - `postcss.config.mjs` - PostCSS configuration
 - `.eslintrc.json` - ESLint rules
 - `.prettierrc` - Prettier formatting rules
 
+## Image Optimization
+
+- **Next.js Image Component**: All images use optimized Next.js Image component
+- **Format Support**: WebP and AVIF formats with automatic fallbacks
+- **Responsive Loading**: Proper `sizes` attributes for different screen sizes
+- **Blur Placeholders**: Shimmer loading effects for better UX
+- **Remote Patterns**: Configured for Unsplash and other external image sources
+- **Caching**: Long-term caching (1 year) for optimal performance
+- **Device Sizes**: Optimized for common device breakpoints
+
 ## Performance Considerations
 
 - Static generation (SSG) for most pages
-- Image optimization with Next.js Image component
+- Advanced image optimization with Next.js Image component
+- Blur placeholders and progressive loading
+- WebP/AVIF format optimization with fallbacks
 - Code splitting with dynamic imports
 - Tailwind CSS purging for minimal bundle size
 - Framer Motion tree-shaking for animations
 - MDX compilation at build time
+- Long-term image caching strategies
 
 ## Browser Support
 

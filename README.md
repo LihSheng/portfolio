@@ -92,6 +92,11 @@ npm run format
 │   ├── settings/        # Kiro IDE settings (MCP config)
 │   ├── specs/           # Feature specifications and tasks
 │   └── steering/        # AI assistant guidance documents
+│       ├── ai-guideline.md    # AI coding guidelines and best practices
+│       ├── images.md          # Image optimization guidelines and patterns
+│       ├── product.md         # Product overview and feature requirements
+│       ├── structure.md       # Project structure and conventions
+│       └── tech.md            # Technology stack and configuration
 ├── app/
 │   ├── layout.tsx       # Root layout with theme provider
 │   ├── page.tsx         # Home page
@@ -206,6 +211,22 @@ Once configured, you can use Playwright through Kiro to:
 - Validate component functionality
 
 ## Recent Changes
+
+### Image Optimization Implementation (2025-10-31)
+- **Next.js Image Component**: Replaced all img tags with optimized Next.js Image components
+- **Blur Placeholders**: Added shimmer loading placeholders for better UX during image loading
+- **Responsive Sizing**: Configured proper `sizes` attributes for optimal loading across devices
+- **Format Optimization**: Enabled WebP and AVIF formats with fallbacks for better performance
+- **Image Configuration**: Enhanced `next.config.mjs` with comprehensive image optimization settings
+- **Graceful Fallbacks**: Implemented proper error handling for missing images
+- **Blog Images**: Removed invalid image references and implemented clean fallback behavior
+- **Avatar Integration**: Used SVG data URLs for consistent avatar display across all blog posts
+
+### Theme Toggle Temporarily Hidden (2025-10-31)
+- **Temporary Fix**: Hidden theme switch button from navigation due to functionality issues
+- **Desktop & Mobile**: Commented out ThemeToggle component in both desktop and mobile navigation
+- **Easy Restoration**: Changes are commented out for easy restoration when theme functionality is fixed
+- **Build Stability**: Ensured build continues to work properly without theme toggle
 
 ### Font Fix (2025-10-31)
 - Fixed typography issue where Times New Roman was displaying instead of Inter

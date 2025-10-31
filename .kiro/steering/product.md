@@ -14,12 +14,13 @@ Create an engaging, performant portfolio website that:
 
 - **Project Showcase**: Grid-based project display with filtering by technology/tags, detailed case studies with MDX content
 - **Blog System**: MDX-powered blog with syntax highlighting, reading time estimates, tag filtering, and RSS feed
-- **Dark/Light Theme**: System-aware theme with smooth transitions and persistent preferences
+- **Dark/Light Theme**: System-aware theme with smooth transitions and persistent preferences (temporarily disabled)
 - **Responsive Design**: Mobile-first approach with optimized layouts for all screen sizes
 - **SEO Optimized**: Meta tags, OpenGraph, Twitter cards, structured data, sitemap, and robots.txt
 - **Contact Form**: Validated contact form with email integration
 - **Smooth Animations**: Framer Motion animations with reduced motion support
-- **Performance**: Static generation, image optimization, code splitting, and caching strategies
+- **Performance**: Static generation, advanced image optimization with Next.js Image, code splitting, and caching strategies
+- **Image Optimization**: WebP/AVIF format support, blur placeholders, responsive sizing, and graceful fallbacks
 
 ## Target Users
 
