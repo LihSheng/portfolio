@@ -154,11 +154,6 @@
   - _Requirements: 13.1-13.5_
 
 - [x] 20. Build About page with skills and timeline
-
-
-
-
-
   - Create app/about/page.tsx with introduction section
   - Implement SkillBadge component for skills matrix
   - Create Timeline component for experience and education
@@ -167,7 +162,7 @@
   - Add animations for section entrance
   - _Requirements: 5.1-5.5_
 
-- [ ] 21. Create skills and experience data files
+- [x] 21. Create skills and experience data files
   - Create content/data/skills.json with categorized skills
   - Create content/data/experience.json with work history and education
   - Define TypeScript interfaces for data structures

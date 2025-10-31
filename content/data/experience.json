@@ -1,41 +1,142 @@
 {
   "work": [
     {
-      "date": "2022 - Present",
-      "title": "Senior Full Stack Developer",
-      "organization": "Tech Innovations Inc.",
-      "description": "Lead development of modern web applications using React, Next.js, and Node.js. Mentored junior developers and implemented best practices for code quality and performance.",
-      "type": "work"
+      "id": "senior-frontend-dev",
+      "title": "Senior Frontend Developer",
+      "company": "TechCorp Solutions",
+      "location": "San Francisco, CA",
+      "type": "full-time",
+      "startDate": "2022-03",
+      "endDate": null,
+      "current": true,
+      "description": "Lead frontend development for enterprise web applications serving 100K+ users. Architected and implemented scalable React applications with Next.js, resulting in 40% improvement in page load times.",
+      "achievements": [
+        "Led migration from legacy jQuery codebase to modern React/Next.js stack",
+        "Implemented comprehensive design system reducing development time by 30%",
+        "Mentored 3 junior developers and established frontend best practices",
+        "Optimized application performance achieving 95+ Lighthouse scores"
+      ],
+      "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "GraphQL", "Jest"]
     },
     {
-      "date": "2020 - 2022",
+      "id": "fullstack-dev",
+      "title": "Full Stack Developer",
+      "company": "StartupXYZ",
+      "location": "Remote",
+      "type": "full-time",
+      "startDate": "2020-06",
+      "endDate": "2022-02",
+      "current": false,
+      "description": "Developed and maintained full-stack web applications for early-stage startup. Built features from concept to deployment, working closely with product and design teams.",
+      "achievements": [
+        "Built MVP from scratch serving 10K+ users within 6 months",
+        "Implemented real-time features using WebSockets and Redis",
+        "Designed and developed RESTful APIs with comprehensive documentation",
+        "Set up CI/CD pipelines reducing deployment time by 60%"
+      ],
+      "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Docker", "AWS"]
+    },
+    {
+      "id": "frontend-dev",
       "title": "Frontend Developer",
-      "organization": "Digital Solutions Co.",
-      "description": "Built responsive web applications with React and TypeScript. Collaborated with design teams to implement pixel-perfect UIs and improved application performance by 40%.",
-      "type": "work"
+      "company": "Digital Agency Pro",
+      "location": "New York, NY",
+      "type": "full-time",
+      "startDate": "2019-01",
+      "endDate": "2020-05",
+      "current": false,
+      "description": "Developed responsive websites and web applications for diverse clients including e-commerce, healthcare, and finance sectors.",
+      "achievements": [
+        "Delivered 15+ client projects on time and within budget",
+        "Improved client website performance by average of 50%",
+        "Collaborated with UX/UI designers to implement pixel-perfect designs",
+        "Established responsive design standards and component library"
+      ],
+      "technologies": ["JavaScript", "React", "Vue.js", "Sass", "Webpack", "PHP"]
     },
     {
-      "date": "2019 - 2020",
+      "id": "junior-dev",
       "title": "Junior Web Developer",
-      "organization": "StartupXYZ",
-      "description": "Developed and maintained company website and internal tools. Gained experience with modern JavaScript frameworks and agile development methodologies.",
-      "type": "work"
+      "company": "WebDev Studio",
+      "location": "Austin, TX",
+      "type": "full-time",
+      "startDate": "2018-03",
+      "endDate": "2018-12",
+      "current": false,
+      "description": "Entry-level position focused on frontend development and learning modern web technologies. Contributed to various client projects under senior developer guidance.",
+      "achievements": [
+        "Completed 8+ small to medium-sized website projects",
+        "Learned React and modern JavaScript development practices",
+        "Implemented responsive designs for mobile-first approach",
+        "Participated in code reviews and agile development processes"
+      ],
+      "technologies": ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "Git"]
     }
   ],
   "education": [
     {
-      "date": "2015 - 2019",
-      "title": "Bachelor of Science in Computer Science",
-      "organization": "University of Technology",
-      "description": "Graduated with honors. Focused on software engineering, algorithms, and web development. Completed capstone project building a full-stack e-commerce platform.",
-      "type": "education"
+      "id": "cs-degree",
+      "degree": "Bachelor of Science in Computer Science",
+      "institution": "University of Technology",
+      "location": "California, USA",
+      "startDate": "2014-09",
+      "endDate": "2018-05",
+      "gpa": "3.7",
+      "description": "Comprehensive computer science program with focus on software engineering, algorithms, and web development.",
+      "coursework": [
+        "Data Structures and Algorithms",
+        "Software Engineering",
+        "Database Systems",
+        "Web Development",
+        "Computer Networks",
+        "Operating Systems"
+      ],
+      "achievements": [
+        "Dean's List for 4 consecutive semesters",
+        "President of Computer Science Student Association",
+        "Winner of Annual Hackathon 2017",
+        "Teaching Assistant for Intro to Programming course"
+      ]
     },
     {
-      "date": "2018",
-      "title": "AWS Certified Developer",
-      "organization": "Amazon Web Services",
-      "description": "Earned certification demonstrating proficiency in developing and maintaining applications on AWS platform.",
-      "type": "education"
+      "id": "bootcamp",
+      "degree": "Full Stack Web Development Bootcamp",
+      "institution": "CodeAcademy Intensive",
+      "location": "Online",
+      "startDate": "2017-06",
+      "endDate": "2017-12",
+      "description": "Intensive 6-month program focused on modern web development technologies and best practices.",
+      "coursework": [
+        "HTML5, CSS3, JavaScript ES6+",
+        "React and Redux",
+        "Node.js and Express",
+        "MongoDB and PostgreSQL",
+        "Git and Agile Development"
+      ],
+      "achievements": [
+        "Graduated with honors (top 10% of class)",
+        "Built 5 full-stack applications as capstone projects",
+        "Mentored fellow students in JavaScript fundamentals"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": "aws-cloud-practitioner",
+      "name": "AWS Certified Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "issueDate": "2022-08",
+      "expiryDate": "2025-08",
+      "credentialId": "AWS-CCP-2022-001234",
+      "verificationUrl": "https://aws.amazon.com/verification"
+    },
+    {
+      "id": "react-advanced",
+      "name": "Advanced React Development",
+      "issuer": "Meta (Facebook)",
+      "issueDate": "2021-11",
+      "expiryDate": null,
+      "credentialId": "META-REACT-ADV-2021-5678"
     }
   ]
 }
