@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
 import { BlogPost } from '@/types';
+import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -36,6 +38,21 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
     >
+      {/* Cover Image */}
+      {post.coverImage && (
+        <div className="relative aspect-video overflow-hidden">
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            placeholder="blur"
+            blurDataURL={shimmerPlaceholderDataUrl}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )}
+
       <div className="p-6">
         {/* Title */}
         <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2">

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Calendar, Clock, User, Tag } from 'lucide-react';
+import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/content';
 import { compileMDXWithPlugins } from '@/lib/mdx';
 import { BlogPost } from '@/types';
@@ -155,6 +156,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     fill
                                     className="object-cover"
                                     priority
+                                    placeholder="blur"
+                                    blurDataURL={shimmerPlaceholderDataUrl}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                                 />
                             </div>
                         )}

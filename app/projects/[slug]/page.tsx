@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, ExternalLink, Github, Calendar, Clock } from 'lucide-react';
+import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
 import { getAllProjects, getProjectBySlug } from '@/lib/content';
 import { compileMDXWithPlugins } from '@/lib/mdx';
 import { Project } from '@/types';
@@ -194,6 +195,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   fill
                   className="object-cover"
                   priority
+                  placeholder="blur"
+                  blurDataURL={shimmerPlaceholderDataUrl}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                 />
               </div>
             </div>

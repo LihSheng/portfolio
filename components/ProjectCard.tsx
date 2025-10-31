@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Project } from '@/types';
+import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
 
 interface ProjectCardProps {
   project: Project;
@@ -47,6 +48,8 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
             fill
             className="object-cover"
             priority={priority}
+            placeholder="blur"
+            blurDataURL={shimmerPlaceholderDataUrl}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </motion.div>
