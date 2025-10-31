@@ -60,9 +60,7 @@
   - Make footer responsive
   - _Requirements: 1.1, 10.1_
 
-- [ ] 8. Set up MDX configuration and content utilities
-
-
+- [-] 8. Set up MDX configuration and content utilities
   - Install and configure @next/mdx with remark and rehype plugins
   - Add remarkGfm, rehypePrism, rehypeSlug, and rehypeAutolinkHeadings
   - Create lib/mdx.ts with MDX parsing utilities
@@ -70,7 +68,7 @@
   - Create excerpt extraction utility
   - _Requirements: 6.3, 13.1-13.5_
 
-- [ ] 9. Create content management utilities
+- [x] 9. Create content management utilities
   - Implement lib/content.ts with getAllProjects function
   - Add getProjectBySlug and getFeaturedProjects functions
   - Implement getAllBlogPosts and getBlogPostBySlug functions
