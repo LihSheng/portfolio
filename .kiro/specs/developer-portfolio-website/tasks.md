@@ -49,19 +49,16 @@
   - _Requirements: 8.1-8.5_
 
 - [x] 7. Build Footer component
-
-
-
-
-
   - Create components/Footer.tsx with social links
   - Add copyright info and quick navigation links
   - Include RSS feed link
   - Make footer responsive
   - _Requirements: 1.1, 10.1_
 
-- [-] 8. Set up MDX configuration and content utilities
+- [x] 8. Set up MDX configuration and content utilities
+
   - Install and configure @next/mdx with remark and rehype plugins
+
   - Add remarkGfm, rehypePrism, rehypeSlug, and rehypeAutolinkHeadings
   - Create lib/mdx.ts with MDX parsing utilities
   - Implement reading time calculation function
@@ -93,7 +90,7 @@
   - Add tech stack badges
   - _Requirements: 3.1, 3.5, 3.6_
 
-- [ ] 12. Implement homepage with featured content
+- [x] 12. Implement homepage with featured content
   - Create app/page.tsx with Hero section
   - Display featured projects using ProjectCard components
   - Show recent blog posts with BlogPostCard components

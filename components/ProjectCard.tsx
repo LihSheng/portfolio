@@ -12,8 +12,11 @@ interface ProjectCardProps {
 }
 
 const cardVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 30 },
+  animate: { 
+    opacity: 1, 
+    y: 0
+  },
   hover: { y: -8 }
 };
 
