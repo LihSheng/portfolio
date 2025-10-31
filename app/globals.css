@@ -50,3 +50,35 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+/* Syntax highlighting for code blocks */
+@layer base {
+  pre[class*='language-'] {
+    border-radius: 0.5rem;
+    background-color: hsl(var(--muted));
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  code[class*='language-'] {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  :not(pre) > code {
+    background-color: hsl(var(--muted));
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  /* Anchor links for headings */
+  .anchor {
+    text-decoration: none;
+  }
+
+  .anchor:hover {
+    text-decoration: underline;
+  }
+}

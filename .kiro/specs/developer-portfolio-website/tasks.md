@@ -61,6 +61,8 @@
   - _Requirements: 1.1, 10.1_
 
 - [ ] 8. Set up MDX configuration and content utilities
+
+
   - Install and configure @next/mdx with remark and rehype plugins
   - Add remarkGfm, rehypePrism, rehypeSlug, and rehypeAutolinkHeadings
   - Create lib/mdx.ts with MDX parsing utilities
