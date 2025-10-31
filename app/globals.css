@@ -54,12 +54,14 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
   font-family: inherit;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: inherit;
   font-weight: 600;
   line-height: 1.2;
+  color: hsl(var(--color-foreground));
 }
 
 p, span, div, a, button {
@@ -195,4 +197,49 @@ code[class*='language-'] {
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Dark theme improvements */
+.dark {
+  color-scheme: dark;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+.dark input:focus,
+.dark textarea:focus {
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 0.5); /* blue-500 with opacity */
+}
+
+/* Improve scrollbar in dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(31 41 55); /* gray-800 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(75 85 99); /* gray-600 */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(107 114 128); /* gray-500 */
+}
+
+/* Selection colors */
+::selection {
+  background-color: rgb(59 130 246 / 0.3); /* blue-500 with opacity */
+  color: inherit;
+}
+
+.dark ::selection {
+  background-color: rgb(59 130 246 / 0.4); /* blue-500 with opacity */
+  color: inherit;
 }

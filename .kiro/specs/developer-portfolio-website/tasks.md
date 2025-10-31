@@ -36,11 +36,6 @@
   - _Requirements: 1.1-1.5, 8.2_
 
 - [x] 6. Create ThemeToggle component
-
-
-
-
-
   - Build components/ThemeToggle.tsx using next-themes
   - Add sun/moon icon toggle with smooth transition
   - Implement theme persistence in localStorage

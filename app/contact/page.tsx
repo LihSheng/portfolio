@@ -6,7 +6,7 @@ import { siteConfig, socialLinks } from '@/lib/site-config';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <motion.div
@@ -15,10 +15,10 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             I'm always interested in new opportunities, collaborations, and interesting projects. 
             Let's discuss how we can work together.
           </p>
@@ -30,9 +30,9 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/20 p-8 border border-gray-200 dark:border-gray-700"
           >
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
               Send me a message
             </h2>
             <ContactForm />
@@ -46,8 +46,8 @@ export default function ContactPage() {
             className="space-y-8"
           >
             {/* Direct Contact Methods */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/20 p-8 border border-gray-200 dark:border-gray-700">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
                 Other ways to reach me
               </h2>
               
@@ -73,7 +73,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                       Email
                     </h3>
                     <a 
@@ -100,7 +100,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                       LinkedIn
                     </h3>
                     <a 
@@ -117,8 +117,8 @@ export default function ContactPage() {
             </div>
 
             {/* Social Media Links */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/20 p-8 border border-gray-200 dark:border-gray-700">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
                 Follow me
               </h2>
               
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     href={social.url}
                     target={social.name !== 'Email' ? '_blank' : undefined}
                     rel={social.name !== 'Email' ? 'noopener noreferrer' : undefined}
-                    className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 group"
+                    className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-200 group bg-gray-50 dark:bg-gray-700/50"
                   >
                     <div className="flex-shrink-0">
                       {social.icon === 'github' && (
@@ -179,7 +179,7 @@ export default function ContactPage() {
                         </svg>
                       )}
                     </div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {social.name}
                     </span>
                   </a>

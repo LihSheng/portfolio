@@ -124,10 +124,11 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   const inputClasses = `
     w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-    bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-    focus:ring-2 focus:ring-blue-500 focus:border-transparent
+    bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
+    focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent
     transition-colors duration-200
     disabled:opacity-50 disabled:cursor-not-allowed
+    placeholder:text-gray-500 dark:placeholder:text-gray-400
   `;
 
   const errorClasses = `
@@ -296,10 +297,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           transition-all duration-200
           ${isSubmitting || Object.keys(errors).length > 0
             ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
-            : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 hover:shadow-lg'
+            : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400 hover:shadow-lg dark:hover:shadow-blue-500/25'
           }
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-          dark:focus:ring-offset-gray-900
+          focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2
+          dark:focus:ring-offset-gray-800
         `}
         whileHover={!isSubmitting && Object.keys(errors).length === 0 ? { scale: 1.02 } : {}}
         whileTap={!isSubmitting && Object.keys(errors).length === 0 ? { scale: 0.98 } : {}}
