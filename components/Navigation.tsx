@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
-// import { ThemeToggle } from '@/components/ThemeToggle'; // Temporarily hidden
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Navigation({ className = '' }: { className?: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -64,8 +64,8 @@ export function Navigation({ className = '' }: { className?: string }) {
                   <Link
                     href={item.href}
                     className={`text-sm font-medium transition-colors hover:text-primary ${isActive(item.href)
-                        ? 'text-primary'
-                        : 'text-foreground/60'
+                      ? 'text-primary'
+                      : 'text-foreground/60'
                       }`}
                   >
                     {item.label}
@@ -74,16 +74,16 @@ export function Navigation({ className = '' }: { className?: string }) {
               ))}
             </ul>
 
-            {/* Theme Toggle - Temporarily Hidden */}
-            {/* <div className="ml-4 flex items-center">
+            {/* Theme Toggle */}
+            <div className="ml-4 flex items-center">
               <ThemeToggle />
-            </div> */}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
-            {/* Theme Toggle for Mobile - Temporarily Hidden */}
-            {/* <ThemeToggle /> */}
+            {/* Theme Toggle for Mobile */}
+            <ThemeToggle />
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -149,8 +149,8 @@ export function Navigation({ className = '' }: { className?: string }) {
                   <Link
                     href={item.href}
                     className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isActive(item.href)
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-foreground/60 hover:bg-accent hover:text-foreground'
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-foreground/60 hover:bg-accent hover:text-foreground'
                       }`}
                   >
                     {item.label}
