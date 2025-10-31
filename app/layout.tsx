@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Analytics } from '@/components/Analytics';
 import { StructuredData } from '@/components/StructuredData';
+import { Navigation } from '@/components/Navigation';
 import { siteConfig } from '@/lib/site-config';
 
 const inter = Inter({
@@ -103,6 +104,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Navigation />
           {children}
         </ThemeProvider>
         <Analytics />
