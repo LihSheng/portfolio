@@ -19,6 +19,21 @@
         "playwright_fill"
       ],
       "disabledTools": []
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github@latest"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "search_repositories",
+        "get_file_contents"
+      ]
     }
   }
 }

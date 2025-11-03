@@ -1,0 +1,166 @@
+---
+title: "Issue Tracker"
+description: "A Next.js-based issue tracking application for project management and bug tracking"
+image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop"
+tags: ["Project Management", "Issue Tracking", "Next.js", "TypeScript"]
+techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/issue-tracker"
+featured: false
+date: "2024-02-21"
+---
+
+# Issue Tracker
+
+A modern issue tracking application built with Next.js and TypeScript, designed to help teams manage bugs, feature requests, and project tasks efficiently. Features a clean interface and robust functionality for project management workflows.
+
+## Project Overview
+
+The Issue Tracker is a Next.js-based application that provides teams with essential tools for tracking and managing project issues. Built with modern web technologies, it offers a streamlined approach to bug tracking and project management with an emphasis on usability and performance.
+
+## Key Features
+
+### Core Functionality
+- **Issue Management**: Create, update, and track issues throughout their lifecycle
+- **Project Organization**: Organize issues by projects and categories
+- **Status Tracking**: Monitor issue progress with customizable status workflows
+- **Priority Management**: Assign and filter issues by priority levels
+- **User Assignment**: Assign issues to team members for accountability
+
+### Technical Features
+- **Modern Stack**: Built with Next.js 14 and TypeScript for reliability
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Fast Performance**: Server-side rendering for quick page loads
+- **Type Safety**: Full TypeScript implementation for robust development
+
+## Technical Implementation
+
+### Architecture
+The application follows Next.js App Router conventions with a component-based architecture:
+
+```typescript
+// Issue management with TypeScript interfaces
+interface Issue {
+  id: string;
+  title: string;
+  description: string;
+  status: 'open' | 'in-progress' | 'closed';
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  assignee?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Issue service for data management
+class IssueService {
+  async createIssue(issueData: Omit<Issue, 'id' | 'createdAt' | 'updatedAt'>) {
+    const issue: Issue = {
+      ...issueData,
+      id: generateId(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    return await this.saveIssue(issue);
+  }
+  
+  async updateIssueStatus(id: string, status: Issue['status']) {
+    const issue = await this.getIssue(id);
+    if (!issue) throw new Error('Issue not found');
+    
+    issue.status = status;
+    issue.updatedAt = new Date();
+    
+    return await this.saveIssue(issue);
+  }
+}
+```
+
+### Component Structure
+```jsx
+// Main issue list component
+function IssueList({ issues, onIssueUpdate }) {
+  const [filter, setFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('createdAt');
+  
+  const filteredIssues = useMemo(() => {
+    return issues
+      .filter(issue => filter === 'all' || issue.status === filter)
+      .sort((a, b) => new Date(b[sortBy]) - new Date(a[sortBy]));
+  }, [issues, filter, sortBy]);
+  
+  return (
+    <div className="issue-list">
+      <IssueFilters 
+        currentFilter={filter} 
+        onFilterChange={setFilter}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+      />
+      
+      <div className="issues-grid">
+        {filteredIssues.map(issue => (
+          <IssueCard 
+            key={issue.id} 
+            issue={issue} 
+            onUpdate={onIssueUpdate}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## Development Highlights
+
+### Modern Development Practices
+- **TypeScript Integration**: Full type safety throughout the application
+- **Component Architecture**: Reusable, maintainable React components
+- **Performance Optimization**: Efficient rendering with React hooks and memoization
+- **Code Quality**: ESLint configuration for consistent code standards
+
+### User Experience Focus
+- **Intuitive Interface**: Clean, easy-to-navigate design
+- **Responsive Layout**: Seamless experience across all devices
+- **Fast Loading**: Optimized performance with Next.js features
+- **Accessibility**: Built with web accessibility standards in mind
+
+## Technologies Used
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript for type safety and better development experience
+- **Styling**: Tailwind CSS for responsive and modern design
+- **Runtime**: React 18 with modern hooks and patterns
+- **Development Tools**: ESLint for code quality and consistency
+- **Font Optimization**: Next.js font optimization with Inter font
+
+## Technical Achievements
+
+### Performance Optimizations
+- **Server-Side Rendering**: Fast initial page loads with Next.js SSR
+- **Automatic Code Splitting**: Optimized bundle sizes for better performance
+- **Image Optimization**: Next.js automatic image optimization
+- **Font Loading**: Optimized font loading with next/font
+
+### Development Experience
+- **Type Safety**: Comprehensive TypeScript implementation
+- **Hot Reloading**: Fast development iteration with Next.js dev server
+- **Modern Tooling**: Latest React and Next.js features
+- **Code Quality**: Consistent code style with ESLint
+
+## Results & Impact
+
+### Technical Benefits
+- **Maintainable Codebase**: TypeScript and component architecture ensure long-term maintainability
+- **Fast Performance**: Next.js optimizations provide excellent user experience
+- **Scalable Architecture**: Component-based design allows for easy feature additions
+- **Developer Experience**: Modern tooling and practices improve development efficiency
+
+### Project Management Benefits
+- **Streamlined Workflow**: Simplified issue tracking and management
+- **Team Collaboration**: Clear issue assignment and status tracking
+- **Project Visibility**: Comprehensive overview of project health and progress
+- **Efficient Organization**: Structured approach to bug tracking and feature requests
+
+This project demonstrates proficiency in modern React development with Next.js, TypeScript integration, and practical application of project management concepts in a web application context.

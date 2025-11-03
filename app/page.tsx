@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      
+
       {/* Featured Projects Section */}
       {featuredProjects.length > 0 && (
         <FeaturedSection
