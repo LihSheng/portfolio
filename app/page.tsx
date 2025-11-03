@@ -5,6 +5,7 @@ import { BlogPostCard } from '@/components/BlogPostCard';
 import { getFeaturedProjects, getRecentBlogPosts } from '@/lib/content';
 import { FeaturedSection } from '../components/FeaturedSection';
 import { AnimatedGrid } from '@/components/AnimatedGrid';
+import { getFeatureFlags } from '@/lib';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -22,18 +23,19 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // Fetch featured content
-  const [featuredProjects, recentPosts] = await Promise.all([
-    getFeaturedProjects(),
-    getRecentBlogPosts(3)
-  ]);
+  // Get feature flags
+  const flags = getFeatureFlags();
+  
+  // Fetch featured content based on feature flags
+  const featuredProjects = flags.projects ? await getFeaturedProjects() : [];
+  const recentPosts = flags.blog ? await getRecentBlogPosts(3) : [];
 
   return (
     <main>
       <Hero />
 
       {/* Featured Projects Section */}
-      {featuredProjects.length > 0 && (
+      {flags.projects && featuredProjects.length > 0 && (
         <FeaturedSection
           title="Featured Projects"
           subtitle="A selection of my recent work and side projects"
@@ -53,7 +55,7 @@ export default async function Home() {
       )}
 
       {/* Recent Blog Posts Section */}
-      {recentPosts.length > 0 && (
+      {flags.blog && recentPosts.length > 0 && (
         <FeaturedSection
           title="Latest Writing"
           subtitle="Recent thoughts on development, technology, and best practices"

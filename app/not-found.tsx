@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { getFeatureFlags } from '@/lib';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found',
@@ -7,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
+  const flags = getFeatureFlags();
+  
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4">
       <div className="max-w-md mx-auto text-center">
@@ -34,19 +37,23 @@ export default function NotFound() {
               Go Home
             </Link>
             
-            <Link
-              href="/projects"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-foreground bg-secondary rounded-md hover:bg-secondary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
-            >
-              View Projects
-            </Link>
+            {flags.projects && (
+              <Link
+                href="/projects"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-foreground bg-secondary rounded-md hover:bg-secondary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+              >
+                View Projects
+              </Link>
+            )}
             
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-foreground bg-secondary rounded-md hover:bg-secondary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
-            >
-              Contact Me
-            </Link>
+            {flags.contact && (
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-foreground bg-secondary rounded-md hover:bg-secondary/80 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+              >
+                Contact Me
+              </Link>
+            )}
           </div>
 
           {/* Additional Help */}
@@ -55,24 +62,30 @@ export default function NotFound() {
               Looking for something specific?
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <Link
-                href="/about"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
-                About Me
-              </Link>
-              <Link
-                href="/writing"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
-                Blog Posts
-              </Link>
-              <Link
-                href="/projects"
-                className="text-primary hover:text-primary/80 transition-colors"
-              >
-                All Projects
-              </Link>
+              {flags.about && (
+                <Link
+                  href="/about"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  About Me
+                </Link>
+              )}
+              {flags.blog && (
+                <Link
+                  href="/writing"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  Blog Posts
+                </Link>
+              )}
+              {flags.projects && (
+                <Link
+                  href="/projects"
+                  className="text-primary hover:text-primary/80 transition-colors"
+                >
+                  All Projects
+                </Link>
+              )}
             </div>
           </div>
         </div>

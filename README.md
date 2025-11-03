@@ -181,6 +181,14 @@ Create a `.env.local` file with the following variables:
 # Site Configuration
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 
+# Feature Flags (default: true, set to 'false' to disable)
+NEXT_PUBLIC_FEATURE_BLOG=true
+NEXT_PUBLIC_FEATURE_PROJECTS=true
+NEXT_PUBLIC_FEATURE_CONTACT=true
+NEXT_PUBLIC_FEATURE_ABOUT=true
+NEXT_PUBLIC_FEATURE_ANALYTICS=true
+NEXT_PUBLIC_FEATURE_RSS=false
+
 # Analytics (Optional)
 NEXT_PUBLIC_ANALYTICS_SITE_ID=your-plausible-site-id
 
@@ -191,6 +199,19 @@ SMTP_PORT=587
 SMTP_USER=your-smtp-user
 SMTP_PASS=your-smtp-password
 ```
+
+### Feature Flags
+
+The website supports feature flags to control the visibility of different modules:
+
+- `NEXT_PUBLIC_FEATURE_BLOG` - Controls blog/writing section visibility
+- `NEXT_PUBLIC_FEATURE_PROJECTS` - Controls projects section visibility  
+- `NEXT_PUBLIC_FEATURE_CONTACT` - Controls contact form and page visibility
+- `NEXT_PUBLIC_FEATURE_ABOUT` - Controls about page visibility
+- `NEXT_PUBLIC_FEATURE_ANALYTICS` - Controls analytics integration
+- `NEXT_PUBLIC_FEATURE_RSS` - Controls RSS feed generation (disabled by default)
+
+Set any flag to `'false'` to disable that feature. All other values (including undefined) will enable the feature.
 
 ## 🧪 Testing & Development Tools
 

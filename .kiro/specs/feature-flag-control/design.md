@@ -13,7 +13,7 @@ The feature flag control mechanism will provide a centralized, type-safe system 
 3. **Feature Flag Hook** - Custom hook for accessing flag values in components
 4. **Navigation Integration** - Dynamic navigation filtering based on flags
 5. **Hero Section Integration** - Conditional content rendering in hero sections
-6. **Route Protection** - Middleware for protecting disabled feature routes
+6. **Route Protection** - Proxy for protecting disabled feature routes
 
 ### Data Flow
 
@@ -23,7 +23,7 @@ graph TD
     B --> C[Navigation Component]
     B --> D[Hero Component]
     B --> E[Page Components]
-    B --> F[Route Middleware]
+    B --> F[Route Proxy]
     
     C --> G[Filtered Navigation Items]
     D --> H[Conditional Hero Content]
@@ -169,12 +169,12 @@ export default function Hero() {
 }
 ```
 
-### 6. Route Protection Middleware
+### 6. Route Protection Proxy
 
-**File**: `middleware.ts`
+**File**: `proxy.ts`
 
 ```typescript
-export function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const flags = getFeatureFlags();
   const pathname = request.nextUrl.pathname;
   
@@ -263,7 +263,7 @@ NEXT_PUBLIC_FEATURE_RSS=false
 
 ### 2. Integration Tests
 - Test navigation filtering with various flag combinations
-- Test route protection middleware
+- Test route protection proxy
 - Test hero section content variations
 
 ### 3. E2E Tests
@@ -296,7 +296,7 @@ NEXT_PUBLIC_FEATURE_RSS=false
 - Environment variables are public in browser
 
 ### 2. Route Protection
-- Server-side middleware provides primary protection
+- Server-side proxy provides primary protection
 - Client-side checks are for UX only
 - Implement proper authentication for sensitive features
 
