@@ -55,19 +55,32 @@ export class EmailService {
   }
 
   private async sendNodemailerEmail(data: ContactFormData): Promise<void> {
-    // This would require installing nodemailer
-    // npm install nodemailer @types/nodemailer
-    
-    throw new Error('Nodemailer integration not implemented. Please install nodemailer and configure SMTP settings.');
-    
-    /*
     const nodemailer = require('nodemailer');
     
     if (!this.config.smtp) {
       throw new Error('SMTP configuration is required for Nodemailer');
     }
 
-    const transporter = nodemailer.createTransporter(this.config.smtp);
+    console.log('📧 SMTP Configuration:', {
+      host: this.config.smtp.host,
+      port: this.config.smtp.port,
+      secure: this.config.smtp.secure,
+      user: this.config.smtp.auth.user,
+      from: this.config.from,
+      to: this.config.to,
+    });
+
+    const transporter = nodemailer.createTransport(this.config.smtp);
+
+    // Verify connection
+    try {
+      await transporter.verify();
+      console.log('✅ SMTP connection verified');
+    } catch (error) {
+      console.error('❌ SMTP connection failed:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      throw new Error(`SMTP connection failed: ${errorMessage}`);
+    }
 
     const mailOptions = {
       from: this.config.from || this.config.smtp.auth.user,
@@ -77,8 +90,15 @@ export class EmailService {
       replyTo: data.email,
     };
 
-    await transporter.sendMail(mailOptions);
-    */
+    console.log('📧 Sending email with options:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+      replyTo: mailOptions.replyTo,
+    });
+
+    const result = await transporter.sendMail(mailOptions);
+    console.log('✅ Email sent successfully:', result.messageId);
   }
 
   private async sendFormspreeEmail(data: ContactFormData): Promise<void> {
@@ -169,6 +189,17 @@ export class EmailService {
 export function createEmailService(): EmailService {
   const provider = (process.env.EMAIL_PROVIDER as EmailConfig['provider']) || 'console';
   
+  console.log('🔧 Creating email service with provider:', provider);
+  console.log('🔧 Environment variables:', {
+    EMAIL_PROVIDER: process.env.EMAIL_PROVIDER,
+    SMTP_HOST: process.env.SMTP_HOST,
+    SMTP_PORT: process.env.SMTP_PORT,
+    SMTP_USER: process.env.SMTP_USER ? '***' : 'undefined',
+    SMTP_PASS: process.env.SMTP_PASS ? '***' : 'undefined',
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    NEXT_PUBLIC_CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+  });
+  
   const config: EmailConfig = {
     provider,
   };
@@ -199,6 +230,18 @@ export function createEmailService(): EmailService {
       // Console logging - no additional config needed
       break;
   }
+
+  console.log('🔧 Final config:', {
+    provider: config.provider,
+    smtp: config.smtp ? {
+      host: config.smtp.host,
+      port: config.smtp.port,
+      secure: config.smtp.secure,
+      user: config.smtp.auth.user ? '***' : 'undefined',
+    } : undefined,
+    from: config.from,
+    to: config.to,
+  });
 
   return new EmailService(config);
 }
