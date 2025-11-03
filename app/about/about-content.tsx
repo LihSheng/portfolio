@@ -114,8 +114,8 @@ export default function AboutContent() {
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
               I'm passionate about creating exceptional digital experiences that solve real-world problems.
-              With expertise in API development, test-driven development, and agile methodologies, I focus on 
-              delivering clean, scalable code that drives innovation and enhances user experience. My experience 
+              With expertise in API development, test-driven development, and agile methodologies, I focus on
+              delivering clean, scalable code that drives innovation and enhances user experience. My experience
               spans across modern web technologies including TypeScript, React, Next.js, and Laravel.
             </p>
           </motion.div>
@@ -164,6 +164,210 @@ export default function AboutContent() {
           </div>
         </motion.section>
 
+        {/* AI Tools & Productivity Section */}
+        <motion.section
+          className="mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <h2
+            className="text-3xl font-bold mb-8 text-center"
+            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+          >
+            AI Tools & Productivity
+          </h2>
+
+          <div className="max-w-3xl mx-auto">
+            <motion.div
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <p
+                className="text-lg leading-relaxed mb-6"
+                style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
+              >
+                I'm passionate about leveraging AI tools and automation to enhance productivity and streamline development workflows.
+                I actively explore and integrate cutting-edge AI technologies to solve complex problems and improve efficiency.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div
+                className="p-6 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">K</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      Kiro IDE
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      AI-Powered Development
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Using Kiro as my primary development environment to accelerate coding with AI assistance,
+                  automated code generation, and intelligent debugging. Leveraging MCP (Model Context Protocol)
+                  for enhanced AI integrations and workflow automation.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="p-6 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">n8n</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      n8n Automation
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      Workflow Automation
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Building automated workflows with n8n to streamline repetitive tasks, integrate APIs,
+                  and create efficient data pipelines. Connecting various services and tools to create
+                  seamless automation solutions for development and business processes.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="p-6 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">AI</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      AI Integration
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      Modern AI Tools
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Actively exploring and implementing AI tools like ChatGPT, Claude, and GitHub Copilot
+                  to enhance code quality, accelerate development, and solve complex technical challenges.
+                  Staying current with the latest AI developments in software engineering.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="p-6 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.0 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">⚡</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      Productivity Focus
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      Efficiency & Innovation
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Continuously optimizing development workflows through automation, AI-assisted coding,
+                  and smart tooling. Focused on reducing manual tasks and increasing development velocity
+                  while maintaining high code quality and best practices.
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              className="mt-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+            >
+              <p
+                className="text-sm italic"
+                style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+              >
+                "Embracing AI not to replace human creativity, but to amplify it and focus on solving more complex, meaningful problems."
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+
         {/* Experience Section */}
         <motion.section
           className="mb-16"
@@ -198,9 +402,9 @@ export default function AboutContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div 
+          <div
             className="rounded-2xl p-8"
-            style={{ 
+            style={{
               backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)',
               border: '1px solid',
               borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
@@ -239,7 +443,7 @@ export default function AboutContent() {
                   inline-flex items-center justify-center px-6 py-3
                   border font-medium rounded-lg transition-colors
                 "
-                style={{ 
+                style={{
                   color: isDarkMode ? 'white' : 'rgb(55, 65, 81)',
                   borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)',
                   backgroundColor: 'transparent'
