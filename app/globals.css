@@ -202,6 +202,27 @@ code[class*='language-'] {
 /* Dark theme improvements */
 .dark {
   color-scheme: dark;
+  --card-bg: rgb(30, 41, 59); /* slate-800 */
+  --card-border: rgb(75, 85, 99); /* gray-600 */
+  --title-color: rgb(255, 255, 255); /* white for better contrast */
+  --description-color: rgb(229, 231, 235); /* gray-200 */
+  --meta-color: rgb(209, 213, 219); /* gray-300 */
+  --badge-bg: rgb(30, 58, 138); /* blue-900 */
+  --badge-text: rgb(191, 219, 254); /* blue-200 */
+  --tag-bg: rgb(55, 65, 81); /* gray-700 */
+  --tag-text: rgb(229, 231, 235); /* gray-200 */
+}
+
+:root {
+  --card-bg: white;
+  --card-border: rgb(229, 231, 235); /* gray-200 */
+  --title-color: rgb(17, 24, 39); /* gray-900 */
+  --description-color: rgb(75, 85, 99); /* gray-600 */
+  --meta-color: rgb(107, 114, 128); /* gray-500 */
+  --badge-bg: rgb(239, 246, 255); /* blue-50 */
+  --badge-text: rgb(30, 64, 175); /* blue-800 */
+  --tag-bg: rgb(243, 244, 246); /* gray-100 */
+  --tag-text: rgb(55, 65, 81); /* gray-700 */
 }
 
 .dark input::placeholder,
