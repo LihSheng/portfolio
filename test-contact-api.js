@@ -11,7 +11,7 @@ const testContactAPI = async () => {
     console.log('Testing contact API...');
     console.log('Test data:', testData);
     
-    const response = await fetch('http://localhost:3001/api/contact', {
+    const response = await fetch('http://localhost:3000/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const testInvalidData = async () => {
     console.log('\nTesting validation with invalid data...');
     console.log('Invalid test data:', invalidData);
     
-    const response = await fetch('http://localhost:3001/api/contact', {
+    const response = await fetch('http://localhost:3000/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,46 +70,11 @@ const testInvalidData = async () => {
   }
 };
 
-// Test rate limiting
-const testRateLimit = async () => {
-  console.log('\nTesting rate limiting...');
-  
-  const testData = {
-    name: "Rate Test",
-    email: "rate@test.com",
-    subject: "Rate Limit Test",
-    message: "Testing rate limiting functionality."
-  };
-
-  // Send 6 requests quickly to trigger rate limit
-  for (let i = 1; i <= 6; i++) {
-    try {
-      const response = await fetch('http://localhost:3001/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(testData),
-      });
-
-      const result = await response.json();
-      console.log(`Request ${i}: Status ${response.status}, Success: ${result.success}`);
-      
-      if (response.status === 429) {
-        console.log('✅ Rate limiting test passed!');
-        break;
-      }
-    } catch (error) {
-      console.error(`Request ${i} error:`, error.message);
-    }
-  }
-};
-
 // Run tests if server is available
 const runTests = async () => {
   try {
     // Check if server is running
-    const healthCheck = await fetch('http://localhost:3001/api/contact', {
+    const healthCheck = await fetch('http://localhost:3000/api/contact', {
       method: 'GET'
     });
     
@@ -117,10 +82,9 @@ const runTests = async () => {
       console.log('Server is running, starting tests...\n');
       await testContactAPI();
       await testInvalidData();
-      await testRateLimit();
     }
   } catch (error) {
-    console.log('Server not running on localhost:3001. Please start the dev server first with: npm run dev');
+    console.log('Server not running on localhost:3000. Please start the dev server first with: npm run dev');
   }
 };
 

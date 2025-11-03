@@ -16,7 +16,10 @@
         "playwright_close",
         "playwright_hover",
         "playwright_click",
-        "playwright_fill"
+        "playwright_fill",
+        "playwright_post",
+        "playwright_expect_response",
+        "playwright_assert_response"
       ],
       "disabledTools": []
     },
