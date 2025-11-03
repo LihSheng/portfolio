@@ -81,11 +81,10 @@ export default function Timeline({ items, title }: TimelineProps) {
               {/* Content */}
               <div className="flex-1 min-w-0 pb-8">
                 <div
-                  className="p-6 rounded-lg shadow-sm"
+                  className="p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
                   style={{
                     backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'white',
-                    borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-                    border: '1px solid'
+                    borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
                   }}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
