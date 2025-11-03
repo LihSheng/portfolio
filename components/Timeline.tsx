@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import type { TimelineItem } from '@/types';
 
 interface TimelineProps {
@@ -21,16 +22,41 @@ const typeColors = {
 };
 
 export default function Timeline({ items, title }: TimelineProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check for dark mode
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    checkDarkMode();
+
+    // Watch for changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+      <h3
+        className="text-xl font-semibold"
+        style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+      >
         {title}
       </h3>
-      
+
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
-        
+        <div
+          className="absolute left-4 top-0 bottom-0 w-0.5"
+          style={{ backgroundColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)' }}
+        />
+
         <div className="space-y-8">
           {items.map((item, index) => (
             <motion.div
@@ -51,24 +77,42 @@ export default function Timeline({ items, title }: TimelineProps) {
                   </span>
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="flex-1 min-w-0 pb-8">
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+                <div
+                  className="p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+                  style={{
+                    backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'white',
+                    borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                  }}
+                >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    <h4
+                      className="text-lg font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
                       {item.title}
                     </h4>
-                    <span className="text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-0">
+                    <span
+                      className="text-sm mt-1 sm:mt-0"
+                      style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(107, 114, 128)' }}
+                    >
                       {item.date}
                     </span>
                   </div>
-                  
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-3">
+
+                  <p
+                    className="text-sm font-medium mb-3"
+                    style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                  >
                     {item.organization}
                   </p>
-                  
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+
+                  <p
+                    className="leading-relaxed"
+                    style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(55, 65, 81)' }}
+                  >
                     {item.description}
                   </p>
                 </div>

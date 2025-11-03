@@ -36,7 +36,11 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       animate="animate"
       whileHover="hover"
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
+      className="group relative bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-600"
+      style={{
+        backgroundColor: 'var(--card-bg, white)',
+        borderColor: 'var(--card-border, rgb(229, 231, 235))'
+      }}
     >
       {/* Cover Image */}
       {post.coverImage && (
@@ -55,17 +59,26 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 
       <div className="p-6">
         {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2">
+        <h3 
+          className="text-xl font-bold text-gray-900 dark:text-black mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2"
+          style={{ color: 'var(--title-color, rgb(17, 24, 39))' }}
+        >
           {post.title}
         </h3>
 
         {/* Excerpt */}
-        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
+        <p 
+          className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3"
+          style={{ color: 'var(--description-color)' }}
+        >
           {post.excerpt}
         </p>
 
         {/* Metadata */}
-        <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4">
+        <div 
+          className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4"
+          style={{ color: 'var(--meta-color)' }}
+        >
           <div className="flex items-center gap-1">
             <Calendar size={14} />
             <time dateTime={post.date}>
@@ -85,12 +98,22 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
               <span
                 key={tag}
                 className="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-md"
+                style={{ 
+                  backgroundColor: 'var(--badge-bg)', 
+                  color: 'var(--badge-text)' 
+                }}
               >
                 #{tag}
               </span>
             ))}
             {post.tags.length > 3 && (
-              <span className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-md">
+              <span 
+                className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-md"
+                style={{ 
+                  backgroundColor: 'var(--tag-bg)', 
+                  color: 'var(--tag-text)' 
+                }}
+              >
                 +{post.tags.length - 3}
               </span>
             )}
