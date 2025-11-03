@@ -19,17 +19,28 @@
 │   └── not-found.tsx        # 404 page
 ├── components/              # Reusable React components
 │   ├── Navigation.tsx       # Main navigation with mobile menu
-│   ├── Footer.tsx           # Site footer
-│   ├── ThemeToggle.tsx      # Dark/light mode toggle (temporarily hidden)
+│   ├── Footer.tsx           # Site footer with social links
+│   ├── ThemeToggle.tsx      # Dark/light mode toggle
+│   ├── ThemeProvider.tsx    # Theme context provider
+│   ├── Hero.tsx             # Homepage hero section
 │   ├── ProjectCard.tsx      # Project card component with optimized images
 │   ├── BlogPostCard.tsx     # Blog post card component with optimized images
 │   ├── OptimizedImage.tsx   # Wrapper component for Next.js Image with fallbacks
 │   ├── ContactForm.tsx      # Contact form with validation
-│   └── ui/                  # shadcn/ui components
+│   ├── FeaturedSection.tsx  # Reusable section wrapper for featured content
+│   ├── AnimatedGrid.tsx     # Animated grid container with Framer Motion
+│   ├── Timeline.tsx         # Timeline component for experience/education
+│   ├── SkillBadge.tsx       # Skill badge component
+│   ├── Analytics.tsx        # Analytics integration component
+│   ├── StructuredData.tsx   # JSON-LD structured data component
+│   └── __tests__/           # Component tests
 ├── content/                 # Content files
 │   ├── projects/            # Project MDX files
 │   └── blog/                # Blog post MDX files
 ├── lib/                     # Utility functions and helpers
+│   ├── site-config.ts       # Site metadata and configuration
+│   ├── contact-utils.ts     # Contact form utilities and email handling
+│   ├── email.ts             # Email service integration
 │   ├── content.ts           # Content loading utilities
 │   ├── mdx.ts               # MDX parsing and utilities
 │   ├── animations.ts        # Framer Motion animation configs
@@ -42,10 +53,20 @@
 │   └── fonts/               # Custom fonts (if any)
 ├── styles/                  # Global styles
 │   └── globals.css          # Global CSS and Tailwind imports
+├── scripts/                 # Build and deployment scripts
+│   ├── pre-deploy-check.mjs # Pre-deployment validation
+│   └── git-workflow.mjs     # Git workflow automation
+├── docs/                    # Documentation files
+│   └── contact-api.md       # Contact API documentation
 ├── .kiro/                   # Kiro configuration
+│   ├── settings/            # Kiro IDE settings (MCP config)
 │   ├── specs/               # Feature specifications
 │   └── steering/            # AI assistant guidance
-└── .vscode/                 # VSCode settings
+├── .vscode/                 # VSCode settings
+├── .github/                 # GitHub workflows and templates
+├── DEPLOYMENT.md            # Deployment guide
+├── test-contact-api.js      # Contact API testing script
+└── mdx-components.tsx       # MDX component overrides
 ```
 
 ## Conventions

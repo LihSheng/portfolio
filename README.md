@@ -1,135 +1,204 @@
 # Developer Portfolio Website
 
-A modern, responsive developer portfolio website built with Next.js 16, TypeScript, and Tailwind CSS.
+A modern, responsive developer portfolio website built with Next.js 16, TypeScript, and Tailwind CSS. Features a clean design, dark/light theme support, contact form integration, and optimized performance.
 
-## Tech Stack
+## 🚀 Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS 4
+- **Language**: TypeScript 5.9.3+ (strict mode)
+- **Styling**: Tailwind CSS 4.1.16
 - **Font**: Inter (Google Fonts)
-- **Animations**: Framer Motion
-- **Theme**: next-themes (dark/light mode)
+- **Animations**: Framer Motion 12.23.24
+- **Theme**: next-themes 0.4.6 (dark/light mode)
+- **Icons**: Lucide React 0.548.0
+- **Content**: MDX with @next/mdx, next-mdx-remote
 - **Testing**: Playwright (via MCP)
-- **Linting**: ESLint
-- **Formatting**: Prettier
+- **Linting**: ESLint + Prettier
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ 
-- npm or yarn
+- npm (recommended package manager)
 
 ### Installation
 
-Dependencies are already installed. If you need to reinstall:
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in the required environment variables in `.env.local`
+
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 📋 Available Scripts
 
 ```bash
-npm install
+# Development
+npm run dev              # Start dev server (localhost:3000)
+npm run build            # Production build
+npm run start            # Start production server
+npm run preview          # Build and start production server
+
+# Code Quality
+npm run lint             # Run ESLint
+npm run format           # Format code with Prettier
+npm run type-check       # TypeScript type checking
+
+# Analysis & Deployment
+npm run build:analyze    # Analyze bundle size
+npm run pre-deploy       # Pre-deployment checks
+npm run deploy           # Deploy to Vercel production
+npm run deploy:preview   # Deploy preview to Vercel
+
+# Git Workflow (Custom Scripts)
+npm run git:feature      # Create new feature branch
+npm run git:dev          # Switch to dev branch
+npm run git:main         # Switch to main branch
+npm run git:merge-dev    # Merge current branch to dev
+npm run git:merge-main   # Merge dev to main
+npm run git:status       # Show git status
+npm run git:help         # Show git workflow help
 ```
 
-### Development
+## ✨ Features
 
-Run the development server:
+### Implemented ✅
+- **Core Infrastructure**: Next.js 16 with TypeScript strict mode and App Router
+- **Responsive Design**: Mobile-first approach with Tailwind CSS 4
+- **Dark/Light Theme**: System-aware theme with smooth transitions
+- **Navigation**: Mobile-friendly navigation with active route highlighting
+- **Homepage**: Hero section with animated featured content sections
+- **About Page**: Personal information, skills timeline, and experience
+- **Contact System**: Validated contact form with email integration
+- **SEO Optimized**: Meta tags, OpenGraph, Twitter cards, structured data
+- **Image Optimization**: Next.js Image component with blur placeholders
+- **Typography**: Inter font integration with proper CSS variables
+- **Animations**: Framer Motion with performance optimizations
+- **Development Tools**: ESLint, Prettier, git workflow automation
 
-```bash
-npm run dev
-```
+### In Development 🚧
+- **Content Management**: MDX configuration and content loading utilities
+- **Project Showcase**: Project cards with filtering and detail pages
+- **Blog System**: MDX-powered blog with syntax highlighting
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Planned 📋
+- **RSS Feed**: Automated RSS feed generation
+- **Search**: Client-side search functionality
+- **Analytics**: Plausible integration
 
-### Build
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-### Start Production Server
-
-```bash
-npm start
-```
-
-### Linting
-
-```bash
-npm run lint
-```
-
-### Formatting
-
-```bash
-npm run format
-```
-
-## Features Implemented
-
-✅ **Core Setup**
-- Next.js 16 with TypeScript and App Router
-- Tailwind CSS 4 with custom theme and dark mode
-- Inter font integration for modern typography
-- Site configuration and type definitions
-
-✅ **Components**
-- Navigation with mobile hamburger menu and active route highlighting
-- Theme toggle (light/dark/system)
-- Footer with social links, quick navigation, and RSS feed link
-- Responsive layouts for all screen sizes
-
-✅ **SEO & Metadata**
-- Structured data (JSON-LD) for Person schema
-- OpenGraph and Twitter card metadata
-- Comprehensive metadata configuration
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 .
-├── .kiro/
-│   ├── settings/        # Kiro IDE settings (MCP config)
-│   ├── specs/           # Feature specifications and tasks
-│   └── steering/        # AI assistant guidance documents
-│       ├── ai-guideline.md    # AI coding guidelines and best practices
-│       ├── images.md          # Image optimization guidelines and patterns
-│       ├── product.md         # Product overview and feature requirements
-│       ├── structure.md       # Project structure and conventions
-│       └── tech.md            # Technology stack and configuration
-├── app/
-│   ├── layout.tsx       # Root layout with theme provider
-│   ├── page.tsx         # Home page
-│   └── globals.css      # Global styles and CSS variables
-├── components/
-│   ├── Analytics.tsx    # Analytics integration component
-│   ├── Footer.tsx       # Footer with social links and navigation
-│   ├── Navigation.tsx   # Main navigation with mobile support
-│   ├── StructuredData.tsx # JSON-LD structured data
-│   ├── ThemeProvider.tsx  # Theme context provider
-│   └── ThemeToggle.tsx    # Dark/light mode toggle
-├── lib/
-│   └── site-config.ts   # Site metadata and configuration
-├── types/
-│   └── index.ts         # TypeScript type definitions
-└── public/              # Static assets (to be added)
+├── app/                      # Next.js App Router pages and layouts
+│   ├── layout.tsx           # Root layout with theme provider
+│   ├── page.tsx             # Homepage with hero and featured sections
+│   ├── about/               # About page with personal info and timeline
+│   ├── contact/             # Contact page with form
+│   ├── projects/            # Projects listing and detail pages (planned)
+│   ├── writing/             # Blog listing and post pages (planned)
+│   ├── api/contact/         # Contact form API endpoint
+│   ├── error.tsx            # Error boundary
+│   ├── not-found.tsx        # 404 page
+│   ├── sitemap.ts           # Dynamic sitemap generation
+│   └── globals.css          # Global styles and CSS variables
+├── components/              # Reusable React components
+│   ├── Navigation.tsx       # Main navigation with mobile menu
+│   ├── Footer.tsx           # Footer with social links
+│   ├── Hero.tsx             # Homepage hero section
+│   ├── ThemeProvider.tsx    # Theme context provider
+│   ├── ThemeToggle.tsx      # Dark/light mode toggle
+│   ├── ContactForm.tsx      # Contact form with validation
+│   ├── FeaturedSection.tsx  # Reusable section wrapper
+│   ├── AnimatedGrid.tsx     # Animated grid container
+│   ├── Timeline.tsx         # Timeline component for experience
+│   ├── SkillBadge.tsx       # Skill badge component
+│   ├── ProjectCard.tsx      # Project card with optimized images
+│   ├── BlogPostCard.tsx     # Blog post card component
+│   ├── OptimizedImage.tsx   # Enhanced Next.js Image wrapper
+│   ├── Analytics.tsx        # Analytics integration
+│   ├── StructuredData.tsx   # JSON-LD structured data
+│   └── __tests__/           # Component tests
+├── lib/                     # Utility functions and helpers
+│   ├── site-config.ts       # Site metadata and configuration
+│   ├── contact-utils.ts     # Contact form utilities
+│   ├── email.ts             # Email service integration
+│   ├── content.ts           # Content loading utilities (planned)
+│   ├── image-utils.ts       # Image optimization utilities
+│   └── validation.ts        # Form validation schemas
+├── content/                 # Content files (planned)
+│   ├── projects/            # Project MDX files
+│   └── blog/                # Blog post MDX files
+├── public/                  # Static assets
+│   ├── images/              # Organized image assets
+│   └── fonts/               # Custom fonts (if any)
+├── scripts/                 # Build and deployment scripts
+│   ├── pre-deploy-check.mjs # Pre-deployment validation
+│   └── git-workflow.mjs     # Git workflow automation
+├── docs/                    # Documentation
+├── types/                   # TypeScript type definitions
+├── .kiro/                   # Kiro IDE configuration
+│   ├── settings/            # MCP and IDE settings
+│   ├── specs/               # Feature specifications
+│   └── steering/            # AI assistant guidance
+└── .github/                 # GitHub workflows and templates
 ```
 
-## Configuration Files
+## ⚙️ Configuration Files
 
-- `next.config.ts` - Next.js configuration
+- `next.config.mjs` - Next.js configuration with MDX and image optimization
 - `tsconfig.json` - TypeScript configuration (strict mode enabled)
-- `tailwind.config.ts` - Tailwind CSS configuration
+- `tailwind.config.ts` - Tailwind CSS configuration with Inter font
 - `postcss.config.mjs` - PostCSS configuration
-- `.eslintrc.json` - ESLint configuration
-- `.prettierrc` - Prettier configuration
+- `.eslintrc.json` - ESLint configuration with Next.js rules
+- `.prettierrc` - Prettier configuration with Tailwind plugin
+- `vercel.json` - Vercel deployment configuration
+- `.env.example` - Environment variables template
+- `mdx-components.tsx` - MDX component overrides
 
-## Playwright MCP Setup (for Kiro IDE)
+## 🌍 Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```env
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+
+# Analytics (Optional)
+NEXT_PUBLIC_ANALYTICS_SITE_ID=your-plausible-site-id
+
+# Contact Form (Required for contact functionality)
+CONTACT_EMAIL=your-email@domain.com
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+```
+
+## 🧪 Testing & Development Tools
+
+### Playwright MCP Setup (for Kiro IDE)
 
 This project uses Playwright MCP (Model Context Protocol) for automated browser testing and UI verification.
 
-### Configuration
-
+#### Configuration
 The Playwright MCP server is configured in `.kiro/settings/mcp.json`:
 
 ```json
@@ -145,105 +214,117 @@ The Playwright MCP server is configured in `.kiro/settings/mcp.json`:
 }
 ```
 
-### Installation
+#### Quick Setup
+1. Install Playwright: `npm install -D @playwright/test`
+2. Install browser: `npx playwright@1.53.1 install chromium`
+3. Restart MCP server in Kiro: Command Palette → "MCP: Reconnect Servers"
 
-1. **Install Playwright** (if not already installed):
-   ```bash
-   npm install -D @playwright/test
-   ```
+#### Troubleshooting
+If you get "Executable doesn't exist" errors:
+- Check Chromium version from error message (e.g., `chromium-1179`)
+- Install matching Playwright version: `npx playwright@1.53.1 install chromium`
+- Restart MCP server in Kiro
 
-2. **Install Browser Binaries**:
-   
-   The MCP server uses a specific version of Playwright. You need to install the matching Chromium version:
-   
-   ```bash
-   # Install the specific version that matches the MCP server
-   npx playwright@1.53.1 install chromium
-   ```
+### Git Workflow Automation
 
-### Troubleshooting
+Custom git workflow scripts for consistent development:
 
-#### Problem: "Executable doesn't exist" Error
-
-**Symptom**: When using Playwright MCP, you get an error like:
-```
-Failed to initialize browser: browserType.launch: Executable doesn't exist at 
-C:\Users\[User]\AppData\Local\ms-playwright\chromium-1179\chrome-win\chrome.exe
-```
-
-**Cause**: Version mismatch between your local Playwright installation and the MCP server's Playwright version.
-
-**Solution**:
-
-1. Check what Chromium version the MCP server needs (from the error message, e.g., `chromium-1179`)
-
-2. Find the matching Playwright version:
-   - chromium-1179 = Playwright 1.53.1
-   - chromium-1194 = Playwright 1.56.1
-   - Check [Playwright releases](https://github.com/microsoft/playwright/releases) for version mapping
-
-3. Install the specific version:
-   ```bash
-   npx playwright@1.53.1 install chromium
-   ```
-
-4. Restart the MCP server in Kiro:
-   - Open Command Palette (Ctrl+Shift+P)
-   - Search for "MCP: Reconnect Servers"
-   - Select it to restart
-
-#### Verifying Installation
-
-Check installed browser versions:
 ```bash
-dir "%LOCALAPPDATA%\ms-playwright"
+npm run git:feature     # Create new feature branch
+npm run git:dev         # Switch to dev branch  
+npm run git:merge-dev   # Merge current branch to dev
+npm run git:merge-main  # Merge dev to main
+npm run git:status      # Show current status
+npm run git:help        # Show available commands
 ```
 
-You should see folders like `chromium-1179`, `chromium-1194`, etc.
+### Code Quality Tools
 
-### Usage
+- **TypeScript**: Strict mode enabled, run `npm run type-check`
+- **ESLint**: Next.js recommended rules, run `npm run lint`
+- **Prettier**: Consistent formatting, run `npm run format`
+- **Pre-deployment**: Validation script `npm run pre-deploy`
 
-Once configured, you can use Playwright through Kiro to:
-- Navigate to your site and take screenshots
-- Verify UI elements are displaying correctly
-- Test responsive layouts
-- Check font loading and styling
-- Validate component functionality
+## 🚀 Deployment
 
-## Recent Changes
+### Vercel (Recommended)
 
-### Image Optimization Implementation (2025-10-31)
-- **Next.js Image Component**: Replaced all img tags with optimized Next.js Image components
-- **Blur Placeholders**: Added shimmer loading placeholders for better UX during image loading
-- **Responsive Sizing**: Configured proper `sizes` attributes for optimal loading across devices
-- **Format Optimization**: Enabled WebP and AVIF formats with fallbacks for better performance
-- **Image Configuration**: Enhanced `next.config.mjs` with comprehensive image optimization settings
-- **Graceful Fallbacks**: Implemented proper error handling for missing images
-- **Blog Images**: Removed invalid image references and implemented clean fallback behavior
-- **Avatar Integration**: Used SVG data URLs for consistent avatar display across all blog posts
+1. **Prepare for deployment**
+   ```bash
+   npm run pre-deploy    # Run validation checks
+   ```
 
-### Theme Toggle Temporarily Hidden (2025-10-31)
-- **Temporary Fix**: Hidden theme switch button from navigation due to functionality issues
-- **Desktop & Mobile**: Commented out ThemeToggle component in both desktop and mobile navigation
-- **Easy Restoration**: Changes are commented out for easy restoration when theme functionality is fixed
-- **Build Stability**: Ensured build continues to work properly without theme toggle
+2. **Deploy to preview**
+   ```bash
+   npm run deploy:preview
+   ```
 
-### Font Fix (2025-10-31)
-- Fixed typography issue where Times New Roman was displaying instead of Inter
-- Updated `tailwind.config.ts` to properly reference the Inter font variable
-- Site now uses modern Inter font for improved readability and professional appearance
+3. **Deploy to production**
+   ```bash
+   npm run deploy
+   ```
 
-### Footer Component (2025-10-31)
-- Implemented responsive footer with social links (GitHub, LinkedIn, Twitter, Email)
-- Added quick navigation links and RSS feed link
-- Included copyright information with dynamic year
-- Supports dark mode with proper color theming
+### Manual Deployment
 
-## Next Steps
+1. **Build the project**
+   ```bash
+   npm run build
+   ```
 
-Follow the implementation plan in `.kiro/specs/developer-portfolio-website/tasks.md` to continue building the portfolio.
+2. **Test production build locally**
+   ```bash
+   npm run start
+   ```
 
-**Next tasks to implement:**
-- Task 8: Set up MDX configuration
-- Task 9: Create content management utilities
-- Task 10: Build Hero section for homepage
+3. Deploy the `.next` folder to your hosting provider
+
+## 📈 Performance Features
+
+- **Static Generation**: Most pages are statically generated for optimal performance
+- **Image Optimization**: Next.js Image component with WebP/AVIF support
+- **Code Splitting**: Automatic code splitting with dynamic imports
+- **Font Optimization**: Inter font with proper loading and fallbacks
+- **Bundle Analysis**: Use `npm run build:analyze` to analyze bundle size
+- **Caching**: Long-term caching strategies for static assets
+
+## 🎨 Customization
+
+### Updating Site Information
+Edit `lib/site-config.ts` to update:
+- Personal information and bio
+- Social media links
+- Site metadata and SEO information
+- Navigation items
+
+### Styling
+- **Colors**: Modify theme colors in `tailwind.config.ts`
+- **Typography**: Update font settings in `app/layout.tsx`
+- **Components**: Customize component styles in respective files
+
+### Content
+- **Projects**: Add MDX files to `content/projects/` (when implemented)
+- **Blog Posts**: Add MDX files to `content/blog/` (when implemented)
+- **Images**: Store optimized images in `public/images/`
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `npm run git:feature`
+3. Make your changes
+4. Run quality checks: `npm run lint && npm run type-check`
+5. Commit your changes
+6. Push to your fork and submit a pull request
+
+## 📄 License
+
+This project is licensed under the ISC License - see the package.json file for details.
+
+## 🔗 Links
+
+- **Live Site**: [lihsheng.space](https://lihsheng.space)
+- **GitHub**: [LihSheng](https://github.com/LihSheng)
+- **LinkedIn**: [lihshengng](https://www.linkedin.com/in/lihshengng/)
+
+---
+
+Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
