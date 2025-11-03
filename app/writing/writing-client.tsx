@@ -115,8 +115,9 @@ export function WritingClient({ posts, initialTag, initialSearch }: WritingClien
         className="rounded-lg shadow-sm p-6"
         style={{
           backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
-          borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-          border: '1px solid'
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
         }}
       >
         <div className="flex flex-col lg:flex-row gap-4">
@@ -131,9 +132,10 @@ export function WritingClient({ posts, initialTag, initialSearch }: WritingClien
               className="w-full pl-10 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               style={{
                 backgroundColor: isDarkMode ? 'rgb(55, 65, 81)' : 'white',
+                borderWidth: '1px',
+                borderStyle: 'solid',
                 borderColor: isDarkMode ? 'rgb(107, 114, 128)' : 'rgb(209, 213, 219)',
-                color: isDarkMode ? 'white' : 'rgb(17, 24, 39)',
-                border: '1px solid'
+                color: isDarkMode ? 'white' : 'rgb(17, 24, 39)'
               }}
             />
           </div>
@@ -144,9 +146,10 @@ export function WritingClient({ posts, initialTag, initialSearch }: WritingClien
             className="lg:hidden flex items-center gap-2 px-4 py-3 rounded-lg transition-colors"
             style={{
               backgroundColor: isDarkMode ? 'rgb(55, 65, 81)' : 'white',
+              borderWidth: '1px',
+              borderStyle: 'solid',
               borderColor: isDarkMode ? 'rgb(107, 114, 128)' : 'rgb(209, 213, 219)',
-              color: isDarkMode ? 'white' : 'rgb(55, 65, 81)',
-              border: '1px solid'
+              color: isDarkMode ? 'white' : 'rgb(55, 65, 81)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(249, 250, 251)';

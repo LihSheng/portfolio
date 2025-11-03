@@ -59,7 +59,7 @@ export function FeaturedSection({
         </motion.div>
 
         {/* Content Grid */}
-        <div className="stagger-container">
+        <div className="stagger-container max-w-6xl mx-auto">
           {children}
         </div>
 
