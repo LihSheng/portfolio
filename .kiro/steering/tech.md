@@ -3,7 +3,7 @@
 ## Build System
 
 - **Next.js**: 16.0.1+ with App Router and Turbopack
-- **TypeScript**: 5.9.3+ for type safety
+- **TypeScript**: 5.9.3+ for type safety (strict mode enabled)
 - **Package Manager**: npm
 
 ## Tech Stack
@@ -15,6 +15,8 @@
 - **Animations**: Framer Motion 12.23.24
 - **Content**: MDX with @next/mdx, next-mdx-remote
 - **Theme**: next-themes 0.4.6
+- **Icons**: Lucide React 0.548.0
+- **Email**: Contact form with API route integration
 
 ## Libraries & Dependencies
 
@@ -44,7 +46,12 @@
 ### Development Tools
 - `eslint` & `eslint-config-next` - Code linting
 - `prettier` & `prettier-plugin-tailwindcss` - Code formatting
-- `@playwright/test` - E2E testing
+- `@playwright/test` - E2E testing (via MCP)
+
+### Email & Contact
+- Contact form with validation
+- API route for form submission
+- Email integration utilities
 
 ## Common Commands
 
@@ -55,13 +62,30 @@ npm run dev              # Start dev server (localhost:3000)
 # Build
 npm run build            # Production build
 npm run start            # Start production server
+npm run preview          # Build and start production server
 
 # Code Quality
 npm run lint             # Run ESLint
 npm run format           # Format code with Prettier
+npm run type-check       # TypeScript type checking
+
+# Analysis & Deployment
+npm run build:analyze    # Analyze bundle size
+npm run pre-deploy       # Pre-deployment checks
+npm run deploy           # Deploy to Vercel production
+npm run deploy:preview   # Deploy preview to Vercel
+
+# Git Workflow (Custom Scripts)
+npm run git:feature      # Create new feature branch
+npm run git:dev          # Switch to dev branch
+npm run git:main         # Switch to main branch
+npm run git:merge-dev    # Merge current branch to dev
+npm run git:merge-main   # Merge dev to main
+npm run git:status       # Show git status
+npm run git:help         # Show git workflow help
 
 # Testing
-npx playwright test      # Run E2E tests
+npx playwright test      # Run E2E tests (via MCP)
 ```
 
 ## Development Environment
@@ -75,11 +99,14 @@ npx playwright test      # Run E2E tests
 ## Configuration Files
 
 - `next.config.mjs` - Next.js configuration with MDX support and image optimization
-- `tailwind.config.ts` - Tailwind CSS configuration
-- `tsconfig.json` - TypeScript configuration
+- `tailwind.config.ts` - Tailwind CSS configuration with Inter font
+- `tsconfig.json` - TypeScript configuration (strict mode enabled)
 - `postcss.config.mjs` - PostCSS configuration
 - `.eslintrc.json` - ESLint rules
 - `.prettierrc` - Prettier formatting rules
+- `vercel.json` - Vercel deployment configuration
+- `.env.example` - Environment variables template
+- `.env.local` - Local environment variables (not in git)
 
 ## Image Optimization
 
