@@ -63,8 +63,9 @@ export function ContactPageContent() {
             className="rounded-2xl shadow-lg p-8"
             style={{
               backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
-              borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-              border: '1px solid'
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
             }}
           >
             <h2 
@@ -88,8 +89,9 @@ export function ContactPageContent() {
               className="rounded-2xl shadow-lg p-8"
               style={{
                 backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
-                borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-                border: '1px solid'
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
               }}
             >
               <h2 
@@ -185,8 +187,9 @@ export function ContactPageContent() {
               className="rounded-2xl shadow-lg p-8"
               style={{
                 backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
-                borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-                border: '1px solid'
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
               }}
             >
               <h2 
@@ -206,8 +209,9 @@ export function ContactPageContent() {
                     className="flex items-center space-x-3 p-4 rounded-lg transition-all duration-200 group"
                     style={{
                       backgroundColor: isDarkMode ? 'rgba(55, 65, 81, 0.5)' : 'rgb(249, 250, 251)',
-                      borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)',
-                      border: '1px solid'
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(59, 130, 246, 0.2)' : 'rgb(239, 246, 255)';
@@ -286,8 +290,9 @@ export function ContactPageContent() {
               className="rounded-2xl p-6"
               style={{
                 backgroundColor: isDarkMode ? 'rgba(59, 130, 246, 0.1)' : 'rgb(239, 246, 255)',
-                borderColor: isDarkMode ? 'rgba(59, 130, 246, 0.3)' : 'rgb(147, 197, 253)',
-                border: '1px solid'
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: isDarkMode ? 'rgba(59, 130, 246, 0.3)' : 'rgb(147, 197, 253)'
               }}
             >
               <div className="flex items-start space-x-3">
