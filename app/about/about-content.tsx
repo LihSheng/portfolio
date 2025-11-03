@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import SkillBadge from '@/components/SkillBadge';
 import Timeline from '@/components/Timeline';
 import { siteConfig } from '@/lib/site-config';
@@ -25,8 +26,27 @@ const staggerContainer = {
 };
 
 export default function AboutContent() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const skills = skillsData as SkillCategory;
   const experience = experienceData as ExperienceData;
+
+  useEffect(() => {
+    // Check for dark mode
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    
+    // Watch for changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   // Transform work experience to timeline items
   const workTimelineItems: TimelineItem[] = experience.work.map(work => ({
@@ -71,8 +91,9 @@ export default function AboutContent() {
           </motion.div>
           
           <motion.h1 
-            className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6"
+            className="text-4xl sm:text-5xl font-bold mb-6"
             variants={fadeInUp}
+            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
           >
             About Me
           </motion.h1>
@@ -81,11 +102,17 @@ export default function AboutContent() {
             className="max-w-2xl mx-auto"
             variants={fadeInUp}
           >
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p 
+              className="text-lg leading-relaxed mb-6"
+              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
+            >
               {siteConfig.author.bio}
             </p>
             
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            <p 
+              className="leading-relaxed"
+              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
+            >
               I'm passionate about creating exceptional digital experiences that solve real-world problems. 
               With a strong foundation in both frontend and backend technologies, I enjoy building scalable, 
               performant applications that users love to interact with.
@@ -100,7 +127,10 @@ export default function AboutContent() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
+          <h2 
+            className="text-3xl font-bold mb-8 text-center"
+            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+          >
             Skills & Technologies
           </h2>
           
@@ -112,7 +142,10 @@ export default function AboutContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 + categoryIndex * 0.1 }}
               >
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 capitalize">
+                <h3 
+                  className="text-xl font-semibold mb-4 capitalize"
+                  style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}
+                >
                   {category} Development
                 </h3>
                 
@@ -137,7 +170,10 @@ export default function AboutContent() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">
+          <h2 
+            className="text-3xl font-bold mb-8 text-center"
+            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+          >
             Experience & Education
           </h2>
           
@@ -162,11 +198,17 @@ export default function AboutContent() {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h2 
+              className="text-2xl font-bold mb-4"
+              style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+            >
               Let's Work Together
             </h2>
             
-            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md mx-auto">
+            <p 
+              className="mb-6 max-w-md mx-auto"
+              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
+            >
               I'm always interested in new opportunities and exciting projects. 
               Let's discuss how we can bring your ideas to life.
             </p>
@@ -187,10 +229,11 @@ export default function AboutContent() {
                 href={`mailto:${siteConfig.author.email}`}
                 className="
                   inline-flex items-center justify-center px-6 py-3
-                  border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300
+                  border border-gray-300 dark:border-gray-600
                   hover:bg-gray-50 dark:hover:bg-gray-700 font-medium
                   rounded-lg transition-colors
                 "
+                style={{ color: isDarkMode ? 'white' : 'rgb(55, 65, 81)' }}
               >
                 Send Email
               </a>

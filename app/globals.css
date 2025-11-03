@@ -211,6 +211,9 @@ code[class*='language-'] {
   --badge-text: rgb(191, 219, 254); /* blue-200 */
   --tag-bg: rgb(55, 65, 81); /* gray-700 */
   --tag-text: rgb(229, 231, 235); /* gray-200 */
+  --about-title-color: rgb(255, 255, 255); /* white */
+  --about-subtitle-color: rgb(255, 255, 255); /* white */
+  --about-text-color: rgb(255, 255, 255); /* white */
 }
 
 :root {
@@ -223,6 +226,9 @@ code[class*='language-'] {
   --badge-text: rgb(30, 64, 175); /* blue-800 */
   --tag-bg: rgb(243, 244, 246); /* gray-100 */
   --tag-text: rgb(55, 65, 81); /* gray-700 */
+  --about-title-color: rgb(17, 24, 39); /* gray-900 */
+  --about-subtitle-color: rgb(31, 41, 55); /* gray-800 */
+  --about-text-color: rgb(75, 85, 99); /* gray-600 */
 }
 
 .dark input::placeholder,
