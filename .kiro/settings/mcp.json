@@ -14,7 +14,9 @@
         "playwright_evaluate",
         "playwright_console_logs",
         "playwright_close",
-        "playwright_hover"
+        "playwright_hover",
+        "playwright_click",
+        "playwright_fill"
       ],
       "disabledTools": []
     }

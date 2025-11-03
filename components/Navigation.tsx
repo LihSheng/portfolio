@@ -95,10 +95,12 @@ export function Navigation({ className = '' }: { className?: string }) {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${isActive(item.href)
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-600 dark:text-gray-300'
-                      }`}
+                    className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                    style={{
+                      color: isActive(item.href)
+                        ? (isDark ? '#60a5fa' : '#2563eb')
+                        : (isDark ? 'white' : 'rgb(75, 85, 99)')
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -178,10 +180,27 @@ export function Navigation({ className = '' }: { className?: string }) {
                 >
                   <Link
                     href={item.href}
-                    className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isActive(item.href)
-                      ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
-                      }`}
+                    className="block px-4 py-3 rounded-md text-base font-medium transition-colors"
+                    style={{
+                      backgroundColor: isActive(item.href)
+                        ? (isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgb(239, 246, 255)')
+                        : 'transparent',
+                      color: isActive(item.href)
+                        ? (isDark ? '#60a5fa' : '#2563eb')
+                        : (isDark ? 'white' : 'rgb(75, 85, 99)')
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive(item.href)) {
+                        e.currentTarget.style.backgroundColor = isDark ? 'rgb(55, 65, 81)' : 'rgb(249, 250, 251)';
+                        e.currentTarget.style.color = isDark ? 'white' : 'rgb(17, 24, 39)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive(item.href)) {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = isDark ? 'white' : 'rgb(75, 85, 99)';
+                      }
+                    }}
                   >
                     {item.label}
                   </Link>
