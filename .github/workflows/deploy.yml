@@ -12,7 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trigger Vercel Deploy Hook
+      - name: Skip Deployment (Disabled)
         run: |
-          echo "Triggering Vercel deployment..."
-          curl -X POST -d {} ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          echo "Vercel deployment hook is disabled for production branch"
+          echo "No deployment will be triggered"
+          echo "Workflow completed successfully without any actions"

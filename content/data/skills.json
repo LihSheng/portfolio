@@ -1,180 +1,125 @@
 {
   "frontend": [
     {
-      "name": "React",
+      "name": "TypeScript",
       "level": "expert",
-      "yearsOfExperience": 5
+      "yearsOfExperience": 3
+    },
+    {
+      "name": "React.js",
+      "level": "advanced",
+      "yearsOfExperience": 3
     },
     {
       "name": "Next.js",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 2
     },
     {
-      "name": "TypeScript",
-      "level": "advanced",
-      "yearsOfExperience": 4
+      "name": "Material UI",
+      "level": "intermediate",
+      "yearsOfExperience": 2
     },
     {
       "name": "JavaScript",
-      "level": "expert",
-      "yearsOfExperience": 6
+      "level": "advanced",
+      "yearsOfExperience": 4
     },
     {
       "name": "HTML5",
       "level": "expert",
-      "yearsOfExperience": 7
+      "yearsOfExperience": 4
     },
     {
       "name": "CSS3",
       "level": "advanced",
-      "yearsOfExperience": 7
-    },
-    {
-      "name": "Tailwind CSS",
-      "level": "advanced",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Sass/SCSS",
-      "level": "intermediate",
       "yearsOfExperience": 4
-    },
-    {
-      "name": "Vue.js",
-      "level": "intermediate",
-      "yearsOfExperience": 2
     }
   ],
   "backend": [
     {
-      "name": "Node.js",
+      "name": "PHP",
       "level": "advanced",
-      "yearsOfExperience": 4
+      "yearsOfExperience": 3
     },
     {
-      "name": "Express.js",
+      "name": "Laravel",
       "level": "advanced",
-      "yearsOfExperience": 4
+      "yearsOfExperience": 2
     },
     {
       "name": "Python",
       "level": "intermediate",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Django",
-      "level": "intermediate",
-      "yearsOfExperience": 2
-    },
-    {
-      "name": "FastAPI",
-      "level": "intermediate",
       "yearsOfExperience": 1
-    },
-    {
-      "name": "GraphQL",
-      "level": "intermediate",
-      "yearsOfExperience": 2
     },
     {
       "name": "REST APIs",
       "level": "advanced",
-      "yearsOfExperience": 5
+      "yearsOfExperience": 3
     }
   ],
   "database": [
     {
-      "name": "PostgreSQL",
-      "level": "advanced",
-      "yearsOfExperience": 4
-    },
-    {
-      "name": "MongoDB",
-      "level": "intermediate",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Redis",
-      "level": "intermediate",
-      "yearsOfExperience": 2
-    },
-    {
       "name": "MySQL",
-      "level": "intermediate",
+      "level": "advanced",
       "yearsOfExperience": 3
-    },
-    {
-      "name": "Prisma",
-      "level": "intermediate",
-      "yearsOfExperience": 2
     }
   ],
-  "devops": [
+  "cloud": [
+    {
+      "name": "AWS S3",
+      "level": "intermediate",
+      "yearsOfExperience": 2
+    },
+    {
+      "name": "AWS Lambda",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "AWS SQS",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
     {
       "name": "Docker",
-      "level": "intermediate",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "AWS",
-      "level": "intermediate",
-      "yearsOfExperience": 2
-    },
-    {
-      "name": "Vercel",
-      "level": "advanced",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Git",
-      "level": "advanced",
-      "yearsOfExperience": 6
-    },
-    {
-      "name": "GitHub Actions",
-      "level": "intermediate",
-      "yearsOfExperience": 2
-    },
-    {
-      "name": "Nginx",
       "level": "beginner",
       "yearsOfExperience": 1
     }
   ],
   "tools": [
     {
-      "name": "VS Code",
-      "level": "expert",
-      "yearsOfExperience": 6
-    },
-    {
-      "name": "Figma",
-      "level": "intermediate",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Postman",
-      "level": "advanced",
-      "yearsOfExperience": 4
-    },
-    {
-      "name": "Jest",
-      "level": "intermediate",
-      "yearsOfExperience": 3
-    },
-    {
-      "name": "Playwright",
+      "name": "Cypress",
       "level": "intermediate",
       "yearsOfExperience": 1
     },
     {
-      "name": "Webpack",
+      "name": "Jest",
       "level": "intermediate",
+      "yearsOfExperience": 2
+    },
+    {
+      "name": "PHPUnit",
+      "level": "intermediate",
+      "yearsOfExperience": 2
+    },
+    {
+      "name": "Postman",
+      "level": "advanced",
       "yearsOfExperience": 3
     },
     {
-      "name": "Vite",
+      "name": "Figma",
+      "level": "intermediate",
+      "yearsOfExperience": 2
+    },
+    {
+      "name": "Adobe Photoshop",
+      "level": "intermediate",
+      "yearsOfExperience": 2
+    },
+    {
+      "name": "Adobe Illustrator",
       "level": "intermediate",
       "yearsOfExperience": 2
     }

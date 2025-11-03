@@ -8,16 +8,16 @@ import { AnimatedGrid } from '@/components/AnimatedGrid';
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Full-stack developer specializing in modern web technologies. Building scalable applications with React, Next.js, and TypeScript.',
+  description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
   openGraph: {
-    title: 'Developer Portfolio - Full-stack Developer',
-    description: 'Full-stack developer specializing in modern web technologies. Building scalable applications with React, Next.js, and TypeScript.',
+    title: 'Ng Lih Sheng - Full Stack Developer',
+    description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Developer Portfolio - Full-stack Developer',
-    description: 'Full-stack developer specializing in modern web technologies. Building scalable applications with React, Next.js, and TypeScript.',
+    title: 'Ng Lih Sheng - Full Stack Developer',
+    description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
   },
 };
 
@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      
+
       {/* Featured Projects Section */}
       {featuredProjects.length > 0 && (
         <FeaturedSection

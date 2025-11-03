@@ -1,122 +1,104 @@
 {
   "work": [
     {
-      "id": "senior-frontend-dev",
-      "title": "Senior Frontend Developer",
-      "company": "TechCorp Solutions",
-      "location": "San Francisco, CA",
+      "id": "web-developer-herd-hr",
+      "title": "Web Developer (Full Stack)",
+      "company": "Herd HR",
+      "location": "Singapore",
       "type": "full-time",
-      "startDate": "2022-03",
+      "startDate": "2024-07",
       "endDate": null,
       "current": true,
-      "description": "Lead frontend development for enterprise web applications serving 100K+ users. Architected and implemented scalable React applications with Next.js, resulting in 40% improvement in page load times.",
+      "description": "Full-stack web developer focused on building robust HR management solutions and web applications using modern technologies.",
       "achievements": [
-        "Led migration from legacy jQuery codebase to modern React/Next.js stack",
-        "Implemented comprehensive design system reducing development time by 30%",
-        "Mentored 3 junior developers and established frontend best practices",
-        "Optimized application performance achieving 95+ Lighthouse scores"
+        "Developing scalable web applications for HR management systems",
+        "Implementing modern frontend solutions with React and TypeScript",
+        "Collaborating with cross-functional teams to deliver business objectives",
+        "Maintaining high code quality standards and best practices"
       ],
-      "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS", "GraphQL", "Jest"]
+      "technologies": ["TypeScript", "React", "Next.js", "Laravel", "AWS"]
     },
     {
-      "id": "fullstack-dev",
-      "title": "Full Stack Developer",
-      "company": "StartupXYZ",
-      "location": "Remote",
+      "id": "software-developer-ayp",
+      "title": "Software Developer (Full Stack)",
+      "company": "AYP Group",
+      "location": "Johor Bahru",
       "type": "full-time",
-      "startDate": "2020-06",
-      "endDate": "2022-02",
+      "startDate": "2024-02",
+      "endDate": "2024-06",
       "current": false,
-      "description": "Developed and maintained full-stack web applications for early-stage startup. Built features from concept to deployment, working closely with product and design teams.",
+      "description": "Developed testable and reusable code for dynamic web applications. Participated in agile development processes and coordinated with cross-functional teams.",
       "achievements": [
-        "Built MVP from scratch serving 10K+ users within 6 months",
-        "Implemented real-time features using WebSockets and Redis",
-        "Designed and developed RESTful APIs with comprehensive documentation",
-        "Set up CI/CD pipelines reducing deployment time by 60%"
+        "Developed testable and reusable code for dynamic web applications",
+        "Wrote automated test cases to ensure software quality and participated in peer code reviews",
+        "Coordinated with cross-functional teams to align deliverables with business objectives",
+        "Guided team discussions to improve coding practices and maintain compliance standards"
       ],
-      "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Docker", "AWS"]
+      "technologies": ["TypeScript", "Next.js", "Cypress", "Jest", "Laravel", "AWS"]
     },
     {
-      "id": "frontend-dev",
-      "title": "Frontend Developer",
-      "company": "Digital Agency Pro",
-      "location": "New York, NY",
+      "id": "senior-software-developer-xeersoft",
+      "title": "Senior Software Developer",
+      "company": "XeerSoft Sdn Bhd",
+      "location": "Johor Bahru",
       "type": "full-time",
-      "startDate": "2019-01",
-      "endDate": "2020-05",
+      "startDate": "2021-01",
+      "endDate": "2024-02",
       "current": false,
-      "description": "Developed responsive websites and web applications for diverse clients including e-commerce, healthcare, and finance sectors.",
+      "description": "Enhanced application performance by implementing MVC and SRP-driven architecture. Led development initiatives and collaborated closely with backend teams for seamless integrations.",
       "achievements": [
-        "Delivered 15+ client projects on time and within budget",
-        "Improved client website performance by average of 50%",
-        "Collaborated with UX/UI designers to implement pixel-perfect designs",
-        "Established responsive design standards and component library"
+        "Enhanced application performance by implementing MVC and SRP-driven architecture",
+        "Developed reusable custom hooks, reducing redundant code by up to 80%",
+        "Collaborated closely with backend teams for seamless API integrations",
+        "Spearheaded the creation of a knowledge repository to improve team efficiency"
       ],
-      "technologies": ["JavaScript", "React", "Vue.js", "Sass", "Webpack", "PHP"]
-    },
-    {
-      "id": "junior-dev",
-      "title": "Junior Web Developer",
-      "company": "WebDev Studio",
-      "location": "Austin, TX",
-      "type": "full-time",
-      "startDate": "2018-03",
-      "endDate": "2018-12",
-      "current": false,
-      "description": "Entry-level position focused on frontend development and learning modern web technologies. Contributed to various client projects under senior developer guidance.",
-      "achievements": [
-        "Completed 8+ small to medium-sized website projects",
-        "Learned React and modern JavaScript development practices",
-        "Implemented responsive designs for mobile-first approach",
-        "Participated in code reviews and agile development processes"
-      ],
-      "technologies": ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "Git"]
+      "technologies": ["React.js", "PHP", "HTML", "JavaScript", "MySQL"]
     }
   ],
   "education": [
     {
-      "id": "cs-degree",
-      "degree": "Bachelor of Science in Computer Science",
-      "institution": "University of Technology",
-      "location": "California, USA",
-      "startDate": "2014-09",
-      "endDate": "2018-05",
-      "gpa": "3.7",
-      "description": "Comprehensive computer science program with focus on software engineering, algorithms, and web development.",
+      "id": "software-engineering-degree",
+      "degree": "Bachelor's Degree - Software Engineering",
+      "institution": "Universiti Tun Hussein Onn Malaysia",
+      "location": "Malaysia",
+      "startDate": "2017-08",
+      "endDate": "2020-08",
+      "gpa": "3.83",
+      "description": "Comprehensive software engineering program with focus on software development, algorithms, and system design.",
       "coursework": [
+        "Software Engineering Principles",
         "Data Structures and Algorithms",
-        "Software Engineering",
         "Database Systems",
         "Web Development",
-        "Computer Networks",
-        "Operating Systems"
+        "Software Project Management",
+        "System Analysis and Design"
       ],
       "achievements": [
-        "Dean's List for 4 consecutive semesters",
-        "President of Computer Science Student Association",
-        "Winner of Annual Hackathon 2017",
-        "Teaching Assistant for Intro to Programming course"
+        "First Class Honors (CGPA: 3.83/4)",
+        "Dean's List for all semesters",
+        "Actively joined university association activity as a committee",
+        "Chief of secretary for PTHUTHM 2019"
       ]
     },
     {
-      "id": "bootcamp",
-      "degree": "Full Stack Web Development Bootcamp",
-      "institution": "CodeAcademy Intensive",
-      "location": "Online",
-      "startDate": "2017-06",
-      "endDate": "2017-12",
-      "description": "Intensive 6-month program focused on modern web development technologies and best practices.",
+      "id": "stpm-certificate",
+      "degree": "Malaysian Higher School Certificate (STPM)",
+      "institution": "English College Johor Bahru",
+      "location": "Johor Bahru, Malaysia",
+      "startDate": "2015-06",
+      "endDate": "2016-12",
+      "gpa": "3.08",
+      "description": "Science Stream pre-university program preparing for higher education in STEM fields.",
       "coursework": [
-        "HTML5, CSS3, JavaScript ES6+",
-        "React and Redux",
-        "Node.js and Express",
-        "MongoDB and PostgreSQL",
-        "Git and Agile Development"
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "General Studies"
       ],
       "achievements": [
-        "Graduated with honors (top 10% of class)",
-        "Built 5 full-stack applications as capstone projects",
-        "Mentored fellow students in JavaScript fundamentals"
+        "Science Stream (CGPA: 3.08/4)",
+        "President of bowling club",
+        "Treasurer and technical support for KKCTHUTHM"
       ]
     }
   ],

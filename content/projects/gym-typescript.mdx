@@ -1,0 +1,240 @@
+---
+title: "Gym TypeScript"
+description: "A TypeScript practice project focusing on modern JavaScript/TypeScript development patterns and best practices"
+image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop"
+tags: ["TypeScript", "Learning", "Best Practices", "Development"]
+techStack: ["TypeScript", "JavaScript", "Node.js"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/gym-typescript"
+featured: false
+date: "2023-08-16"
+---
+
+# Gym TypeScript
+
+A practice project dedicated to mastering TypeScript fundamentals and advanced concepts. This repository serves as a learning playground for exploring TypeScript features, design patterns, and best practices in modern JavaScript development.
+
+## Project Overview
+
+Gym TypeScript is a focused learning project designed to strengthen TypeScript skills through practical exercises and real-world scenarios. The project covers essential TypeScript concepts from basic types to advanced patterns, providing a comprehensive foundation for TypeScript development.
+
+## Learning Objectives
+
+### Core TypeScript Concepts
+- **Type System**: Understanding TypeScript's static type system
+- **Interfaces & Types**: Defining contracts and custom types
+- **Generics**: Creating reusable, type-safe components
+- **Advanced Types**: Union types, intersection types, and conditional types
+- **Decorators**: Exploring metadata and aspect-oriented programming
+
+### Modern Development Practices
+- **ES6+ Features**: Arrow functions, destructuring, async/await
+- **Module System**: Import/export patterns and module organization
+- **Error Handling**: Proper error management with TypeScript
+- **Testing**: Type-safe testing approaches
+- **Build Tools**: TypeScript compiler configuration and optimization
+
+## Technical Implementation
+
+### Type System Exploration
+```typescript
+// Advanced type definitions and interfaces
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  preferences?: UserPreferences;
+}
+
+interface UserPreferences {
+  theme: 'light' | 'dark';
+  notifications: boolean;
+  language: string;
+}
+
+// Generic utility functions
+function createApiResponse<T>(data: T, status: number): ApiResponse<T> {
+  return {
+    data,
+    status,
+    timestamp: new Date().toISOString(),
+    success: status >= 200 && status < 300
+  };
+}
+
+// Advanced type manipulation
+type PartialUser = Partial<User>;
+type RequiredPreferences = Required<UserPreferences>;
+type UserEmail = Pick<User, 'email'>;
+type UserWithoutId = Omit<User, 'id'>;
+```
+
+### Design Patterns Implementation
+```typescript
+// Singleton pattern with TypeScript
+class ConfigManager {
+  private static instance: ConfigManager;
+  private config: Map<string, any> = new Map();
+
+  private constructor() {}
+
+  static getInstance(): ConfigManager {
+    if (!ConfigManager.instance) {
+      ConfigManager.instance = new ConfigManager();
+    }
+    return ConfigManager.instance;
+  }
+
+  set<T>(key: string, value: T): void {
+    this.config.set(key, value);
+  }
+
+  get<T>(key: string): T | undefined {
+    return this.config.get(key) as T;
+  }
+}
+
+// Observer pattern with type safety
+interface Observer<T> {
+  update(data: T): void;
+}
+
+class Subject<T> {
+  private observers: Observer<T>[] = [];
+
+  subscribe(observer: Observer<T>): void {
+    this.observers.push(observer);
+  }
+
+  unsubscribe(observer: Observer<T>): void {
+    const index = this.observers.indexOf(observer);
+    if (index > -1) {
+      this.observers.splice(index, 1);
+    }
+  }
+
+  notify(data: T): void {
+    this.observers.forEach(observer => observer.update(data));
+  }
+}
+```
+
+### Utility Functions and Helpers
+```typescript
+// Type-safe utility functions
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+function isNumber(value: unknown): value is number {
+  return typeof value === 'number' && !isNaN(value);
+}
+
+// Generic array utilities
+function findById<T extends { id: number }>(items: T[], id: number): T | undefined {
+  return items.find(item => item.id === id);
+}
+
+function groupBy<T, K extends keyof T>(items: T[], key: K): Record<string, T[]> {
+  return items.reduce((groups, item) => {
+    const groupKey = String(item[key]);
+    if (!groups[groupKey]) {
+      groups[groupKey] = [];
+    }
+    groups[groupKey].push(item);
+    return groups;
+  }, {} as Record<string, T[]>);
+}
+```
+
+## Learning Modules
+
+### Module 1: Basic Types and Interfaces
+- Primitive types (string, number, boolean)
+- Array and tuple types
+- Object types and interfaces
+- Optional and readonly properties
+
+### Module 2: Advanced Types
+- Union and intersection types
+- Type aliases and literal types
+- Conditional types and mapped types
+- Template literal types
+
+### Module 3: Generics and Constraints
+- Generic functions and classes
+- Type constraints and bounds
+- Generic interfaces and type parameters
+- Utility types and type manipulation
+
+### Module 4: Decorators and Metadata
+- Class decorators
+- Method and property decorators
+- Parameter decorators
+- Metadata reflection
+
+### Module 5: Modern JavaScript Integration
+- ES6+ features with TypeScript
+- Async/await and Promise types
+- Module systems and namespaces
+- Interoperability with JavaScript libraries
+
+## Development Environment
+
+### TypeScript Configuration
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+### Build and Development Scripts
+- **Development**: `tsc --watch` for continuous compilation
+- **Build**: `tsc` for production builds
+- **Type Checking**: `tsc --noEmit` for type validation
+- **Testing**: Integration with Jest for type-safe testing
+
+## Key Learning Outcomes
+
+### Technical Skills Developed
+- **Type Safety**: Deep understanding of TypeScript's type system
+- **Code Quality**: Writing more maintainable and error-free code
+- **Modern Patterns**: Implementing contemporary JavaScript/TypeScript patterns
+- **Tooling**: Proficiency with TypeScript compiler and development tools
+
+### Best Practices Learned
+- **Interface Design**: Creating clear and extensible type definitions
+- **Error Handling**: Type-safe error management strategies
+- **Code Organization**: Structuring TypeScript projects effectively
+- **Performance**: Understanding TypeScript compilation and optimization
+
+## Results & Benefits
+
+### Development Improvements
+- **Reduced Bugs**: Catch errors at compile time rather than runtime
+- **Better IDE Support**: Enhanced autocomplete and refactoring capabilities
+- **Code Documentation**: Types serve as living documentation
+- **Team Collaboration**: Clearer contracts and interfaces for team development
+
+### Skill Enhancement
+- **TypeScript Mastery**: Comprehensive understanding of TypeScript features
+- **Modern JavaScript**: Proficiency with ES6+ features and patterns
+- **Design Patterns**: Implementation of common software design patterns
+- **Development Workflow**: Improved development processes and tooling
+
+This project represents a dedicated effort to master TypeScript and modern JavaScript development practices, providing a solid foundation for building robust, type-safe applications.

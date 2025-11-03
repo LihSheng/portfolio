@@ -1,0 +1,92 @@
+---
+title: "My Weather"
+description: "A modern weather application built with Next.js, TypeScript, and Tailwind CSS"
+image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=400&fit=crop"
+tags: ["Weather", "Next.js", "TypeScript", "API Integration"]
+techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Weather API"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/my-weather"
+featured: true
+date: "2024-09-27"
+---
+
+# My Weather
+
+A modern, responsive weather application that provides real-time weather information with a clean and intuitive user interface. Built with Next.js 14 and TypeScript for optimal performance and developer experience.
+
+## Project Overview
+
+My Weather is a Next.js-based weather application that delivers accurate weather data through a beautiful, responsive interface. The project demonstrates modern React development practices with TypeScript integration and Tailwind CSS for styling.
+
+## Key Features
+
+- **Real-time Weather Data**: Current weather conditions for any location
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Modern UI/UX**: Clean interface built with Tailwind CSS
+- **TypeScript Integration**: Full type safety throughout the application
+- **Performance Optimized**: Built with Next.js 14 for fast loading times
+- **API Integration**: Seamless integration with weather data providers
+
+## Technical Implementation
+
+### Architecture
+The application follows Next.js 14 App Router conventions with a component-based architecture:
+
+```typescript
+// Weather data fetching with proper error handling
+async function getWeatherData(location: string) {
+  try {
+    const response = await fetch(`/api/weather?location=${location}`);
+    if (!response.ok) throw new Error('Weather data unavailable');
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch weather data:', error);
+    throw error;
+  }
+}
+```
+
+### Component Structure
+- **Weather Display**: Main component showing current conditions
+- **Location Search**: User-friendly location input with suggestions
+- **Forecast Cards**: Extended weather predictions
+- **Responsive Layout**: Mobile-first design approach
+
+## Technologies Used
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript for type safety
+- **Styling**: Tailwind CSS for responsive design
+- **Runtime**: React 18 with modern hooks
+- **Development**: ESLint for code quality
+- **API Integration**: RESTful weather services
+
+## Development Highlights
+
+### Performance Optimizations
+- Server-side rendering for fast initial loads
+- Optimized bundle size with Next.js automatic optimizations
+- Efficient API calls with proper caching strategies
+- Responsive images and lazy loading
+
+### Code Quality
+- Full TypeScript implementation for type safety
+- ESLint configuration for consistent code style
+- Component-based architecture for maintainability
+- Modern React patterns and hooks usage
+
+## Results & Impact
+
+### Technical Achievements
+- **Fast Loading**: Optimized for quick weather data retrieval
+- **Mobile Responsive**: Seamless experience across all devices
+- **Type Safety**: Zero runtime type errors with TypeScript
+- **Modern Stack**: Latest Next.js and React features
+
+### User Experience
+- **Intuitive Interface**: Easy-to-use weather information display
+- **Accurate Data**: Reliable weather information from trusted sources
+- **Responsive Design**: Consistent experience on any device
+- **Fast Performance**: Quick loading and smooth interactions
+
+This project showcases modern web development practices with a focus on performance, user experience, and code quality using the latest React and Next.js technologies.
