@@ -72,14 +72,14 @@ export default function Hero() {
             className="text-xl sm:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed"
             style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
           >
-            Full-stack developer specializing in{' '}
+            Results-oriented Software Developer with{' '}
             <span
               className="font-semibold"
               style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
             >
-              modern web technologies
-            </span>.
-            Building scalable applications with React, Next.js, and TypeScript.
+              3+ years of experience
+            </span>{' '}
+            delivering robust web applications using TypeScript, React, Next.js, and Laravel.
           </motion.h2>
 
           {/* Bio */}

@@ -114,8 +114,9 @@ export default function AboutContent() {
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
               I'm passionate about creating exceptional digital experiences that solve real-world problems.
-              With a strong foundation in both frontend and backend technologies, I enjoy building scalable,
-              performant applications that users love to interact with.
+              With expertise in API development, test-driven development, and agile methodologies, I focus on 
+              delivering clean, scalable code that drives innovation and enhances user experience. My experience 
+              spans across modern web technologies including TypeScript, React, Next.js, and Laravel.
             </p>
           </motion.div>
         </motion.section>
