@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { getAllProjects } from '@/lib/content';
 import { ProjectsClient } from './projects-client';
+import { ProjectsPageContent } from './projects-page-content';
 import { Project } from '@/types';
 
 export const metadata = {
@@ -24,29 +25,16 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
   const { tag, search } = await searchParams;
   
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Projects
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A showcase of my development projects, featuring web applications, tools, and experiments 
-            built with modern technologies.
-          </p>
-        </div>
-
-        {/* Projects Grid with Client-side Filtering */}
-        <Suspense fallback={<ProjectsLoading />}>
-          <ProjectsClient 
-            projects={allProjects} 
-            initialTag={tag}
-            initialSearch={search}
-          />
-        </Suspense>
-      </div>
-    </div>
+    <ProjectsPageContent>
+      {/* Projects Grid with Client-side Filtering */}
+      <Suspense fallback={<ProjectsLoading />}>
+        <ProjectsClient 
+          projects={allProjects} 
+          initialTag={tag}
+          initialSearch={search}
+        />
+      </Suspense>
+    </ProjectsPageContent>
   );
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { contactFormSchema, type ContactFormData } from '@/lib/validation';
 import type { ContactFormResponse } from '@/types';
@@ -21,10 +21,29 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check for dark mode
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    checkDarkMode();
+
+    // Watch for changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const validateField = (name: keyof ContactFormData, value: string) => {
     const result = contactFormSchema.shape[name].safeParse(value);
-    
+
     if (result.success) {
       setErrors(prev => {
         const newErrors = { ...prev };
@@ -47,13 +66,13 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear submit status when user starts typing again
     if (submitStatus !== 'idle') {
       setSubmitStatus('idle');
       setSubmitMessage('');
     }
-    
+
     // Validate field on change if it has been touched
     if (errors[name]) {
       validateField(name as keyof ContactFormData, value);
@@ -67,10 +86,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate all fields
     const validation = contactFormSchema.safeParse(formData);
-    
+
     if (!validation.success) {
       const fieldErrors: Record<string, string> = {};
       validation.error.issues.forEach(issue => {
@@ -87,7 +106,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
     try {
       let response: ContactFormResponse;
-      
+
       if (onSubmit) {
         response = await onSubmit(formData);
       } else {
@@ -122,19 +141,15 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     }
   };
 
-  const inputClasses = `
-    w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-    bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
-    focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent
-    transition-colors duration-200
-    disabled:opacity-50 disabled:cursor-not-allowed
-    placeholder:text-gray-500 dark:placeholder:text-gray-400
-  `;
-
-  const errorClasses = `
-    border-red-500 dark:border-red-400 
-    focus:ring-red-500 focus:ring-opacity-50
-  `;
+  const getInputStyles = (hasError: boolean = false) => ({
+    backgroundColor: isDarkMode ? 'rgb(55, 65, 81)' : 'white',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: hasError
+      ? (isDarkMode ? 'rgb(239, 68, 68)' : 'rgb(239, 68, 68)')
+      : (isDarkMode ? 'rgb(107, 114, 128)' : 'rgb(209, 213, 219)'),
+    color: isDarkMode ? 'white' : 'rgb(17, 24, 39)'
+  });
 
   return (
     <motion.form
@@ -146,9 +161,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     >
       {/* Name Field */}
       <div>
-        <label 
-          htmlFor="name" 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium mb-2"
+          style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(55, 65, 81)' }}
         >
           Name <span className="text-red-500" aria-label="required">*</span>
         </label>
@@ -163,11 +179,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           required
           aria-describedby={errors.name ? 'name-error' : undefined}
           aria-invalid={!!errors.name}
-          className={`${inputClasses} ${errors.name ? errorClasses : ''}`}
+          className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          style={getInputStyles(!!errors.name)}
           placeholder="Your full name"
         />
         {errors.name && (
-          <p id="name-error" className="mt-2 text-sm text-red-600 dark:text-red-400" role="alert">
+          <p id="name-error" className="mt-2 text-sm" style={{ color: isDarkMode ? 'rgb(248, 113, 113)' : 'rgb(220, 38, 38)' }} role="alert">
             {errors.name}
           </p>
         )}
@@ -175,9 +192,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {/* Email Field */}
       <div>
-        <label 
-          htmlFor="email" 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium mb-2"
+          style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(55, 65, 81)' }}
         >
           Email <span className="text-red-500" aria-label="required">*</span>
         </label>
@@ -192,11 +210,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           required
           aria-describedby={errors.email ? 'email-error' : undefined}
           aria-invalid={!!errors.email}
-          className={`${inputClasses} ${errors.email ? errorClasses : ''}`}
+          className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          style={getInputStyles(!!errors.email)}
           placeholder="your.email@example.com"
         />
         {errors.email && (
-          <p id="email-error" className="mt-2 text-sm text-red-600 dark:text-red-400" role="alert">
+          <p id="email-error" className="mt-2 text-sm" style={{ color: isDarkMode ? 'rgb(248, 113, 113)' : 'rgb(220, 38, 38)' }} role="alert">
             {errors.email}
           </p>
         )}
@@ -204,9 +223,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {/* Subject Field */}
       <div>
-        <label 
-          htmlFor="subject" 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        <label
+          htmlFor="subject"
+          className="block text-sm font-medium mb-2"
+          style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(55, 65, 81)' }}
         >
           Subject <span className="text-red-500" aria-label="required">*</span>
         </label>
@@ -221,11 +241,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           required
           aria-describedby={errors.subject ? 'subject-error' : undefined}
           aria-invalid={!!errors.subject}
-          className={`${inputClasses} ${errors.subject ? errorClasses : ''}`}
+          className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          style={getInputStyles(!!errors.subject)}
           placeholder="What's this about?"
         />
         {errors.subject && (
-          <p id="subject-error" className="mt-2 text-sm text-red-600 dark:text-red-400" role="alert">
+          <p id="subject-error" className="mt-2 text-sm" style={{ color: isDarkMode ? 'rgb(248, 113, 113)' : 'rgb(220, 38, 38)' }} role="alert">
             {errors.subject}
           </p>
         )}
@@ -233,9 +254,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {/* Message Field */}
       <div>
-        <label 
-          htmlFor="message" 
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium mb-2"
+          style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(55, 65, 81)' }}
         >
           Message <span className="text-red-500" aria-label="required">*</span>
         </label>
@@ -250,15 +272,19 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           required
           aria-describedby={errors.message ? 'message-error' : undefined}
           aria-invalid={!!errors.message}
-          className={`${inputClasses} ${errors.message ? errorClasses : ''} resize-vertical`}
+          className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed resize-vertical"
+          style={getInputStyles(!!errors.message)}
           placeholder="Tell me about your project, question, or how I can help..."
         />
         {errors.message && (
-          <p id="message-error" className="mt-2 text-sm text-red-600 dark:text-red-400" role="alert">
+          <p id="message-error" className="mt-2 text-sm" style={{ color: isDarkMode ? 'rgb(248, 113, 113)' : 'rgb(220, 38, 38)' }} role="alert">
             {errors.message}
           </p>
         )}
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        <p
+          className="mt-2 text-sm"
+          style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+        >
           {formData.message.length}/2000 characters
         </p>
       </div>
@@ -307,24 +333,24 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center">
-            <svg 
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <circle 
-                className="opacity-25" 
-                cx="12" 
-                cy="12" 
-                r="10" 
-                stroke="currentColor" 
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
                 strokeWidth="4"
               />
-              <path 
-                className="opacity-75" 
-                fill="currentColor" 
+              <path
+                className="opacity-75"
+                fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>

@@ -38,6 +38,25 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
   const [selectedTag, setSelectedTag] = useState<string>(initialTag || '');
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch || '');
   const [showFilters, setShowFilters] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check for dark mode
+    const checkDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    
+    // Watch for changes
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   // Get all unique tags from projects
   const allTags = useMemo(() => {
@@ -105,7 +124,13 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
             placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            className="w-full pl-10 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            style={{
+              backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
+              borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)',
+              color: isDarkMode ? 'white' : 'rgb(17, 24, 39)',
+              border: '1px solid'
+            }}
           />
           {searchQuery && (
             <button
@@ -121,7 +146,17 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
         <div className="flex items-center justify-between">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="md:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="md:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+            style={{
+              backgroundColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(243, 244, 246)',
+              color: isDarkMode ? 'white' : 'rgb(55, 65, 81)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(243, 244, 246)';
+            }}
           >
             <Filter className="w-4 h-4" />
             Filters
@@ -136,7 +171,14 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm transition-colors"
+              style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(75, 85, 99)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = isDarkMode ? 'white' : 'rgb(17, 24, 39)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(75, 85, 99)';
+              }}
             >
               <X className="w-4 h-4" />
               Clear filters
@@ -151,11 +193,25 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
               <button
                 key={tag}
                 onClick={() => handleTagSelect(tag)}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-                  selectedTag === tag
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
+                className="px-3 py-1.5 text-sm font-medium rounded-lg transition-colors"
+                style={{
+                  backgroundColor: selectedTag === tag 
+                    ? '#3b82f6' 
+                    : (isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(243, 244, 246)'),
+                  color: selectedTag === tag 
+                    ? 'white' 
+                    : (isDarkMode ? 'white' : 'rgb(55, 65, 81)')
+                }}
+                onMouseEnter={(e) => {
+                  if (selectedTag !== tag) {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (selectedTag !== tag) {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(243, 244, 246)';
+                  }
+                }}
               >
                 {tag}
               </button>
@@ -166,7 +222,10 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
 
       {/* Results Count */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p 
+          className="text-sm"
+          style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(75, 85, 99)' }}
+        >
           {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} found
         </p>
       </div>
@@ -204,13 +263,22 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
             className="text-center py-16"
           >
             <div className="max-w-md mx-auto">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
-                <Search className="w-8 h-8 text-gray-400" />
+              <div 
+                className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(243, 244, 246)' }}
+              >
+                <Search className="w-8 h-8" style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }} />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 
+                className="text-lg font-semibold mb-2"
+                style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+              >
                 No projects found
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p 
+                className="mb-4"
+                style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(75, 85, 99)' }}
+              >
                 Try adjusting your search terms or filters to find what you're looking for.
               </p>
               {hasActiveFilters && (
