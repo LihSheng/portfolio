@@ -6,19 +6,11 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
 import { BlogPost } from '@/types';
 import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
+import { itemVariants } from './AnimatedGrid';
 
 interface BlogPostCardProps {
   post: BlogPost;
 }
-
-const cardVariants = {
-  initial: { opacity: 0, y: 30 },
-  animate: { 
-    opacity: 1, 
-    y: 0
-  },
-  hover: { y: -4 }
-};
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const formatDate = (dateString: string) => {
@@ -31,10 +23,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 
   return (
     <motion.article
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
-      whileHover="hover"
+      variants={itemVariants}
+      whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="group relative bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-600"
       style={{

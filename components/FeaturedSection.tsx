@@ -28,41 +28,7 @@ const headerVariants = {
   animate: { opacity: 1, y: 0 }
 };
 
-const contentVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2
-    }
-  }
-};
 
-const itemVariants = {
-  initial: { opacity: 0, y: 30 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
-
-export const cardItemVariants = {
-  initial: { opacity: 0, y: 30 },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-};
 
 export function FeaturedSection({ 
   title, 
@@ -75,8 +41,7 @@ export function FeaturedSection({
     <motion.section
       variants={sectionVariants}
       initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, margin: "-100px" }}
+      animate="animate"
       className="py-16 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
@@ -94,12 +59,9 @@ export function FeaturedSection({
         </motion.div>
 
         {/* Content Grid */}
-        <motion.div 
-          variants={contentVariants}
-          className="stagger-container"
-        >
+        <div className="stagger-container">
           {children}
-        </motion.div>
+        </div>
 
         {/* View All Link */}
         <motion.div 

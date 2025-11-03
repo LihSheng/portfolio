@@ -23,7 +23,7 @@ export const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.4, 0, 0.2, 1]
+      ease: "easeOut"
     }
   }
 };
@@ -34,7 +34,7 @@ export function AnimatedGrid({ children, className }: AnimatedGridProps) {
       variants={containerVariants}
       initial="initial"
       whileInView="animate"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "0px", amount: 0.2 }}
       className={className}
     >
       {children}
