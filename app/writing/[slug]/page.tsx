@@ -69,14 +69,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 function TableOfContents({ content }: { content: string }) {
     // Extract headings from content
     const headings = content.match(/^#{2,4}\s+(.+)$/gm) || [];
-    
+
     if (headings.length === 0) return null;
 
     const tocItems = headings.map((heading) => {
         const level = heading.match(/^#+/)?.[0].length || 2;
         const text = heading.replace(/^#+\s+/, '');
         const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        
+
         return { level, text, id };
     });
 
@@ -89,9 +89,8 @@ function TableOfContents({ content }: { content: string }) {
                         <li key={index}>
                             <a
                                 href={`#${item.id}`}
-                                className={`block text-sm hover:text-primary transition-colors ${
-                                    item.level === 3 ? 'ml-4' : item.level === 4 ? 'ml-8' : ''
-                                }`}
+                                className={`block text-sm hover:text-primary transition-colors ${item.level === 3 ? 'ml-4' : item.level === 4 ? 'ml-8' : ''
+                                    }`}
                             >
                                 {item.text}
                             </a>
@@ -134,7 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="min-h-screen bg-background">
             {/* Header */}
             <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container mx-auto px-4 py-6">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
                     <Link
                         href="/writing"
                         className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -147,8 +146,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Hero Section */}
             <section className="py-12 lg:py-20">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                    <div className="max-w-5xl mx-auto">
                         {/* Cover Image */}
                         {post.coverImage && (
                             <div className="aspect-video rounded-lg overflow-hidden bg-muted mb-8">
@@ -232,8 +231,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Content */}
             <section className="py-12">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                    <div className="max-w-5xl mx-auto">
                         {/* Table of Contents */}
                         <TableOfContents content={post.content} />
 
@@ -248,8 +247,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Post Navigation */}
             {(navigation.previous || navigation.next) && (
                 <section className="py-12 border-t">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-4xl mx-auto">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                        <div className="max-w-5xl mx-auto">
                             <div className="grid md:grid-cols-2 gap-8">
                                 {/* Previous Post */}
                                 {navigation.previous && (

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   // Get feature flags
   const flags = getFeatureFlags();
-  
+
   // Fetch featured content based on feature flags
   const featuredProjects = flags.projects ? await getFeaturedProjects() : [];
   const recentPosts = flags.blog ? await getRecentBlogPosts(3) : [];

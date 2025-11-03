@@ -91,7 +91,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -104,8 +104,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Hero Section */}
       <section className="py-12 lg:py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Project Info */}
             <div className="space-y-6">
               <div className="space-y-4">
@@ -209,8 +209,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Content */}
       <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="max-w-5xl mx-auto">
             <article className="prose prose-gray dark:prose-invert max-w-none">
               {mdxContent}
             </article>
@@ -221,8 +221,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Project Navigation */}
       {(navigation.previous || navigation.next) && (
         <section className="py-12 border-t">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <div className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Previous Project */}
                 {navigation.previous && (
