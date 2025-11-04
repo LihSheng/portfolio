@@ -1,29 +1,37 @@
-import { SiteConfig, NavigationItem, SocialLink } from '@/types';
+import { SiteConfig, NavigationItem, NavigationItemWithFlag, SocialLink } from '@/types';
 import { getContactEmail, getMailtoLink } from './contact-utils';
 
-// Navigation items for the main menu
-export const navigationItems: NavigationItem[] = [
+// Navigation items for the main menu with feature flag mapping
+export const navigationItems: NavigationItemWithFlag[] = [
   {
     label: 'Home',
     href: '/',
+    flag: null, // Always visible
   },
   {
     label: 'About',
     href: '/about',
+    flag: 'about',
   },
   {
     label: 'Projects',
     href: '/projects',
+    flag: 'projects',
   },
   {
     label: 'Writing',
     href: '/writing',
+    flag: 'blog',
   },
   {
     label: 'Contact',
     href: '/contact',
+    flag: 'contact',
   },
 ];
+
+// Legacy navigation items for backward compatibility
+export const legacyNavigationItems: NavigationItem[] = navigationItems.map(({ flag, ...item }) => item);
 
 // Social media links
 export const socialLinks: SocialLink[] = [
@@ -60,7 +68,7 @@ export const siteConfig: SiteConfig = {
       linkedin: 'https://www.linkedin.com/in/lihshengng/',
     },
   },
-  navigation: navigationItems,
+  navigation: legacyNavigationItems,
   analytics: {
     provider: 'plausible',
     siteId: process.env.NEXT_PUBLIC_ANALYTICS_SITE_ID || '',

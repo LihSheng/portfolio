@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { FeatureFlagProvider } from '@/components/FeatureFlagProvider';
 import { Analytics } from '@/components/Analytics';
 import { StructuredData } from '@/components/StructuredData';
 import { Navigation } from '@/components/Navigation';
@@ -107,16 +108,18 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={`${inter.className} flex min-h-screen flex-col bg-background font-sans antialiased`} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navigation />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <FeatureFlagProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navigation />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </FeatureFlagProvider>
         <Analytics />
       </body>
     </html>

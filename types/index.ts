@@ -167,3 +167,22 @@ export interface ContactFormResponse {
   message: string;
   errors?: Record<string, string>;
 }
+
+// Feature flag types
+export interface FeatureFlags {
+  blog: boolean;
+  projects: boolean;
+  contact: boolean;
+  about: boolean;
+  analytics: boolean;
+  rss: boolean;
+}
+
+export interface NavigationItemWithFlag extends NavigationItem {
+  flag?: keyof FeatureFlags | null;
+}
+
+export interface FeatureFlagContextType {
+  flags: FeatureFlags;
+  isEnabled: (flag: keyof FeatureFlags) => boolean;
+}

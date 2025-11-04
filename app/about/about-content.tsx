@@ -406,7 +406,8 @@ export default function AboutContent() {
             className="rounded-2xl p-8"
             style={{
               backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)',
-              border: '1px solid',
+              borderWidth: '1px',
+              borderStyle: 'solid',
               borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
             }}
           >

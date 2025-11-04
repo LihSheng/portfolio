@@ -19,7 +19,9 @@
         "playwright_fill",
         "playwright_post",
         "playwright_expect_response",
-        "playwright_assert_response"
+        "playwright_assert_response",
+        "playwright_get_visible_text",
+        "playwright_get"
       ],
       "disabledTools": []
     },

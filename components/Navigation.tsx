@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
+import { useFeatureFlags } from '@/lib';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Navigation({ className = '' }: { className?: string }) {
@@ -12,6 +13,17 @@ export function Navigation({ className = '' }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
+  const flags = useFeatureFlags();
+
+  // Filter navigation items based on feature flags
+  const visibleNavigationItems = useMemo(() => {
+    return navigationItems.filter(item => {
+      // If no flag is specified, always show the item
+      if (!item.flag) return true;
+      // Otherwise, check if the flag is enabled
+      return flags[item.flag];
+    });
+  }, [flags]);
 
   useEffect(() => {
     setMounted(true);
@@ -91,7 +103,7 @@ export function Navigation({ className = '' }: { className?: string }) {
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:gap-8">
             <ul className="flex items-center gap-6">
-              {navigationItems.map((item) => (
+              {visibleNavigationItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -171,7 +183,7 @@ export function Navigation({ className = '' }: { className?: string }) {
               transition={{ delay: 0.1 }}
               className="container mx-auto px-4 py-4 space-y-1"
             >
-              {navigationItems.map((item, index) => (
+              {visibleNavigationItems.map((item, index) => (
                 <motion.li
                   key={item.href}
                   initial={{ opacity: 0, x: -20 }}

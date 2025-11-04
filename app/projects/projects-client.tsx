@@ -113,7 +113,7 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
   const hasActiveFilters = selectedTag || searchQuery;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-6xl mx-auto">
       {/* Search and Filter Controls */}
       <div className="space-y-4">
         {/* Search Bar */}
@@ -127,9 +127,10 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
             className="w-full pl-10 pr-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             style={{
               backgroundColor: isDarkMode ? 'rgb(17, 24, 39)' : 'white',
+              borderWidth: '1px',
+              borderStyle: 'solid',
               borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)',
-              color: isDarkMode ? 'white' : 'rgb(17, 24, 39)',
-              border: '1px solid'
+              color: isDarkMode ? 'white' : 'rgb(17, 24, 39)'
             }}
           />
           {searchQuery && (
@@ -239,7 +240,7 @@ export function ProjectsClient({ projects, initialTag, initialSearch }: Projects
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto"
           >
             {filteredProjects.map((project, index) => (
               <motion.div 

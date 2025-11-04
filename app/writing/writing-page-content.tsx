@@ -32,7 +32,7 @@ export function WritingPageContent({ children }: WritingPageContentProps) {
       className="min-h-screen"
       style={{ backgroundColor: isDarkMode ? 'rgb(3, 7, 18)' : 'rgb(249, 250, 251)' }}
     >
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 
