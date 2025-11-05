@@ -53,7 +53,9 @@ export interface SiteConfig {
   author: {
     name: string;
     email: string;
-    avatar: string;
+    avatar: string; // Keep for backward compatibility
+    profilePicture?: string; // New field for actual profile picture
+    profilePictureAlt?: string; // Alt text for accessibility
     bio: string;
     social: {
       github?: string;

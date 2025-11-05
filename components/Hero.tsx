@@ -6,7 +6,7 @@ export default function Hero() {
   const flags = getFeatureFlags();
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
       <div className="max-w-4xl mx-auto text-center">
         <HeroClient flags={flags} />
       </div>

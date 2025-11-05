@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { siteConfig } from '@/lib/site-config';
 import { FeatureFlags } from '@/types';
+import { ProfilePicture } from './ProfilePicture';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -52,6 +53,44 @@ export default function HeroClient({ flags }: HeroClientProps) {
       animate="animate"
       className="space-y-6"
     >
+      {/* Profile Picture */}
+      <motion.div
+        variants={fadeInUp}
+        className="flex justify-center mb-8"
+      >
+        <div className="relative">
+          <ProfilePicture
+            size="large"
+            priority={true}
+            animate={true}
+            className={`
+              shadow-2xl transition-all duration-300 transform-gpu
+              ${isDarkMode 
+                ? 'ring-4 ring-white/20 hover:ring-blue-400/40 hover:shadow-blue-500/25' 
+                : 'ring-4 ring-white/30 hover:ring-blue-500/40 hover:shadow-blue-500/20'
+              }
+              sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48
+            `}
+            ariaLabel={`Large profile picture of ${siteConfig.author.name}, featured prominently in the hero section`}
+            includeScreenReaderText={true}
+            screenReaderText={`This is the main profile picture of ${siteConfig.author.name}, a results-oriented software developer with 3+ years of experience in web development.`}
+            onError={(error) => {
+              console.error('Hero profile picture failed to load:', error);
+            }}
+            onLoadingComplete={() => {
+              console.log('Hero profile picture loaded successfully');
+            }}
+          />
+          {/* Subtle glow effect */}
+          <div 
+            className={`
+              absolute inset-0 rounded-full blur-xl opacity-20 -z-10
+              ${isDarkMode ? 'bg-blue-400' : 'bg-blue-500'}
+            `}
+          />
+        </div>
+      </motion.div>
+
       {/* Greeting */}
       <motion.p
         variants={fadeInUp}

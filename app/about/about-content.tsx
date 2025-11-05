@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import SkillBadge from '@/components/SkillBadge';
 import Timeline from '@/components/Timeline';
+import { ProfilePicture } from '@/components/ProfilePicture';
 import { siteConfig } from '@/lib/site-config';
 import type { SkillCategory, ExperienceData, TimelineItem } from '@/types';
 
@@ -83,11 +84,26 @@ export default function AboutContent() {
             className="relative w-32 h-32 mx-auto mb-8"
             variants={fadeInUp}
           >
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center border-4 border-white dark:border-gray-800 shadow-lg">
-              <span className="text-4xl font-bold text-white">
-                {siteConfig.author.name.split(' ').map(n => n[0]).join('')}
-              </span>
-            </div>
+            <ProfilePicture
+              size="medium"
+              priority={false}
+              animate={false}
+              className="border-4 border-white dark:border-gray-800 shadow-lg"
+              showFallback={true}
+              ariaLabel={`Medium-sized profile picture of ${siteConfig.author.name} on the about page`}
+              includeScreenReaderText={true}
+              screenReaderText={`This is ${siteConfig.author.name}'s profile picture on the about page, showing a professional headshot of the developer.`}
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  // Could trigger a modal or larger view
+                  console.log('Profile picture activated via keyboard');
+                }
+              }}
+              onError={(error) => {
+                console.error('About page profile picture failed to load:', error);
+              }}
+            />
           </motion.div>
 
           <motion.h1
