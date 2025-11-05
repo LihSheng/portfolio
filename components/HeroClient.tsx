@@ -6,20 +6,8 @@ import { useEffect, useState } from 'react';
 import { siteConfig } from '@/lib/site-config';
 import { FeatureFlags } from '@/types';
 import { ProfilePicture } from './ProfilePicture';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+import { useMotionVariants, useMotionTransition } from '@/lib/hooks/useReducedMotion';
+import { fadeInUp, staggerSlow, reducedMotionVariants, defaultTransition } from '@/lib/animations';
 
 interface HeroClientProps {
   flags: FeatureFlags;
@@ -46,16 +34,20 @@ export default function HeroClient({ flags }: HeroClientProps) {
     return () => observer.disconnect();
   }, []);
 
+  const containerVariants = useMotionVariants(staggerSlow, reducedMotionVariants.fadeIn);
+  const itemVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const transition = useMotionTransition(defaultTransition);
+
   return (
     <motion.div
-      variants={staggerContainer}
+      variants={containerVariants}
       initial="initial"
       animate="animate"
       className="space-y-6"
     >
       {/* Profile Picture */}
       <motion.div
-        variants={fadeInUp}
+        variants={itemVariants}
         className="flex justify-center mb-8"
       >
         <div className="relative">
@@ -93,7 +85,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
 
       {/* Greeting */}
       <motion.p
-        variants={fadeInUp}
+        variants={itemVariants}
         className="text-lg sm:text-xl font-medium"
         style={{ color: isDarkMode ? 'rgb(209, 213, 219)' : 'rgb(75, 85, 99)' }}
       >
@@ -102,7 +94,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
 
       {/* Name */}
       <motion.h1
-        variants={fadeInUp}
+        variants={itemVariants}
         className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
         style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
       >
@@ -111,7 +103,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
 
       {/* Tagline */}
       <motion.h2
-        variants={fadeInUp}
+        variants={itemVariants}
         className="text-xl sm:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed"
         style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
       >
@@ -127,7 +119,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
 
       {/* Bio */}
       <motion.p
-        variants={fadeInUp}
+        variants={itemVariants}
         className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
         style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
       >
@@ -137,7 +129,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
       {/* CTA Buttons */}
       {(flags.projects || flags.contact) && (
         <motion.div
-          variants={fadeInUp}
+          variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
         >
           {flags.projects && (
@@ -179,12 +171,12 @@ export default function HeroClient({ flags }: HeroClientProps) {
 
       {/* Scroll Indicator */}
       <motion.div
-        variants={fadeInUp}
+        variants={itemVariants}
         className="pt-12 hidden sm:block"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={useMotionVariants({ y: [0, 8, 0] }, { y: 0 })}
+          transition={useMotionTransition({ duration: 2, repeat: Infinity, ease: "easeInOut" }, { duration: 0 })}
           className="mx-auto w-6 h-10 border-2 rounded-full flex justify-center"
           style={{ borderColor: isDarkMode ? 'rgb(75, 85, 81)' : 'rgb(209, 213, 219)' }}
         >

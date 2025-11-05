@@ -6,20 +6,8 @@ import { useEffect, useState } from 'react';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { BlogPost } from '@/types';
 import { getRecentBlogPosts } from '@/lib/content';
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import { useMotionVariants, useMotionTransition } from '@/lib/hooks/useReducedMotion';
+import { fadeInUp, staggerContainer, reducedMotionVariants, defaultTransition } from '@/lib/animations';
 
 interface FeaturedBlogSectionProps {
   limit?: number;
@@ -75,10 +63,18 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
     });
   };
 
+  const sectionVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const containerVariants = useMotionVariants(staggerContainer, reducedMotionVariants.fadeIn);
+  const itemVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const transition = useMotionTransition(defaultTransition);
+
   if (loading) {
     return (
       <motion.div
-        variants={fadeInUp}
+        variants={sectionVariants}
+        initial="initial"
+        animate="animate"
+        transition={transition}
         className="mt-12 pt-8 border-t"
         style={{ borderColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(229, 231, 235)' }}
       >
@@ -129,7 +125,10 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
   if (error) {
     return (
       <motion.div
-        variants={fadeInUp}
+        variants={sectionVariants}
+        initial="initial"
+        animate="animate"
+        transition={transition}
         className="mt-12 pt-8 border-t"
         style={{ borderColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(229, 231, 235)' }}
       >
@@ -167,7 +166,10 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
   if (posts.length === 0) {
     return (
       <motion.div
-        variants={fadeInUp}
+        variants={sectionVariants}
+        initial="initial"
+        animate="animate"
+        transition={transition}
         className="mt-12 pt-8 border-t"
         style={{ borderColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(229, 231, 235)' }}
       >
@@ -191,7 +193,10 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
 
   return (
     <motion.div
-      variants={fadeInUp}
+      variants={sectionVariants}
+      initial="initial"
+      animate="animate"
+      transition={transition}
       className="mt-12 pt-8 border-t"
       style={{ borderColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(229, 231, 235)' }}
     >
@@ -211,7 +216,7 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
       </div>
       
       <motion.div
-        variants={staggerContainer}
+        variants={containerVariants}
         initial="initial"
         animate="animate"
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8"
@@ -219,7 +224,7 @@ export default function FeaturedBlogSection({ limit = 3 }: FeaturedBlogSectionPr
         {posts.map((post) => (
           <motion.article
             key={post.slug}
-            variants={fadeInUp}
+            variants={itemVariants}
             className="group relative rounded-lg border p-4 hover:shadow-md transition-all duration-200"
             style={{
               borderColor: isDarkMode ? 'rgb(55, 65, 81)' : 'rgb(229, 231, 235)',
