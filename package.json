@@ -21,7 +21,8 @@
     "git:merge-dev": "node scripts/git-workflow.mjs merge-to-dev",
     "git:merge-main": "node scripts/git-workflow.mjs merge-to-main",
     "git:status": "node scripts/git-workflow.mjs status",
-    "git:help": "node scripts/git-workflow.mjs help"
+    "git:help": "node scripts/git-workflow.mjs help",
+    "validate:profile-picture": "node scripts/validate-profile-picture.mjs"
   },
   "keywords": [],
   "author": "",
