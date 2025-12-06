@@ -6,23 +6,30 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Project } from '@/types';
 import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
-import { itemVariants } from './AnimatedGrid';
+import { useMotionVariants, useMotionTransition, useReducedMotion } from '@/lib/hooks/useReducedMotion';
+import { fadeInUp, hoverLift, scaleIn, reducedMotionVariants, defaultTransition } from '@/lib/animations';
 
 interface ProjectCardProps {
   project: Project;
   priority?: boolean; // For image loading priority
 }
 
-const imageVariants = {
-  hover: { scale: 1.05 }
-};
-
 export function ProjectCard({ project, priority = false }: ProjectCardProps) {
+  const cardVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const prefersReducedMotion = useReducedMotion();
+  const hoverAnimation = prefersReducedMotion ? {} : { 
+    y: -4, 
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    transition: { duration: 0.2 }
+  };
+  const imageVariants = useMotionVariants(scaleIn, reducedMotionVariants.scaleIn);
+  const transition = useMotionTransition(defaultTransition);
+
   return (
     <motion.div
-      variants={itemVariants}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      variants={cardVariants}
+      whileHover={hoverAnimation}
+      transition={transition}
       className="group relative bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-600"
       style={{
         backgroundColor: 'var(--card-bg, white)',
@@ -33,7 +40,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
       <div className="relative aspect-video overflow-hidden">
         <motion.div
           variants={imageVariants}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={transition}
           className="w-full h-full"
         >
           <Image

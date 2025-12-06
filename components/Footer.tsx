@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { navigationItems, socialLinks, siteConfig } from '@/lib/site-config';
+import { useFeatureFlags } from '@/lib/feature-flags';
 
 interface FooterProps {
   className?: string;
@@ -7,6 +11,17 @@ interface FooterProps {
 
 export function Footer({ className = '' }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const flags = useFeatureFlags();
+
+  // Filter navigation items based on feature flags
+  const visibleNavigationItems = useMemo(() => {
+    return navigationItems.filter(item => {
+      // If no flag is specified, always show the item
+      if (!item.flag) return true;
+      // Otherwise, check if the flag is enabled
+      return flags[item.flag];
+    });
+  }, [flags]);
 
   return (
     <footer className={`border-t border-gray-200 dark:border-gray-800 ${className}`}>
@@ -24,7 +39,7 @@ export function Footer({ className = '' }: FooterProps) {
           <div>
             <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
             <nav className="flex flex-col space-y-2">
-              {navigationItems.map((item) => (
+              {visibleNavigationItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

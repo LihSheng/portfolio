@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
-import { useFeatureFlags } from '@/lib';
+import { useFeatureFlags } from '@/lib/feature-flags';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { useMotionVariants, useMotionTransition } from '@/lib/hooks/useReducedMotion';
+import { mobileMenuVariants, menuItemVariants, fadeIn, reducedMotionVariants, fastTransition } from '@/lib/animations';
 
 export function Navigation({ className = '' }: { className?: string }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -170,25 +172,28 @@ export function Navigation({ className = '' }: { className?: string }) {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            variants={useMotionVariants(mobileMenuVariants, reducedMotionVariants.fadeIn)}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            transition={useMotionTransition(fastTransition)}
             className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
           >
             <motion.ul
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.1 }}
+              variants={useMotionVariants(fadeIn, reducedMotionVariants.fadeIn)}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={useMotionTransition({ delay: 0.1 }, { delay: 0 })}
               className="container mx-auto px-4 py-4 space-y-1"
             >
               {visibleNavigationItems.map((item, index) => (
                 <motion.li
                   key={item.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
+                  variants={useMotionVariants(menuItemVariants, reducedMotionVariants.fadeIn)}
+                  initial="closed"
+                  animate="open"
+                  transition={useMotionTransition({ delay: 0.1 + index * 0.05 }, { delay: 0 })}
                 >
                   <Link
                     href={item.href}
