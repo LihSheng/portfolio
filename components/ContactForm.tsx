@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { contactFormSchema, type ContactFormData } from '@/lib/validation';
 import type { ContactFormResponse } from '@/types';
+import { useMotionVariants, useMotionTransition } from '@/lib/hooks/useReducedMotion';
+import { fadeInUp, scaleIn, reducedMotionVariants, defaultTransition } from '@/lib/animations';
 
 interface ContactFormProps {
   onSubmit?: (data: ContactFormData) => Promise<ContactFormResponse>;
@@ -151,13 +153,17 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     color: isDarkMode ? 'white' : 'rgb(17, 24, 39)'
   });
 
+  const formVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const transition = useMotionTransition(defaultTransition);
+
   return (
     <motion.form
       onSubmit={handleSubmit}
       className="space-y-6"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={formVariants}
+      initial="initial"
+      animate="animate"
+      transition={transition}
     >
       {/* Name Field */}
       <div>
@@ -292,8 +298,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       {/* Submit Status Messages */}
       {submitStatus === 'success' && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          variants={useMotionVariants(scaleIn, reducedMotionVariants.scaleIn)}
+          initial="initial"
+          animate="animate"
+          transition={transition}
           className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
         >
           <p className="text-green-800 dark:text-green-200 text-sm font-medium">
@@ -304,8 +312,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {submitStatus === 'error' && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          variants={useMotionVariants(scaleIn, reducedMotionVariants.scaleIn)}
+          initial="initial"
+          animate="animate"
+          transition={transition}
           className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
         >
           <p className="text-red-800 dark:text-red-200 text-sm font-medium">

@@ -49,4 +49,4 @@ export function FeatureFlagProvider({ children }: FeatureFlagProviderProps) {
 }
 
 // Re-export hooks for convenience
-export { useFeatureFlag, useFeatureFlags, useFeatureFlagChecker } from '@/lib';
+export { useFeatureFlag, useFeatureFlags, useFeatureFlagChecker } from '@/lib/feature-flags';

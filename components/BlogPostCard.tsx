@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
 import { BlogPost } from '@/types';
 import { shimmerPlaceholderDataUrl } from '@/lib/image-utils';
-import { itemVariants } from './AnimatedGrid';
+import { useMotionVariants, useMotionTransition, useReducedMotion } from '@/lib/hooks/useReducedMotion';
+import { fadeInUp, hoverLift, reducedMotionVariants, defaultTransition } from '@/lib/animations';
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -21,11 +22,20 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     });
   };
 
+  const cardVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const prefersReducedMotion = useReducedMotion();
+  const hoverAnimation = prefersReducedMotion ? {} : { 
+    y: -4, 
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    transition: { duration: 0.2 }
+  };
+  const transition = useMotionTransition(defaultTransition);
+
   return (
     <motion.article
-      variants={itemVariants}
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      variants={cardVariants}
+      whileHover={hoverAnimation}
+      transition={transition}
       className="group relative bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl dark:hover:shadow-gray-900/50 transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-600"
       style={{
         backgroundColor: 'var(--card-bg, white)',
