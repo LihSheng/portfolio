@@ -248,7 +248,7 @@ export function logProfilePictureMetrics(metrics: ProfilePictureMetrics): void {
  */
 export function getOptimalImageQuality(size: 'small' | 'medium' | 'large'): number {
   // Check for slow connection
-  const connection = (navigator as any)?.connection;
+  const connection = typeof navigator !== 'undefined' ? (navigator as any)?.connection : undefined;
   const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
   
   if (isSlowConnection) {
