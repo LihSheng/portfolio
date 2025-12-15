@@ -22,7 +22,9 @@
     "git:merge-main": "node scripts/git-workflow.mjs merge-to-main",
     "git:status": "node scripts/git-workflow.mjs status",
     "git:help": "node scripts/git-workflow.mjs help",
-    "validate:profile-picture": "node scripts/validate-profile-picture.mjs"
+    "validate:profile-picture": "node scripts/validate-profile-picture.mjs",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "keywords": [],
   "author": "",
