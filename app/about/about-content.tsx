@@ -129,10 +129,10 @@ export default function AboutContent() {
               className="leading-relaxed"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              I'm passionate about creating exceptional digital experiences that solve real-world problems.
-              With expertise in API development, test-driven development, and agile methodologies, I focus on
-              delivering clean, scalable code that drives innovation and enhances user experience. My experience
-              spans across modern web technologies including TypeScript, React, Next.js, and Laravel.
+              I enjoy turning business processes into reliable software, whether that means shipping enterprise
+              product features, improving developer workflows, or reducing repetitive operational work through
+              automation. Lately I have been exploring LLMs, AI agents, and workflow platforms to build practical
+              tools that connect emerging AI capabilities with real production systems.
             </p>
           </motion.div>
         </motion.section>
@@ -244,9 +244,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Using Kiro as my primary development environment to accelerate coding with AI assistance,
-                  automated code generation, and intelligent debugging. Leveraging MCP (Model Context Protocol)
-                  for enhanced AI integrations and workflow automation.
+                  Using AI-assisted development environments and agent workflows to accelerate implementation,
+                  debugging, and context-heavy engineering tasks. I focus on practical usage that improves delivery
+                  speed without lowering code quality.
                 </p>
               </motion.div>
 
@@ -283,9 +283,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Building automated workflows with n8n to streamline repetitive tasks, integrate APIs,
-                  and create efficient data pipelines. Connecting various services and tools to create
-                  seamless automation solutions for development and business processes.
+                  Designing n8n workflows to connect systems, trigger business processes, and automate repetitive
+                  operational tasks. I use event-driven flows, scheduled jobs, and API integrations to reduce
+                  manual work and improve responsiveness.
                 </p>
               </motion.div>
 
@@ -322,9 +322,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Actively exploring and implementing AI tools like ChatGPT, Claude, and GitHub Copilot
-                  to enhance code quality, accelerate development, and solve complex technical challenges.
-                  Staying current with the latest AI developments in software engineering.
+                  Exploring LLM fine-tuning, AI agents, and self-hosted automation platforms to solve structured
+                  workflow problems. Recent experiments include schema matching with lightweight models and deploying
+                  agent platforms in cloud environments.
                 </p>
               </motion.div>
 
@@ -361,9 +361,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Continuously optimizing development workflows through automation, AI-assisted coding,
-                  and smart tooling. Focused on reducing manual tasks and increasing development velocity
-                  while maintaining high code quality and best practices.
+                  I care about reducing operational friction with better tooling, clearer system design, and
+                  automation that fits existing workflows. The goal is not novelty for its own sake, but faster,
+                  more reliable delivery for teams and users.
                 </p>
               </motion.div>
             </div>
@@ -378,7 +378,7 @@ export default function AboutContent() {
                 className="text-sm italic"
                 style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
               >
-                "Embracing AI not to replace human creativity, but to amplify it and focus on solving more complex, meaningful problems."
+                "I like building systems that remove repetitive work so people can focus on higher-value decisions."
               </p>
             </motion.div>
           </div>
@@ -406,7 +406,7 @@ export default function AboutContent() {
 
             <Timeline
               items={educationTimelineItems}
-              title="Education & Certifications"
+              title="Education"
             />
           </div>
         </motion.section>

@@ -2,13 +2,13 @@
   "frontend": [
     {
       "name": "TypeScript",
-      "level": "expert",
-      "yearsOfExperience": 3
+      "level": "advanced",
+      "yearsOfExperience": 2
     },
     {
       "name": "React.js",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 5
     },
     {
       "name": "Next.js",
@@ -21,26 +21,31 @@
       "yearsOfExperience": 2
     },
     {
+      "name": "Angular",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
       "name": "JavaScript",
       "level": "advanced",
-      "yearsOfExperience": 4
+      "yearsOfExperience": 5
     },
     {
       "name": "HTML5",
       "level": "expert",
-      "yearsOfExperience": 4
+      "yearsOfExperience": 5
     },
     {
       "name": "CSS3",
       "level": "advanced",
-      "yearsOfExperience": 4
+      "yearsOfExperience": 5
     }
   ],
   "backend": [
     {
       "name": "PHP",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 5
     },
     {
       "name": "Laravel",
@@ -49,7 +54,7 @@
     },
     {
       "name": "Python",
-      "level": "intermediate",
+      "level": "beginner",
       "yearsOfExperience": 1
     },
     {
@@ -62,7 +67,7 @@
     {
       "name": "MySQL",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 5
     }
   ],
   "cloud": [
@@ -70,6 +75,11 @@
       "name": "AWS S3",
       "level": "intermediate",
       "yearsOfExperience": 2
+    },
+    {
+      "name": "AWS EC2",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     },
     {
       "name": "AWS Lambda",
@@ -85,6 +95,11 @@
       "name": "Docker",
       "level": "beginner",
       "yearsOfExperience": 1
+    },
+    {
+      "name": "CI/CD Pipelines",
+      "level": "intermediate",
+      "yearsOfExperience": 2
     }
   ],
   "tools": [
@@ -106,7 +121,7 @@
     {
       "name": "Postman",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 4
     },
     {
       "name": "Figma",
@@ -114,14 +129,24 @@
       "yearsOfExperience": 2
     },
     {
-      "name": "Adobe Photoshop",
+      "name": "n8n",
       "level": "intermediate",
-      "yearsOfExperience": 2
+      "yearsOfExperience": 1
     },
     {
-      "name": "Adobe Illustrator",
+      "name": "Codex",
       "level": "intermediate",
-      "yearsOfExperience": 2
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "OpenClaw",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "LoRA Fine-Tuning",
+      "level": "beginner",
+      "yearsOfExperience": 1
     }
   ]
 }
