@@ -4,10 +4,10 @@ import AboutContent from './about-content';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: `Learn more about ${siteConfig.author.name}, a results-oriented software developer with 3+ years of experience in TypeScript, Laravel, and AWS.`,
+  description: `Learn more about ${siteConfig.author.name}, a software developer working across enterprise web applications, automation systems, and practical AI-driven tooling.`,
   openGraph: {
     title: `About ${siteConfig.author.name}`,
-    description: `Learn more about ${siteConfig.author.name}, a results-oriented software developer with 3+ years of experience in TypeScript, Laravel, and AWS.`,
+    description: `Learn more about ${siteConfig.author.name}, a software developer working across enterprise web applications, automation systems, and practical AI-driven tooling.`,
     type: 'website',
   },
 };

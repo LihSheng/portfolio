@@ -9,16 +9,16 @@ import { getFeatureFlags } from '@/lib';
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
+  description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
   openGraph: {
-    title: 'Ng Lih Sheng - Full Stack Developer',
-    description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
+    title: 'Ng Lih Sheng - Software Developer',
+    description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ng Lih Sheng - Full Stack Developer',
-    description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
+    title: 'Ng Lih Sheng - Software Developer',
+    description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
   },
 };
 

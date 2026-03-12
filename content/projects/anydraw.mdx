@@ -1,0 +1,45 @@
+---
+title: "AnyDraw"
+description: "A polished lucky draw app collection with wheel spin, random number, and card picker tools built for events, classrooms, and team activities."
+image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=400&fit=crop"
+tags: ["Vue", "Vite", "Interactive UI", "Tooling", "Entertainment"]
+techStack: ["Vue 3", "Vite", "Tailwind CSS 4", "Bun", "Web Crypto API", "GitHub Pages"]
+demoUrl: "https://any-draw.vercel.app"
+repoUrl: "https://github.com/LihSheng/AnyDraw"
+featured: true
+date: "2026-02-03"
+---
+
+# AnyDraw
+
+AnyDraw is a browser-based collection of lucky draw tools designed for fast setup and visually satisfying interactions. It combines multiple draw formats in one app so the same participant list can be reused across different event scenarios.
+
+## Project Overview
+
+The project focuses on one clear job: make random selection feel reliable, fun, and easy to run in front of people. Instead of building a single picker, it bundles a spinning wheel, random number generator, and card draw interaction into one consistent interface.
+
+## Key Features
+
+- **Multiple draw modes**: wheel spin, number draw, and card picker in one app
+- **Participant management**: add, remove, and bulk import names quickly
+- **Secure randomness**: uses the Web Crypto API for stronger random selection
+- **Persistent state**: participant data and winner history survive page refreshes
+- **Event-friendly UX**: sound effects, confetti, and theme switching improve presentation
+
+## Technical Highlights
+
+### Frontend Architecture
+
+The app is built with Vue 3 and Vite, using a component-driven structure that separates game logic, layout, and shared composables cleanly. That keeps each draw mode focused while still sharing common state and utilities.
+
+### Randomness and State Handling
+
+Instead of relying on `Math.random()`, the project uses `crypto.getRandomValues()` for less predictable and more trustworthy selection. It also persists settings and history in local storage so the app remains practical during live use.
+
+### Delivery
+
+The repository includes automated deployment to GitHub Pages and also has a live Vercel deployment, which makes it easy to iterate and share quickly.
+
+## Why It Belongs In The Portfolio
+
+This is one of the strongest portfolio additions because it is recent, has a live demo, and shows product thinking beyond CRUD screens. It demonstrates interactive UI work, animation, state management, and practical UX decisions in a compact project.
