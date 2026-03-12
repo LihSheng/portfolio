@@ -6,6 +6,7 @@ import { getFeaturedProjects, getRecentBlogPosts } from '@/lib/content';
 import { FeaturedSection } from '../components/FeaturedSection';
 import { AnimatedGrid } from '@/components/AnimatedGrid';
 import { getFeatureFlags } from '@/lib';
+import { ProfessionalHighlightsSection } from '@/components/ProfessionalHighlightsSection';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -33,6 +34,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <ProfessionalHighlightsSection />
 
       {/* Featured Projects Section */}
       {flags.projects && featuredProjects.length > 0 && (

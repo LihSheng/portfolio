@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Download, Github } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { siteConfig } from '@/lib/site-config';
 import { FeatureFlags } from '@/types';
@@ -130,7 +131,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
       {(flags.projects || flags.contact) && (
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+          className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row sm:flex-wrap"
         >
           {flags.projects && (
             <Link
@@ -140,6 +141,24 @@ export default function HeroClient({ flags }: HeroClientProps) {
               View My Work
             </Link>
           )}
+          <a
+            href="/Ng-Lih-Sheng-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-lg bg-gray-900 px-8 py-3 text-base font-medium text-white shadow-lg transition-colors duration-200 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+          >
+            <Download size={16} />
+            Resume
+          </a>
+          <a
+            href={siteConfig.author.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-w-[160px] items-center justify-center gap-2 rounded-lg border-2 border-blue-500 px-8 py-3 text-base font-medium text-blue-600 transition-colors duration-200 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-slate-800"
+          >
+            <Github size={16} />
+            GitHub
+          </a>
           {flags.contact && (
             <Link
               href="/contact"

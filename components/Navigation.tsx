@@ -122,7 +122,15 @@ export function Navigation({ className = '' }: { className?: string }) {
               ))}
             </ul>
 
-            <div className="ml-4 flex items-center">
+            <div className="ml-4 flex items-center gap-3">
+              <a
+                href="/Ng-Lih-Sheng-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-blue-500 px-3 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-slate-800"
+              >
+                Resume
+              </a>
               <ThemeToggle />
             </div>
           </div>
@@ -223,6 +231,21 @@ export function Navigation({ className = '' }: { className?: string }) {
                   </Link>
                 </motion.li>
               ))}
+              <motion.li
+                variants={useMotionVariants(menuItemVariants, reducedMotionVariants.fadeIn)}
+                initial="closed"
+                animate="open"
+                transition={useMotionTransition({ delay: 0.1 + visibleNavigationItems.length * 0.05 }, { delay: 0 })}
+              >
+                <a
+                  href="/Ng-Lih-Sheng-Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-md px-4 py-3 text-base font-medium text-blue-600 transition-colors hover:bg-gray-50 dark:text-blue-300 dark:hover:bg-gray-900"
+                >
+                  Resume
+                </a>
+              </motion.li>
             </motion.ul>
           </motion.div>
         )}
