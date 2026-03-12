@@ -2,21 +2,21 @@
   "work": [
     {
       "id": "web-developer-herd-hr",
-      "title": "Web Developer (Full Stack)",
+      "title": "Software Developer (Full Stack)",
       "company": "Herd HR",
       "location": "Singapore",
       "type": "full-time",
-      "startDate": "2024-07",
+      "startDate": "2025-07",
       "endDate": null,
       "current": true,
-      "description": "Full-stack web developer focused on building robust HR management solutions and web applications using modern technologies.",
+      "description": "Maintain and enhance a Laravel and Angular-based HR system used across regional clients, with a focus on feature delivery, stability, and maintainability.",
       "achievements": [
-        "Developing scalable web applications for HR management systems",
-        "Implementing modern frontend solutions with React and TypeScript",
-        "Collaborating with cross-functional teams to deliver business objectives",
-        "Maintaining high code quality standards and best practices"
+        "Maintain and enhance a Laravel and Angular-based HR system used across regional clients",
+        "Implement new features including roster workflows and system reminders",
+        "Refactor legacy code and resolve critical bugs to improve stability and maintainability",
+        "Collaborate with product stakeholders to align feature delivery with business goals and user needs"
       ],
-      "technologies": ["TypeScript", "React", "Next.js", "Laravel", "AWS"]
+      "technologies": ["Laravel", "Angular", "MySQL", "Microservices"]
     },
     {
       "id": "software-developer-ayp",
@@ -25,14 +25,15 @@
       "location": "Johor Bahru",
       "type": "full-time",
       "startDate": "2024-02",
-      "endDate": "2024-06",
+      "endDate": "2025-06",
       "current": false,
-      "description": "Developed testable and reusable code for dynamic web applications. Participated in agile development processes and coordinated with cross-functional teams.",
+      "description": "Built and maintained full-stack web applications for business users across APAC using TypeScript, Laravel, and AWS, with strong emphasis on testability and delivery quality.",
       "achievements": [
-        "Developed testable and reusable code for dynamic web applications",
-        "Wrote automated test cases to ensure software quality and participated in peer code reviews",
-        "Coordinated with cross-functional teams to align deliverables with business objectives",
-        "Guided team discussions to improve coding practices and maintain compliance standards"
+        "Built and maintained full-stack web applications with TypeScript, Laravel, and AWS for business users across APAC",
+        "Wrote unit and integration tests with Jest and Cypress while maintaining over 85% test coverage",
+        "Participated in code reviews and architecture discussions to improve scalability and enforce best practices",
+        "Automated CI/CD pipelines for staging and production to reduce manual deployment errors",
+        "Worked closely with QA and product teams to align sprint goals and deliver high-impact features on schedule"
       ],
       "technologies": ["TypeScript", "Next.js", "Cypress", "Jest", "Laravel", "AWS"]
     },
@@ -45,12 +46,13 @@
       "startDate": "2021-01",
       "endDate": "2024-02",
       "current": false,
-      "description": "Enhanced application performance by implementing MVC and SRP-driven architecture. Led development initiatives and collaborated closely with backend teams for seamless integrations.",
+      "description": "Led frontend development work on internal and client-facing modules while improving application performance and team enablement.",
       "achievements": [
-        "Enhanced application performance by implementing MVC and SRP-driven architecture",
-        "Developed reusable custom hooks, reducing redundant code by up to 80%",
-        "Collaborated closely with backend teams for seamless API integrations",
-        "Spearheaded the creation of a knowledge repository to improve team efficiency"
+        "Led juniors and interns in day-to-day development tasks",
+        "Redesigned major frontend modules using React.js and MVC principles to improve page load speed and UX",
+        "Developed reusable components and custom hooks to reduce duplication in the codebase",
+        "Integrated REST APIs and resolved cross-origin and latency issues to improve data sync reliability",
+        "Created an internal knowledge base for onboarding and developer guides"
       ],
       "technologies": ["React.js", "PHP", "HTML", "JavaScript", "MySQL"]
     }
@@ -102,23 +104,5 @@
       ]
     }
   ],
-  "certifications": [
-    {
-      "id": "aws-cloud-practitioner",
-      "name": "AWS Certified Cloud Practitioner",
-      "issuer": "Amazon Web Services",
-      "issueDate": "2022-08",
-      "expiryDate": "2025-08",
-      "credentialId": "AWS-CCP-2022-001234",
-      "verificationUrl": "https://aws.amazon.com/verification"
-    },
-    {
-      "id": "react-advanced",
-      "name": "Advanced React Development",
-      "issuer": "Meta (Facebook)",
-      "issueDate": "2021-11",
-      "expiryDate": null,
-      "credentialId": "META-REACT-ADV-2021-5678"
-    }
-  ]
+  "certifications": []
 }

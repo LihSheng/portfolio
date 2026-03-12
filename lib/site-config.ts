@@ -56,16 +56,16 @@ export const socialLinks: SocialLink[] = [
 // Main site configuration
 export const siteConfig: SiteConfig = {
   name: 'Ng Lih Sheng',
-  title: 'Ng Lih Sheng - Full Stack Developer',
-  description: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Specializing in TypeScript, React, Next.js, and Laravel.',
+  title: 'Ng Lih Sheng - Software Developer',
+  description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, PHP, React, Next.js, Laravel, and AWS.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.space',
   author: {
     name: 'Ng Lih Sheng',
     email: getContactEmail(),
     avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2MzY2RjEiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo8L3N2Zz4K', // Keep for backward compatibility
     profilePicture: process.env.NEXT_PUBLIC_PROFILE_PICTURE_URL || undefined, // Can be configured via environment variable
-    profilePictureAlt: 'Profile picture of Ng Lih Sheng, Full Stack Developer',
-    bio: 'Results-oriented Software Developer with 3+ years of experience delivering robust web applications. Adept at creating clean, scalable code using TypeScript, Laravel, and AWS. A committed team player with a passion for driving innovation and enhancing user experience.',
+    profilePictureAlt: 'Profile picture of Ng Lih Sheng, Software Developer',
+    bio: 'Software Developer focused on enterprise web applications, workflow automation, and practical AI-driven solutions. I build scalable systems with TypeScript, PHP, React, Next.js, Laravel, and AWS while exploring LLMs, AI agents, and low-friction automation for real-world teams.',
     social: {
       github: 'https://github.com/LihSheng',
       linkedin: 'https://www.linkedin.com/in/lihshengng/',

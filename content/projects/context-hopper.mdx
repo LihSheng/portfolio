@@ -1,0 +1,41 @@
+---
+title: "Context Hopper"
+description: "A VS Code extension that helps collect files, code snippets, and notes into a structured context bundle for AI chats and documentation workflows."
+image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop"
+tags: ["VS Code Extension", "Developer Tool", "TypeScript", "Productivity"]
+techStack: ["TypeScript", "VS Code Extension API", "Webview UI", "js-tiktoken", "Node.js"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/ContextHopper"
+featured: false
+date: "2025-11-28"
+---
+
+# Context Hopper
+
+Context Hopper is a productivity-focused VS Code extension for gathering code context before sending it to external AI tools or documentation workflows. It removes the repetitive work of copying scattered files and code snippets manually.
+
+## Project Overview
+
+The extension gives developers a dedicated sidebar where they can collect full files, selected code ranges, and free-form notes into one exportable context package. It is aimed at improving AI-assisted development workflows without forcing users to leave the editor.
+
+## Key Features
+
+- **Sidebar context list** for managing gathered files and notes
+- **Selection-aware capture** with file paths and line ranges
+- **Token estimation** for keeping prompts within practical limits
+- **Batch actions** such as multi-select, copy selected, and delete selected
+- **Navigation support** that jumps back to captured code locations
+
+## Technical Highlights
+
+### Extension Workflow
+
+The project combines Explorer actions, editor selections, and a custom webview-based interface to create a smoother context-building workflow than plain clipboard copying. The result is a tool with a clear productivity use case and strong day-to-day relevance for AI-assisted coding.
+
+### Product Thinking
+
+The inclusion of token counting, persistent saved state, and mixed note/file support shows good attention to the actual constraints developers face when working with AI tools.
+
+## Why It Belongs In The Portfolio
+
+This repo is a good portfolio fit because it is focused, developer-oriented, and different from a standard web app. It demonstrates tooling work, editor extension development, and thoughtful workflow design.
