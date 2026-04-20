@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'edge';
 
 export async function GET(): Promise<NextResponse> {
-  const host = process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.dev';
+  const host = process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.space';
 
   const catalog = {
     linkset: [
@@ -22,6 +22,11 @@ export async function GET(): Promise<NextResponse> {
         anchor: `${host}/about`,
         rel: 'service-doc',
         href: '/about',
+      },
+      {
+        anchor: host,
+        rel: 'service-desc',
+        href: '/.well-known/oauth-protected-resource',
       },
     ],
   };

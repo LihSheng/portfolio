@@ -34,6 +34,13 @@ export async function GET(): Promise<NextResponse> {
         url: '/.well-known/mcp/server-card.json',
         sha256: sha256OfEmptyString(),
       },
+      {
+        name: 'oauth-protected-resource',
+        type: 'auth',
+        description: 'OAuth protected resource metadata for this public portfolio resource',
+        url: '/.well-known/oauth-protected-resource',
+        sha256: sha256OfEmptyString(),
+      },
     ],
   };
 
