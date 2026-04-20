@@ -4,6 +4,8 @@ import { getAllBlogPosts } from '@/lib/content';
 import { WritingClient } from './writing-client';
 import { WritingPageContent } from './writing-page-content';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Writing',
   description: 'Technical articles, tutorials, and insights on web development, programming, and technology.',

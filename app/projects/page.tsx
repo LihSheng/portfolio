@@ -4,6 +4,8 @@ import { ProjectsClient } from './projects-client';
 import { ProjectsPageContent } from './projects-page-content';
 import { Project } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Projects',
   description: 'A showcase of my development projects, featuring web applications, tools, and experiments built with modern technologies.',

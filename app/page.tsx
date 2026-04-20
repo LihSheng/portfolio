@@ -8,6 +8,8 @@ import { AnimatedGrid } from '@/components/AnimatedGrid';
 import { getFeatureFlags } from '@/lib';
 import { ProfessionalHighlightsSection } from '@/components/ProfessionalHighlightsSection';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Home',
   description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',

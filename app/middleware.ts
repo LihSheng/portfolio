@@ -32,15 +32,14 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
       if (htmlResponse.ok) {
         const html = await htmlResponse.text();
         const markdown = htmlToMarkdown(html);
-        const response = new NextResponse(markdown, {
+        return new NextResponse(markdown, {
           headers: {
             'Content-Type': 'text/markdown; charset=utf-8',
             'Cache-Control': 'private, max-age=60',
             'Vary': 'Accept',
+            'Link': LINK_HEADERS.join(', '),
           },
         });
-        appendLinkHeaders(response);
-        return response;
       }
     } catch {
       // Fall through to normal response
@@ -49,7 +48,10 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 
   // Normal HTML response — add Link headers
   const response = NextResponse.next();
-  appendLinkHeaders(response);
+  // Manually set headers on the response
+  response.headers.set('X-Middleware-Test', 'worked');
+  response.headers.append('Link', LINK_HEADERS.join(', '));
+  response.headers.append('Vary', 'Accept');
   return response;
 }
 

@@ -8,6 +8,8 @@ import { getAllProjects, getProjectBySlug } from '@/lib/content';
 import { compileMDXWithPlugins } from '@/lib/mdx';
 import { Project } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 interface ProjectPageProps {
   params: Promise<{
     slug: string;

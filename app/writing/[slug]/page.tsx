@@ -8,6 +8,8 @@ import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/content';
 import { compileMDXWithPlugins } from '@/lib/mdx';
 import { BlogPost } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 interface BlogPostPageProps {
     params: Promise<{
         slug: string;
