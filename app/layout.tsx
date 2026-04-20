@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { FeatureFlagProvider } from '@/components/FeatureFlagProvider';
 import { Analytics } from '@/components/Analytics';
+import { WebMCPProvider } from '@/components/WebMCPProvider';
 import { StructuredData } from '@/components/StructuredData';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
@@ -120,6 +121,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </FeatureFlagProvider>
+        <WebMCPProvider />
         <Analytics />
       </body>
     </html>
