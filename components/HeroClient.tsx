@@ -115,7 +115,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
         >
           enterprise web applications
         </span>{' '}
-        and automation workflows with TypeScript, React, Next.js, Laravel, AWS, and practical AI tooling.
+        plus workflow automation and AI-assisted tooling with TypeScript, React, Next.js, Laravel, AWS, and system integration in mind.
       </motion.h2>
 
       {/* Bio */}

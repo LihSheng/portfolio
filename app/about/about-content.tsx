@@ -129,10 +129,10 @@ export default function AboutContent() {
               className="leading-relaxed"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              I enjoy turning business processes into reliable software, whether that means shipping enterprise
-              product features, improving developer workflows, or reducing repetitive operational work through
-              automation. Lately I have been exploring LLMs, AI agents, and workflow platforms to build practical
-              tools that connect emerging AI capabilities with real production systems.
+              I enjoy translating business and operational needs into reliable software, whether that means shipping
+              enterprise product features, improving developer workflows, or connecting systems through automation.
+              My recent work has been especially focused on practical AI-assisted workflows, agent experimentation,
+              and building tools that fit real delivery environments rather than isolated demos.
             </p>
           </motion.div>
         </motion.section>
@@ -205,8 +205,9 @@ export default function AboutContent() {
                 className="text-lg leading-relaxed mb-6"
                 style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
               >
-                I'm passionate about leveraging AI tools and automation to enhance productivity and streamline development workflows.
-                I actively explore and integrate cutting-edge AI technologies to solve complex problems and improve efficiency.
+                I use AI tools and automation to reduce repetitive work, improve development throughput, and make
+                system workflows easier to operate. The emphasis is on practical usage: better delivery, clearer
+                integrations, and more reliable operational processes.
               </p>
             </motion.div>
 
@@ -246,7 +247,7 @@ export default function AboutContent() {
                 >
                   Using AI-assisted development environments and agent workflows to accelerate implementation,
                   debugging, and context-heavy engineering tasks. I focus on practical usage that improves delivery
-                  speed without lowering code quality.
+                  speed while keeping engineering quality and maintainability intact.
                 </p>
               </motion.div>
 
@@ -323,8 +324,8 @@ export default function AboutContent() {
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
                   Exploring LLM fine-tuning, AI agents, and self-hosted automation platforms to solve structured
-                  workflow problems. Recent experiments include schema matching with lightweight models and deploying
-                  agent platforms in cloud environments.
+                  workflow problems. Recent experiments include lightweight model tuning, AI agent deployment, and
+                  system integrations that connect software workflows with emerging AI capabilities.
                 </p>
               </motion.div>
 
@@ -378,7 +379,7 @@ export default function AboutContent() {
                 className="text-sm italic"
                 style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
               >
-                "I like building systems that remove repetitive work so people can focus on higher-value decisions."
+                "I like building systems that reduce repetitive work so teams can focus on higher-value decisions."
               </p>
             </motion.div>
           </div>

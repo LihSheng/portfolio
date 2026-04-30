@@ -9,8 +9,8 @@ const highlightMetrics = [
   },
   {
     label: 'Focus',
-    value: 'Enterprise + AI',
-    detail: 'web apps, automation, tooling',
+    value: 'Systems + Automation',
+    detail: 'enterprise apps, integrations, tooling',
   },
   {
     label: 'Quality',
@@ -107,12 +107,12 @@ export function ProfessionalHighlightsSection() {
               Best First Clicks
             </p>
             <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Where I would start reviewing this portfolio
+              Best first clicks for public review
             </h3>
             <ul className="mb-8 space-y-3 text-sm text-gray-700 dark:text-gray-200">
-              <li>AnyDraw for polished product thinking and interaction design.</li>
-              <li>Finance Tracker for full-stack scope and data modeling.</li>
-              <li>Context Hopper for developer tooling and workflow design.</li>
+              <li>Context Hopper for developer tooling and AI-assisted workflow design.</li>
+              <li>n8n Automation for integration thinking and operational workflow design.</li>
+              <li>OpenClaw Deployment for self-hosted AI platform operations and experimentation.</li>
             </ul>
 
             <div className="space-y-3">
