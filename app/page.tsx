@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import { ProjectCard } from '@/components/ProjectCard';
-import { BlogPostCard } from '@/components/BlogPostCard';
-import { getFeaturedProjects, getRecentBlogPosts } from '@/lib/content';
+import { getFeaturedProjects } from '@/lib/content';
 import { FeaturedSection } from '../components/FeaturedSection';
 import { AnimatedGrid } from '@/components/AnimatedGrid';
 import { getFeatureFlags } from '@/lib';
@@ -31,7 +30,6 @@ export default async function Home() {
 
   // Fetch featured content based on feature flags
   const featuredProjects = flags.projects ? await getFeaturedProjects() : [];
-  const recentPosts = flags.blog ? await getRecentBlogPosts(3) : [];
 
   return (
     <main>
@@ -52,25 +50,6 @@ export default async function Home() {
                 key={project.slug}
                 project={project}
                 priority={index === 0}
-              />
-            ))}
-          </AnimatedGrid>
-        </FeaturedSection>
-      )}
-
-      {/* Recent Blog Posts Section */}
-      {flags.blog && recentPosts.length > 0 && (
-        <FeaturedSection
-          title="Latest Writing"
-          subtitle="Recent thoughts on development, technology, and best practices"
-          viewAllHref="/writing"
-          viewAllText="View All Posts"
-        >
-          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentPosts.map((post) => (
-              <BlogPostCard
-                key={post.slug}
-                post={post}
               />
             ))}
           </AnimatedGrid>

@@ -126,13 +126,23 @@ export default function AboutContent() {
             </p>
 
             <p
+              className="leading-relaxed mb-4"
+              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
+            >
+              I work best in environments where software needs to be dependable, maintainable, and aligned with real
+              operational needs. That usually means turning business requirements into clear technical solutions,
+              collaborating closely with stakeholders, and improving systems in ways that make delivery smoother for
+              both users and development teams.
+            </p>
+
+            <p
               className="leading-relaxed"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              I enjoy translating business and operational needs into reliable software, whether that means shipping
-              enterprise product features, improving developer workflows, or connecting systems through automation.
-              My recent work has been especially focused on practical AI-assisted workflows, agent experimentation,
-              and building tools that fit real delivery environments rather than isolated demos.
+              Alongside my day-to-day product work, I actively explore AI, automation, and retrieval-based workflows
+              through proof-of-concept work and practical experimentation. The goal is not to use AI for its own sake,
+              but to understand where it can be adapted usefully into real teams, internal workflows, and software
+              systems.
             </p>
           </motion.div>
         </motion.section>
@@ -191,7 +201,7 @@ export default function AboutContent() {
             className="text-3xl font-bold mb-8 text-center"
             style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
           >
-            AI Tools & Productivity
+            AI, Automation & Applied Systems
           </h2>
 
           <div className="max-w-3xl mx-auto">
@@ -205,15 +215,15 @@ export default function AboutContent() {
                 className="text-lg leading-relaxed mb-6"
                 style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
               >
-                I use AI tools and automation to reduce repetitive work, improve development throughput, and make
-                system workflows easier to operate. The emphasis is on practical usage: better delivery, clearer
-                integrations, and more reliable operational processes.
+                I am especially interested in how AI and automation can support practical engineering work. Most of my
+                recent exploration has been centered on proof-of-concept work, workflow automation, and testing where
+                retrieval, agents, or assisted tooling can improve how teams build and operate software.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <motion.div
-                className="p-6 rounded-xl border"
+                className="p-5 rounded-xl border"
                 style={{
                   backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
                   borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
@@ -246,13 +256,13 @@ export default function AboutContent() {
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
                   Using AI-assisted development environments and agent workflows to accelerate implementation,
-                  debugging, and context-heavy engineering tasks. I focus on practical usage that improves delivery
-                  speed while keeping engineering quality and maintainability intact.
+                  debugging, and context-heavy engineering tasks. I care most about improving delivery speed without
+                  losing clarity, maintainability, or engineering discipline.
                 </p>
               </motion.div>
 
               <motion.div
-                className="p-6 rounded-xl border"
+                className="p-5 rounded-xl border"
                 style={{
                   backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
                   borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
@@ -270,13 +280,13 @@ export default function AboutContent() {
                       className="text-xl font-semibold"
                       style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
                     >
-                      n8n Automation
+                      Workflow Automation & Proof-of-Concept AI
                     </h3>
                     <p
                       className="text-sm"
                       style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
                     >
-                      Workflow Automation
+                      Applied Exploration
                     </p>
                   </div>
                 </div>
@@ -284,87 +294,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Designing n8n workflows to connect systems, trigger business processes, and automate repetitive
-                  operational tasks. I use event-driven flows, scheduled jobs, and API integrations to reduce
-                  manual work and improve responsiveness.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="p-6 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-lg">AI</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      AI Integration
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      Modern AI Tools
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  Exploring LLM fine-tuning, AI agents, and self-hosted automation platforms to solve structured
-                  workflow problems. Recent experiments include lightweight model tuning, AI agent deployment, and
-                  system integrations that connect software workflows with emerging AI capabilities.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="p-6 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.0 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-lg">⚡</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      Productivity Focus
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      Efficiency & Innovation
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  I care about reducing operational friction with better tooling, clearer system design, and
-                  automation that fits existing workflows. The goal is not novelty for its own sake, but faster,
-                  more reliable delivery for teams and users.
+                  Exploring workflow automation, retrieval-based flows, and proof-of-concept AI implementations to see
+                  where they can realistically support internal processes and engineering teams. I am interested in
+                  practical adaptation, not just experimentation in isolation.
                 </p>
               </motion.div>
             </div>

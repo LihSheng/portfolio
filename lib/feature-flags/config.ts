@@ -8,7 +8,7 @@ import { FeatureFlags } from '@/types';
  * Default feature flag values - all features enabled by default except RSS
  */
 export const defaultFeatureFlags: FeatureFlags = {
-  blog: true,
+  blog: false,
   projects: true,
   contact: true,
   about: true,
@@ -23,7 +23,7 @@ export const defaultFeatureFlags: FeatureFlags = {
  */
 export const getFeatureFlags = (): FeatureFlags => {
   return {
-    blog: process.env.NEXT_PUBLIC_FEATURE_BLOG !== 'false',
+    blog: process.env.NEXT_PUBLIC_FEATURE_BLOG === 'true',
     projects: process.env.NEXT_PUBLIC_FEATURE_PROJECTS !== 'false',
     contact: process.env.NEXT_PUBLIC_FEATURE_CONTACT !== 'false',
     about: process.env.NEXT_PUBLIC_FEATURE_ABOUT !== 'false',
