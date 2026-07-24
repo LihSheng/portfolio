@@ -1,80 +1,41 @@
-import { Suspense } from 'react';
+import { Metadata } from 'next';
+import { ProjectTextList } from '@/components/ProjectTextList';
 import { getAllProjects } from '@/lib/content';
-import { ProjectsClient } from './projects-client';
-import { ProjectsPageContent } from './projects-page-content';
-import { Project } from '@/types';
 
-export const dynamic = 'force-dynamic';
-
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Projects',
-  description: 'A showcase of my development projects, featuring web applications, tools, and experiments built with modern technologies.',
+  description: 'Selected products, engineering systems, and practical experiments I have designed and built.',
   openGraph: {
-    title: 'Projects | Developer Portfolio',
-    description: 'A showcase of my development projects, featuring web applications, tools, and experiments built with modern technologies.',
+    title: 'Projects | Ng Lih Sheng',
+    description: 'Selected products, engineering systems, and practical experiments I have designed and built.',
   },
 };
 
-interface ProjectsPageProps {
-  searchParams: Promise<{ 
-    tag?: string;
-    search?: string;
-  }>;
-}
+export default async function ProjectsPage() {
+  const projects = await getAllProjects();
 
-export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
-  const allProjects = await getAllProjects();
-  const { tag, search } = await searchParams;
-  
   return (
-    <ProjectsPageContent>
-      {/* Projects Grid with Client-side Filtering */}
-      <Suspense fallback={<ProjectsLoading />}>
-        <ProjectsClient 
-          projects={allProjects} 
-          initialTag={tag}
-          initialSearch={search}
-        />
-      </Suspense>
-    </ProjectsPageContent>
-  );
-}
+    <main className="min-h-screen bg-white dark:bg-gray-950">
+      <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <header className="mb-14 max-w-3xl sm:mb-16">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+            Projects
+          </h1>
+          <p className="mt-5 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+            A focused selection of products and engineering systems I have designed, built, and operated.
+          </p>
+        </header>
 
-function ProjectsLoading() {
-  return (
-    <div className="space-y-8">
-      {/* Filter skeleton */}
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
-        <div className="flex-1">
-          <div className="h-12 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-10 w-20 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />
-          ))}
-        </div>
+        <section aria-labelledby="selected-work-heading">
+          <h2
+            id="selected-work-heading"
+            className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400"
+          >
+            Selected work
+          </h2>
+          <ProjectTextList projects={projects} />
+        </section>
       </div>
-      
-      {/* Grid skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-800">
-            <div className="aspect-video bg-gray-200 dark:bg-gray-800 animate-pulse" />
-            <div className="p-6 space-y-4">
-              <div className="h-6 bg-gray-200 dark:bg-gray-800 rounded animate-pulse" />
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded animate-pulse" />
-                <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded animate-pulse w-3/4" />
-              </div>
-              <div className="flex gap-2">
-                {Array.from({ length: 3 }).map((_, j) => (
-                  <div key={j} className="h-6 w-16 bg-gray-200 dark:bg-gray-800 rounded animate-pulse" />
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </main>
   );
 }

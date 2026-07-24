@@ -1,0 +1,56 @@
+---
+title: "Trip Planner"
+description: "A collaborative, map-first itinerary workspace with drag-and-drop scheduling, cloud persistence, sharing, Today Mode, and reviewable AI-assisted trip imports."
+image: ""
+tags: ["Product Engineering", "Travel", "Collaboration", "AI Assistance"]
+techStack: ["React", "TypeScript", "Mantine", "Supabase", "React Leaflet", "dnd-kit"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/trip-planner"
+featured: true
+date: "2026-07-23"
+---
+
+# Trip Planner
+
+Trip Planner is a responsive workspace for turning scattered travel ideas into a practical day-by-day itinerary. It combines an interactive map, a searchable place library, drag-and-drop scheduling, collaboration, expense tracking, and a simplified Today Mode for use during the trip itself.
+
+## The Problem
+
+Travel planning is usually split across map pins, spreadsheets, chat messages, notes, booking confirmations, and screenshots. Even after the places are collected, travellers still need to decide which day each place belongs to, arrange a realistic order, share the plan, and quickly understand what happens next while travelling.
+
+The project brings those tasks into one workflow without taking control away from the traveller.
+
+## What I Built
+
+- Map-first workspace with numbered stops and day-specific route lines
+- Searchable place library with categories, timing notes, and unscheduled items
+- Drag-and-drop scheduling across itinerary days
+- Today Mode showing the current stop, next stop, navigation, and daily timeline
+- Multiple cloud trip plans with automatic saving through Supabase
+- Passwordless authentication and email-based collaborator access
+- Read-only public sharing without exposing anonymous write access
+- Expense tracking with trip totals and home-currency conversion
+- Import and export tools for backup and portability
+- AI-assisted itinerary import from travel notes, public links, and Google Maps links
+
+## Product Decisions
+
+### Planning and Travelling Are Different Modes
+
+The full planner supports exploration, map work, editing, and rescheduling. Today Mode intentionally removes most planning controls and focuses on the information needed while moving through the itinerary.
+
+### AI Proposes, the Traveller Confirms
+
+Imported content is presented as a reviewable draft. The model can suggest places, timing hints, notes, and day groupings, but it does not write directly into the saved itinerary. Confirmed changes continue through the application's normal state-update flow.
+
+### Access Is Enforced in the Data Layer
+
+Owners and collaborators receive access to specific trip plans through Supabase Row Level Security. Public share links use a dedicated read-only path and do not grant anonymous table access or editing rights.
+
+## Engineering Focus
+
+The application combines client-side interaction with cloud-backed persistence while preserving a responsive experience across desktop and mobile. It also includes migration from earlier browser-only storage, explicit cloud-save status, and deployment automation through GitHub Actions.
+
+## Why It Matters
+
+Trip Planner demonstrates end-to-end product engineering: identifying planning pain points, shaping different workflows for before and during a trip, designing collaboration and security boundaries, and adding AI only where it improves the existing user journey.

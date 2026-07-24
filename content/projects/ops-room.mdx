@@ -1,0 +1,50 @@
+---
+title: "Ops Room"
+description: "A production-oriented control surface for coordinating AI coding agents through GitHub, durable workflows, automated review-repair loops, and operational dashboards."
+image: ""
+tags: ["AI Agents", "Developer Tooling", "Workflow Automation", "Operations"]
+techStack: ["TypeScript", "Node.js", "GitHub API", "OpenCode", "systemd", "Caddy"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/ops-room"
+featured: true
+date: "2026-07-24"
+---
+
+# Ops Room
+
+Ops Room is a control surface for operating multiple AI-assisted development agents through GitHub. It turns issue commands into structured workflows, tracks execution state, coordinates review and repair cycles, and gives operators a dashboard for understanding what the agents are doing.
+
+## The Problem
+
+Running coding agents is straightforward when every task is supervised manually. It becomes harder when several agents are working across repositories and a workflow must remain reliable through process restarts, provider failures, duplicate events, and partially completed side effects.
+
+The project focuses on that operational layer: making agent activity observable, recoverable, and safe enough to run as a long-lived service rather than as isolated scripts.
+
+## What I Built
+
+- GitHub webhook and polling workflows for routing issue commands to specialized agents
+- Durable workflow and effect records that preserve execution state across restarts
+- Automated pull-request review, repair, and re-review loops with bounded escalation
+- Agent profiles and authority checks that constrain which repositories and tools an agent may use
+- Isolated provider environments for safer agent execution
+- Dashboard APIs for tasks, logs, agent state, health, and workflow visibility
+- Production deployment through systemd with Caddy handling the external service boundary
+- Separate authentication boundaries for webhook ingestion, dashboard reads, and operator-only actions
+
+## Engineering Focus
+
+### Durable Execution
+
+Provider work is recorded before and after external effects so interrupted workflows can be reconciled without blindly replaying completed operations. This reduces the risk of duplicate commits, repeated provider calls, and workflows remaining permanently stuck after a restart.
+
+### Clear Security Boundaries
+
+Dashboard credentials, webhook secrets, provider environments, and agent authority are handled separately. The system is designed so read access does not accidentally grant workflow-control access, while agent profiles restrict the scope of automated actions.
+
+### Operational Acceptance
+
+The project was developed through staged production drills covering deployment, authentication boundaries, restart recovery, provider invocation, rollback readiness, and release-artifact verification. The result is a practical foundation for coordinating multiple agents with human escalation when automation reaches its limits.
+
+## Why It Matters
+
+Ops Room represents the type of engineering work I enjoy most: connecting product behavior, backend reliability, security boundaries, deployment, and operational workflows into one maintainable system. It is not only an AI demo; it is an exploration of what is required to operate agent-assisted development responsibly.
