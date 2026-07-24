@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import Hero from '@/components/Hero';
-import { ProjectCard } from '@/components/ProjectCard';
+import { ProjectTextList } from '@/components/ProjectTextList';
 import { getFeaturedProjects } from '@/lib/content';
 import { FeaturedSection } from '../components/FeaturedSection';
-import { AnimatedGrid } from '@/components/AnimatedGrid';
 import { getFeatureFlags } from '@/lib';
 import { ProfessionalHighlightsSection } from '@/components/ProfessionalHighlightsSection';
 
@@ -25,10 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // Get feature flags
   const flags = getFeatureFlags();
-
-  // Fetch featured content based on feature flags
   const featuredProjects = flags.projects ? await getFeaturedProjects() : [];
 
   return (
@@ -36,23 +32,14 @@ export default async function Home() {
       <Hero />
       <ProfessionalHighlightsSection />
 
-      {/* Featured Projects Section */}
       {flags.projects && featuredProjects.length > 0 && (
         <FeaturedSection
           title="Featured Projects"
-          subtitle="A selection of my recent work and side projects"
+          subtitle="Selected systems and products focused on practical engineering outcomes"
           viewAllHref="/projects"
           viewAllText="View All Projects"
         >
-          <AnimatedGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.slice(0, 3).map((project, index) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-                priority={index === 0}
-              />
-            ))}
-          </AnimatedGrid>
+          <ProjectTextList projects={featuredProjects.slice(0, 3)} compact />
         </FeaturedSection>
       )}
     </main>
