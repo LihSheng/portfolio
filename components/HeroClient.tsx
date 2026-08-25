@@ -66,7 +66,7 @@ export default function HeroClient({ flags }: HeroClientProps) {
             `}
             ariaLabel={`Large profile picture of ${siteConfig.author.name}, featured prominently in the hero section`}
             includeScreenReaderText={true}
-            screenReaderText={`This is the main profile picture of ${siteConfig.author.name}, a software developer focused on web applications, automation, and AI-driven workflows.`}
+            screenReaderText={`This is the main profile picture of ${siteConfig.author.name}, a full stack software developer building enterprise, analytics, and AI-enabled systems.`}
             onError={(error) => {
               console.error('Hero profile picture failed to load:', error);
             }}
@@ -108,14 +108,14 @@ export default function HeroClient({ flags }: HeroClientProps) {
         className="text-xl sm:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed"
         style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
       >
-        Software Developer building{' '}
+        Full Stack Software Developer building{' '}
         <span
           className="font-semibold"
           style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
         >
-          enterprise web applications
+          enterprise, BI, and AI-enabled systems
         </span>{' '}
-        plus workflow automation and AI-assisted tooling with TypeScript, React, Next.js, Laravel, AWS, and system integration in mind.
+        with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.
       </motion.h2>
 
       {/* Bio */}
