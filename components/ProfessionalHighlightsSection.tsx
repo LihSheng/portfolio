@@ -8,9 +8,9 @@ const highlightMetrics = [
     detail: 'shipping production software',
   },
   {
-    label: 'Focus',
-    value: 'Systems + Automation',
-    detail: 'enterprise apps, integrations, tooling',
+    label: 'Current Focus',
+    value: 'BI + Agentic AI',
+    detail: 'multi-tenant analytics, LLM workflows, agents',
   },
   {
     label: 'Quality',
@@ -107,12 +107,12 @@ export function ProfessionalHighlightsSection() {
               Best First Clicks
             </p>
             <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Best first clicks for public review
+              Start with my strongest recent work
             </h3>
             <ul className="mb-8 space-y-3 text-sm text-gray-700 dark:text-gray-200">
-              <li>Context Hopper for developer tooling and AI-assisted workflow design.</li>
-              <li>n8n Automation for integration thinking and operational workflow design.</li>
-              <li>OpenClaw Deployment for self-hosted AI platform operations and experimentation.</li>
+              <li>GeminiAgent for bounded agentic workflows, operational tooling, and Google ADK architecture.</li>
+              <li>LinkUp for AI-assisted schema intelligence, deterministic validation, and LLM observability.</li>
+              <li>Ops Room for durable multi-agent orchestration, GitHub automation, and operational reliability.</li>
             </ul>
 
             <div className="space-y-3">

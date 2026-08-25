@@ -10,16 +10,16 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
+  description: 'Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.',
   openGraph: {
-    title: 'Ng Lih Sheng - Software Developer',
-    description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
+    title: 'Ng Lih Sheng - Full Stack Software Developer',
+    description: 'Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ng Lih Sheng - Software Developer',
-    description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, React, Next.js, Laravel, and AWS.',
+    title: 'Ng Lih Sheng - Full Stack Software Developer',
+    description: 'Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.',
   },
 };
 

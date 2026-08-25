@@ -1,0 +1,60 @@
+---
+title: "LinkUp"
+description: "An AI-assisted schema-intelligence workspace for mapping Excel and CSV data into target JSON schemas with reviewable suggestions, deterministic readiness rules, validation, and reusable mapping templates."
+image: ""
+tags: ["AI Assistance", "Data Mapping", "Schema Intelligence", "Developer Tooling"]
+techStack: ["Next.js", "React", "TypeScript", "Prisma", "PostgreSQL", "ExcelJS", "Ajv", "Zod", "Langfuse"]
+demoUrl: ""
+repoUrl: ""
+featured: true
+date: "2026-08-24"
+---
+
+# LinkUp
+
+LinkUp is a schema-intelligence workspace for turning Excel and CSV data into validated JSON output. It combines deterministic matching rules with LLM suggestions so users can move quickly without treating AI confidence as a substitute for validation.
+
+## The Problem
+
+Data onboarding often starts with spreadsheets whose headers, formats, nesting, and terminology do not match the target system. Manual mapping is repetitive, while fully automatic AI mapping can hide ambiguity and create difficult-to-detect mistakes.
+
+LinkUp is designed around a review-first workflow: automate obvious matches, explain uncertain ones, surface blockers, and require explicit confirmation before generating final output.
+
+## What I Built
+
+- Four-step workflow for schema selection, workbook upload, AI-assisted mapping, and review/export
+- Reusable target schema templates with field types, nesting, and schema generation from CSV/XLSX samples
+- Multi-layer matching pipeline using exact headers, synonyms, heuristics, saved mappings, correction memory, and LLM suggestions
+- Mapping workbench with All, Need Review, and Ready views
+- Confidence, conflict reasons, mapping explanations, transform editing, and masked output-impact previews
+- Deterministic readiness checks for required coverage, duplicate sources, incompatible types, warnings, and validation blockers
+- Workbook profiling with header detection, data preview, null rates, unique counts, and detected types
+- JSON and Excel output generation validated against target JSON Schema
+- Reusable mapping templates with source-signature fingerprinting
+- Draft persistence, run restoration, dashboard metrics, and optional Langfuse tracing
+
+## Product Decisions
+
+### AI Suggests, Validation Decides
+
+The matching pipeline uses the LLM only after deterministic signals such as exact matching, synonyms, and heuristics. A high model confidence score does not automatically make a mapping ready for export.
+
+### Review State Is Explicit
+
+Mappings enter Need Review when they have unresolved blockers or warnings such as required unmapped targets, low confidence, type incompatibility, duplicate source usage, transform issues, template conflicts, or validation errors. Users can see why a row needs attention instead of receiving a generic confidence number.
+
+### Explanations Are Practical, Not Hidden Reasoning
+
+The UI reports useful origins and structured signals such as Exact match, Synonym, Heuristic, Saved mapping template, Correction memory, AI suggestion, or Manual selection. It does not expose internal prompts or model chain-of-thought.
+
+### Sensitive Data Is Masked by Default
+
+Source and output previews are masked by default so users can review mapping effects without unnecessarily exposing raw values.
+
+## Engineering Focus
+
+The platform uses Next.js and React for the workflow UI, Prisma and PostgreSQL for persistent mapping runs and templates, ExcelJS/xlsx for workbook processing, and Ajv/Zod for deterministic validation. LLM providers can be switched between local and hosted options, while Langfuse tracing remains optional and has a no-op path when disabled.
+
+## Why It Matters
+
+LinkUp demonstrates a pattern I use for practical AI systems: combine models with deterministic rules, make uncertainty visible, keep humans in control of consequential changes, and build observability around the AI path rather than treating the model as a black box.

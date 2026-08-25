@@ -1,0 +1,61 @@
+---
+title: "GeminiAgent"
+description: "An agentic tuition-centre operations platform that combines bounded Google ADK agents with deterministic business services for leads, classes, parents, teaching intelligence, materials, and admin workflows."
+image: ""
+tags: ["Agentic AI", "Operations", "Education", "Workflow Automation"]
+techStack: ["Python", "Google ADK", "React", "Firebase", "Google Drive", "Google Sheets", "Telegram", "Google Cloud"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/GeminiAgent"
+featured: true
+date: "2026-08-25"
+---
+
+# GeminiAgent
+
+GeminiAgent is a tuition-centre operations platform built around a simple rule: the model can interpret language and choose bounded tools, but authoritative business rules remain in deterministic application code.
+
+The project combines several role-specific agents with a web admin portal, Google Workspace integrations, messaging channels, class operations, recording intelligence, and proactive workflows.
+
+## The Problem
+
+A tuition centre handles many small but connected workflows: course enquiries, lead follow-up, trial booking, recurring classes, enrollments, teaching progress, replacement classes, learning materials, recordings, and parent communication. These workflows are often spread across chat apps, spreadsheets, Drive folders, and manual staff coordination.
+
+A useful AI layer needs more than a chatbot. It needs identity boundaries, reliable state transitions, safe tools, durable operational data, and clear handoff points between the model and the application.
+
+## What I Built
+
+- Role-specific Google ADK agents for administration, prospective-parent leads, verified parents, and teaching workflows
+- Lead capture, continuity memory, course enquiries, slot offering, and confirmed trial booking
+- Firebase-authenticated admin web portal for chat, leads, classes, enrollments, materials, recordings, and user invitations
+- Google Drive and Sheets integrations for operational data and class material management
+- Telegram support bridge for routing parent enquiries into the lead workflow
+- Class management with recurring classes, enrollments, scheduling, and bounded admin operations
+- Recording intelligence that turns class recordings or WebVTT transcripts into structured teaching evidence
+- Proactive reminder, progress, and risk-notification workflows
+- Tracing and evaluation support for reviewing agent behavior, prompt changes, and workflow quality
+
+## Architecture Decisions
+
+### Agents Interpret, Application Services Decide
+
+The model handles unstructured language and selects approved tools. Capacity checks, authorization, scheduling, persistence, idempotency, recipients, and state transitions remain in deterministic services. This keeps important rules testable and prevents the model from becoming the system of record.
+
+### Capabilities Are Bounded by Role
+
+Public leads, verified guardians, teachers, students, and administrators operate through different boundaries. A lead agent cannot read student records, and parent-facing workflows are limited to the guardian's authorized data and actions.
+
+### Skills Stay Close to Their Capability
+
+Each agent separates model-facing workflow guidance from tool bridges and authoritative application features. This keeps prompts focused while preventing business logic from leaking into instructions that the model can reinterpret.
+
+### Google Workspace Is an MVP Integration, Not the Domain Model
+
+Sheets and Drive provide practical storage and content management for the MVP, but application code uses provider-neutral boundaries so business rules are not tightly coupled to a single external service.
+
+## Engineering Focus
+
+The project covers more than agent prompting. It includes authentication, authorization, class operations, external integrations, deterministic workflows, frontend administration, observability, testing boundaries, deployment, and human handoff considerations.
+
+## Why It Matters
+
+GeminiAgent demonstrates how I approach agentic AI as a software-engineering problem: use models where language understanding is valuable, keep critical decisions deterministic, and design the surrounding system so automation remains observable, bounded, and maintainable.
