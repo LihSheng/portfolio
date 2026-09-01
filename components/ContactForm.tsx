@@ -158,6 +158,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   });
 
   const formVariants = useMotionVariants(fadeInUp, reducedMotionVariants.fadeIn);
+  const statusVariants = useMotionVariants(scaleIn, reducedMotionVariants.scaleIn);
   const transition = useMotionTransition(defaultTransition);
 
   return (
@@ -320,7 +321,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       {/* Submit Status Messages */}
       {submitStatus === 'success' && (
         <motion.div
-          variants={useMotionVariants(scaleIn, reducedMotionVariants.scaleIn)}
+          variants={statusVariants}
           initial="initial"
           animate="animate"
           transition={transition}
@@ -334,7 +335,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
       {submitStatus === 'error' && (
         <motion.div
-          variants={useMotionVariants(scaleIn, reducedMotionVariants.scaleIn)}
+          variants={statusVariants}
           initial="initial"
           animate="animate"
           transition={transition}
