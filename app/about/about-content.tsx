@@ -139,10 +139,10 @@ export default function AboutContent() {
               className="leading-relaxed"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              Alongside my day-to-day product work, I actively explore AI, automation, and retrieval-based workflows
-              through proof-of-concept work and practical experimentation. The goal is not to use AI for its own sake,
-              but to understand where it can be adapted usefully into real teams, internal workflows, and software
-              systems.
+              Alongside my day-to-day product work, I build and experiment with agentic AI systems, workflow
+              automation, retrieval, and tool integrations. I am especially interested in how orchestration, context,
+              evaluation, and strong engineering guardrails can turn AI from a standalone demo into a dependable part
+              of real software and operational workflows.
             </p>
           </motion.div>
         </motion.section>
@@ -190,7 +190,7 @@ export default function AboutContent() {
           </div>
         </motion.section>
 
-        {/* AI Tools & Productivity Section */}
+        {/* AI & Automation Section */}
         <motion.section
           className="mb-16"
           initial={{ opacity: 0 }}
@@ -201,7 +201,7 @@ export default function AboutContent() {
             className="text-3xl font-bold mb-8 text-center"
             style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
           >
-            AI, Automation & Applied Systems
+            AI, Automation & Agent Engineering
           </h2>
 
           <div className="max-w-3xl mx-auto">
@@ -215,9 +215,10 @@ export default function AboutContent() {
                 className="text-lg leading-relaxed mb-6"
                 style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
               >
-                I am especially interested in how AI and automation can support practical engineering work. Most of my
-                recent exploration has been centered on proof-of-concept work, workflow automation, and testing where
-                retrieval, agents, or assisted tooling can improve how teams build and operate software.
+                My recent work goes beyond prompt-based AI usage into agent engineering: designing runtimes,
+                orchestration, tool boundaries, retrieval, evaluation, and automation workflows that can be tested and
+                governed like normal software. I focus on practical integrations where agents act through controlled
+                tools and authorized APIs instead of bypassing application rules.
               </p>
             </motion.div>
 
@@ -234,20 +235,20 @@ export default function AboutContent() {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-lg">K</span>
+                    <span className="text-white font-bold text-sm">ADK</span>
                   </div>
                   <div>
                     <h3
                       className="text-xl font-semibold"
                       style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
                     >
-                      Kiro IDE
+                      Agent Engineering & Orchestration
                     </h3>
                     <p
                       className="text-sm"
                       style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
                     >
-                      AI-Powered Development
+                      Google ADK · Agent Runtimes · Multi-Agent Flows
                     </p>
                   </div>
                 </div>
@@ -255,9 +256,9 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Using AI-assisted development environments and agent workflows to accelerate implementation,
-                  debugging, and context-heavy engineering tasks. I care most about improving delivery speed without
-                  losing clarity, maintainability, or engineering discipline.
+                  Building agent runtimes and orchestration patterns for tool-using, stateful, and multi-step agents.
+                  This includes routing requests to specialized agents, managing context and sessions, and separating
+                  reusable runtime capabilities from domain-specific agent logic.
                 </p>
               </motion.div>
 
@@ -273,20 +274,20 @@ export default function AboutContent() {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-lg">n8n</span>
+                    <span className="text-white font-bold text-sm">MCP</span>
                   </div>
                   <div>
                     <h3
                       className="text-xl font-semibold"
                       style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
                     >
-                      Workflow Automation & Proof-of-Concept AI
+                      MCP, WebMCP & Tool Integration
                     </h3>
                     <p
                       className="text-sm"
                       style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
                     >
-                      Applied Exploration
+                      Structured Tools · Context · Authorized APIs
                     </p>
                   </div>
                 </div>
@@ -294,9 +295,87 @@ export default function AboutContent() {
                   className="leading-relaxed"
                   style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
                 >
-                  Exploring workflow automation, retrieval-based flows, and proof-of-concept AI implementations to see
-                  where they can realistically support internal processes and engineering teams. I am interested in
-                  practical adaptation, not just experimentation in isolation.
+                  Exploring MCP and WebMCP-style integrations to expose well-defined tools and page or application
+                  context to agents. I prefer constrained interfaces that preserve existing permissions and business
+                  rules rather than giving agents unrestricted access to underlying systems.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="p-5 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-sm">RAG</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      Retrieval, Context & Evaluation
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      RAG · Memory · Evals · Observability
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Designing retrieval and context layers with semantic data, bounded memory, grounding checks, and
+                  citation-aware responses. I also use targeted evals, regression checks, and observability to measure
+                  agent behavior instead of relying only on manual prompt testing.
+                </p>
+              </motion.div>
+
+              <motion.div
+                className="p-5 rounded-xl border"
+                style={{
+                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
+                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.0 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-sm">n8n</span>
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+                    >
+                      Workflow Automation & AI-Assisted Delivery
+                    </h3>
+                    <p
+                      className="text-sm"
+                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
+                    >
+                      n8n · Coding Agents · CI Guardrails
+                    </p>
+                  </div>
+                </div>
+                <p
+                  className="leading-relaxed"
+                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
+                >
+                  Automating scheduled and event-driven workflows with n8n while using coding agents for implementation
+                  and review. I pair automation with explicit context, scoped instructions, static checks, tests, and
+                  verification gates so faster delivery does not come at the expense of code quality.
                 </p>
               </motion.div>
             </div>
@@ -311,7 +390,7 @@ export default function AboutContent() {
                 className="text-sm italic"
                 style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
               >
-                "I like building systems that reduce repetitive work so teams can focus on higher-value decisions."
+                "I treat agents as software systems: give them clear tools and context, then verify what they do."
               </p>
             </motion.div>
           </div>
