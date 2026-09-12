@@ -129,25 +129,21 @@ export default function AboutContent() {
               className="leading-relaxed mb-4"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              I work best in environments where software needs to be dependable, maintainable, and aligned with real
-              operational needs. That usually means turning business requirements into clear technical solutions,
-              collaborating closely with stakeholders, and improving systems in ways that make delivery smoother for
-              both users and development teams.
+              I’m especially passionate about AI agents and automation. I enjoy building AI that can use tools,
+              understand context, connect with existing systems, and help automate real work.
             </p>
 
             <p
               className="leading-relaxed"
               style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
             >
-              Alongside my day-to-day product work, I build and experiment with agentic AI systems, workflow
-              automation, retrieval, and tool integrations. I am especially interested in how orchestration, context,
-              evaluation, and strong engineering guardrails can turn AI from a standalone demo into a dependable part
-              of real software and operational workflows.
+              My goal is to combine solid software engineering with AI to build products that are practical,
+              reliable, and useful.
             </p>
           </motion.div>
         </motion.section>
 
-        {/* Skills Section */}
+        {/* AI & Agent Engineering Section */}
         <motion.section
           className="mb-16"
           initial={{ opacity: 0 }}
@@ -158,50 +154,7 @@ export default function AboutContent() {
             className="text-3xl font-bold mb-8 text-center"
             style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
           >
-            Skills & Technologies
-          </h2>
-
-          <div className="space-y-8">
-            {Object.entries(skills).map(([category, categorySkills], categoryIndex) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + categoryIndex * 0.1 }}
-              >
-                <h3
-                  className="text-xl font-semibold mb-4 capitalize"
-                  style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}
-                >
-                  {category} Development
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {categorySkills.map((skill, index) => (
-                    <SkillBadge
-                      key={skill.name}
-                      skill={skill}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* AI & Automation Section */}
-        <motion.section
-          className="mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-          >
-            AI, Automation & Agent Engineering
+            AI & Agent Engineering
           </h2>
 
           <div className="max-w-3xl mx-auto">
@@ -209,16 +162,14 @@ export default function AboutContent() {
               className="text-center mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               <p
                 className="text-lg leading-relaxed mb-6"
                 style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
               >
-                My recent work goes beyond prompt-based AI usage into agent engineering: designing runtimes,
-                orchestration, tool boundaries, retrieval, evaluation, and automation workflows that can be tested and
-                governed like normal software. I focus on practical integrations where agents act through controlled
-                tools and authorized APIs instead of bypassing application rules.
+                I enjoy building AI agents that can use tools, work with business data, and automate multi-step
+                workflows. My focus is on making AI useful in real software, not just building demos.
               </p>
             </motion.div>
 
@@ -231,7 +182,7 @@ export default function AboutContent() {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
@@ -270,7 +221,7 @@ export default function AboutContent() {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
@@ -309,7 +260,7 @@ export default function AboutContent() {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-4">
@@ -348,7 +299,7 @@ export default function AboutContent() {
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
               >
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
@@ -384,7 +335,7 @@ export default function AboutContent() {
               className="mt-8 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.1 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
             >
               <p
                 className="text-sm italic"
@@ -393,6 +344,49 @@ export default function AboutContent() {
                 "I treat agents as software systems: give them clear tools and context, then verify what they do."
               </p>
             </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Skills Section */}
+        <motion.section
+          className="mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <h2
+            className="text-3xl font-bold mb-8 text-center"
+            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
+          >
+            Skills & Technologies
+          </h2>
+
+          <div className="space-y-8">
+            {Object.entries(skills).map(([category, categorySkills], categoryIndex) => (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + categoryIndex * 0.1 }}
+              >
+                <h3
+                  className="text-xl font-semibold mb-4 capitalize"
+                  style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}
+                >
+                  {category} Development
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {categorySkills.map((skill, index) => (
+                    <SkillBadge
+                      key={skill.name}
+                      skill={skill}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
