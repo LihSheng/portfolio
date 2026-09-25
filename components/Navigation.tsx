@@ -1,71 +1,23 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import { navigationItems } from '@/lib/site-config';
 import { useFeatureFlags } from '@/lib/feature-flags';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { useMotionVariants, useMotionTransition } from '@/lib/hooks/useReducedMotion';
-import { mobileMenuVariants, menuItemVariants, fadeIn, reducedMotionVariants, fastTransition } from '@/lib/animations';
 
 export function Navigation({ className = '' }: { className?: string }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
   const flags = useFeatureFlags();
 
-  // Filter navigation items based on feature flags
   const visibleNavigationItems = useMemo(() => {
-    return navigationItems.filter(item => {
-      // If no flag is specified, always show the item
+    return navigationItems.filter((item) => {
+      if (item.href === '/') return false;
       if (!item.flag) return true;
-      // Otherwise, check if the flag is enabled
       return flags[item.flag];
     });
   }, [flags]);
-
-  useEffect(() => {
-    setMounted(true);
-
-    // Check for dark mode
-    const checkDarkMode = () => {
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      setIsDark(isDarkMode);
-    };
-
-    checkDarkMode();
-
-    // Watch for theme changes
-    const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (!mounted) return;
-
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen, mounted]);
 
   const isActive = (href: string) => {
     if (href === '/') {
@@ -75,181 +27,25 @@ export function Navigation({ className = '' }: { className?: string }) {
   };
 
   return (
-    <nav
-      className={`sticky top-0 z-50 w-full border-b backdrop-blur border-gray-200 dark:border-gray-800 ${className}`}
-      style={{
-        backgroundColor: isDark ? 'rgba(0, 0, 0, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(8px)',
-      }}
-      data-theme-nav="true"
+    <header
+      className={`mx-auto flex w-full max-w-[680px] flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-hairline px-5 py-6 ${className}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo/Brand */}
+      <Link href="/" className="text-[15px] font-medium text-ink no-underline">
+        Ng Lih Sheng
+      </Link>
+
+      <nav className="flex flex-wrap items-baseline gap-6 text-[15px]">
+        {visibleNavigationItems.map((item) => (
           <Link
-            href="/"
-            className="text-xl font-bold transition-colors font-inter"
-            style={{
-              color: isDark ? '#ffffff' : '#111827',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = isDark ? '#60a5fa' : '#2563eb';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = isDark ? '#ffffff' : '#111827';
-            }}
+            key={item.href}
+            href={item.href}
+            className={`no-underline ${isActive(item.href) ? 'text-ink' : 'text-muted'}`}
           >
-            LS.
+            {item.label}
           </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:gap-8">
-            <ul className="flex items-center gap-6">
-              {visibleNavigationItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400"
-                    style={{
-                      color: isActive(item.href)
-                        ? (isDark ? '#60a5fa' : '#2563eb')
-                        : (isDark ? 'white' : 'rgb(75, 85, 99)')
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <div className="ml-4 flex items-center gap-3">
-              <a
-                href="/Ng-Lih-Sheng-Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg border border-blue-500 px-3 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-slate-800"
-              >
-                Resume
-              </a>
-              <ThemeToggle />
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
-            <ThemeToggle />
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={`transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''
-                  }`}
-              >
-                {isMobileMenuOpen ? (
-                  <>
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </>
-                ) : (
-                  <>
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                  </>
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            variants={useMotionVariants(mobileMenuVariants, reducedMotionVariants.fadeIn)}
-            initial="closed"
-            animate="open"
-            exit="closed"
-            transition={useMotionTransition(fastTransition)}
-            className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-black"
-          >
-            <motion.ul
-              variants={useMotionVariants(fadeIn, reducedMotionVariants.fadeIn)}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={useMotionTransition({ delay: 0.1 }, { delay: 0 })}
-              className="container mx-auto px-4 py-4 space-y-1"
-            >
-              {visibleNavigationItems.map((item, index) => (
-                <motion.li
-                  key={item.href}
-                  variants={useMotionVariants(menuItemVariants, reducedMotionVariants.fadeIn)}
-                  initial="closed"
-                  animate="open"
-                  transition={useMotionTransition({ delay: 0.1 + index * 0.05 }, { delay: 0 })}
-                >
-                  <Link
-                    href={item.href}
-                    className="block px-4 py-3 rounded-md text-base font-medium transition-colors"
-                    style={{
-                      backgroundColor: isActive(item.href)
-                        ? (isDark ? 'rgba(59, 130, 246, 0.2)' : 'rgb(239, 246, 255)')
-                        : 'transparent',
-                      color: isActive(item.href)
-                        ? (isDark ? '#60a5fa' : '#2563eb')
-                        : (isDark ? 'white' : 'rgb(75, 85, 99)')
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive(item.href)) {
-                        e.currentTarget.style.backgroundColor = isDark ? 'rgb(55, 65, 81)' : 'rgb(249, 250, 251)';
-                        e.currentTarget.style.color = isDark ? 'white' : 'rgb(17, 24, 39)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive(item.href)) {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.color = isDark ? 'white' : 'rgb(75, 85, 99)';
-                      }
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.li>
-              ))}
-              <motion.li
-                variants={useMotionVariants(menuItemVariants, reducedMotionVariants.fadeIn)}
-                initial="closed"
-                animate="open"
-                transition={useMotionTransition({ delay: 0.1 + visibleNavigationItems.length * 0.05 }, { delay: 0 })}
-              >
-                <a
-                  href="/Ng-Lih-Sheng-Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-md px-4 py-3 text-base font-medium text-blue-600 transition-colors hover:bg-gray-50 dark:text-blue-300 dark:hover:bg-gray-900"
-                >
-                  Resume
-                </a>
-              </motion.li>
-            </motion.ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+        ))}
+        <ThemeToggle />
+      </nav>
+    </header>
   );
 }

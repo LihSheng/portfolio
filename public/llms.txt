@@ -1,0 +1,23 @@
+# Ng Lih Sheng
+
+Full stack software developer with 5+ years of experience building enterprise web applications, analytics platforms and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms.
+
+## Links
+
+- [Site](https://lihsheng.dev)
+- [About](https://lihsheng.dev/about)
+- [Projects](https://lihsheng.dev/projects)
+- [Contact](https://lihsheng.dev/contact)
+- [CV](https://lihsheng.dev/Ng-Lih-Sheng-Resume.pdf)
+- [GitHub](https://github.com/LihSheng)
+- [LinkedIn](https://www.linkedin.com/in/lihshengng/)
+
+## Projects
+
+- [GeminiAgent](https://lihsheng.dev/projects/gemini-agent): Agentic tuition-centre operations platform combining bounded Google ADK agents with deterministic business services (Python, Google ADK, React)
+- [Ops Room](https://lihsheng.dev/projects/ops-room): Control surface for coding agents with an automated PR review and repair loop (TypeScript, GitHub Apps)
+- [LinkUp](https://lihsheng.dev/projects/linkup): Maps Excel workbooks into a target JSON schema with AI-assisted column matching (Next.js, Prisma, PostgreSQL)
+- [Trip Planner](https://lihsheng.dev/projects/trip-planner): A collaborative, map-first workspace for planning a trip and running each travel day (React, Supabase)
+- [Finance Tracker](https://lihsheng.dev/projects/finance-tracker): Personal finance and portfolio tracking dashboard for budgeting, transactions, and investments (Next.js, PostgreSQL, Prisma)
+- [Context Hopper](https://lihsheng.dev/projects/context-hopper): VS Code extension that bundles files and notes into context for AI chats (TypeScript)
+- [AnyDraw](https://lihsheng.dev/projects/anydraw): Lucky draw tools for events and classrooms (Vue 3)

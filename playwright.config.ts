@@ -24,29 +24,22 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
+  /* Only Chromium is installed in this environment
+     (PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers has no firefox/webkit
+     binaries); add those projects back if the binaries become available. */
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
   ],
 
-  /* Run your local dev server before starting the tests */
+  /* Tests expect a server already running on :3000 (e.g. `npm run build &&
+     npm run start`); reuse it instead of spawning `next dev`. */
   webServer: {
-    command: 'npm run dev',
+    command: 'npm run start',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,
     timeout: 120 * 1000,
   },
 });

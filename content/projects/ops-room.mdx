@@ -1,50 +1,24 @@
 ---
 title: "Ops Room"
-description: "A production-oriented control surface for coordinating AI coding agents through GitHub, durable workflows, automated review-repair loops, and operational dashboards."
-image: ""
-tags: ["AI Agents", "Developer Tooling", "Workflow Automation", "Operations"]
-techStack: ["TypeScript", "Node.js", "GitHub API", "OpenCode", "systemd", "Caddy"]
+description: "Control surface for coding agents: webhook receiver, task poller, claim CLI, and GitHub automation with an automated PR review and repair loop."
+tags: ["AI agents", "Developer tool", "TypeScript"]
+techStack: ["TypeScript", "Node.js", "GitHub Apps", "Docker Compose", "systemd"]
 demoUrl: ""
 repoUrl: "https://github.com/LihSheng/ops-room"
 featured: true
-date: "2026-07-24"
+date: "2026-09-17"
 ---
 
-# Ops Room
+## The problem
 
-Ops Room is a control surface for operating multiple AI-assisted development agents through GitHub. It turns issue commands into structured workflows, tracks execution state, coordinates review and repair cycles, and gives operators a dashboard for understanding what the agents are doing.
+Running coding agents against real repositories means someone still has to route work to them, look at the pull requests they open, and act as a gate before a human reviewer gets involved. Ops Room automates that middle layer instead of doing it by hand for every issue and PR.
 
-## The Problem
+## What I built
 
-Running coding agents is straightforward when every task is supervised manually. It becomes harder when several agents are working across repositories and a workflow must remain reliable through process restarts, provider failures, duplicate events, and partially completed side effects.
+A webhook receiver, task poller and claim CLI that route commands from GitHub issues to coding agents. On top of that, an automated review step uses AI to review the PRs the agents open, then auto-fixes findings and loops through review cycles as a tollgate before a human reviews the change.
 
-The project focuses on that operational layer: making agent activity observable, recoverable, and safe enough to run as a long-lived service rather than as isolated scripts.
+A dashboard shows agent status and task logs, running on Docker Compose and systemd, so the state of every agent and task is visible in one place.
 
-## What I Built
+## What it shows
 
-- GitHub webhook and polling workflows for routing issue commands to specialized agents
-- Durable workflow and effect records that preserve execution state across restarts
-- Automated pull-request review, repair, and re-review loops with bounded escalation
-- Agent profiles and authority checks that constrain which repositories and tools an agent may use
-- Isolated provider environments for safer agent execution
-- Dashboard APIs for tasks, logs, agent state, health, and workflow visibility
-- Production deployment through systemd with Caddy handling the external service boundary
-- Separate authentication boundaries for webhook ingestion, dashboard reads, and operator-only actions
-
-## Engineering Focus
-
-### Durable Execution
-
-Provider work is recorded before and after external effects so interrupted workflows can be reconciled without blindly replaying completed operations. This reduces the risk of duplicate commits, repeated provider calls, and workflows remaining permanently stuck after a restart.
-
-### Clear Security Boundaries
-
-Dashboard credentials, webhook secrets, provider environments, and agent authority are handled separately. The system is designed so read access does not accidentally grant workflow-control access, while agent profiles restrict the scope of automated actions.
-
-### Operational Acceptance
-
-The project was developed through staged production drills covering deployment, authentication boundaries, restart recovery, provider invocation, rollback readiness, and release-artifact verification. The result is a practical foundation for coordinating multiple agents with human escalation when automation reaches its limits.
-
-## Why It Matters
-
-Ops Room represents the type of engineering work I enjoy most: connecting product behavior, backend reliability, security boundaries, deployment, and operational workflows into one maintainable system. It is not only an AI demo; it is an exploration of what is required to operate agent-assisted development responsibly.
+GitHub App integration and webhook-driven automation in TypeScript and Node.js, an AI review and repair loop built as an explicit tollgate rather than a replacement for human review, and an operations dashboard for monitoring long-running agent work.

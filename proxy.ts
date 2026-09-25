@@ -20,9 +20,7 @@ const LINK_HEADER = LINK_HEADERS.join(', ');
 const routeFlags: Record<string, keyof FeatureFlags> = {
   '/about': 'about',
   '/projects': 'projects',
-  '/writing': 'blog',
   '/contact': 'contact',
-  '/rss.xml': 'rss',
 };
 
 function withAgentDiscoveryHeaders(response: NextResponse): NextResponse {
@@ -62,7 +60,7 @@ function getMarkdownForPath(pathname: string): string | null {
     case '/':
       return `# Ng Lih Sheng
 
-Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, PHP, React, Next.js, Laravel, and AWS.
+Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.
 
 ## Agent Resources
 
@@ -76,17 +74,16 @@ Software Developer building enterprise web applications, automation systems, and
 
 - [About](/about)
 - [Projects](/projects)
-- [Writing](/writing)
 - [Contact](/contact)
 `;
     case '/about':
       return `# About Ng Lih Sheng
 
-Software Developer focused on enterprise web applications, workflow automation, and practical AI-driven solutions.
+Full stack software developer with 5+ years of experience building enterprise web applications, analytics platforms and agentic AI systems.
 
 ## Focus Areas
 
-- TypeScript, React, Next.js, PHP, Laravel, and AWS
+- React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms
 - AI agent workflows and automation
 - Enterprise web application delivery
 `;
@@ -96,11 +93,6 @@ Software Developer focused on enterprise web applications, workflow automation, 
 Selected software projects and practical systems by Ng Lih Sheng.
 
 Use the HTML version of this page for the full project list and visual summaries.
-`;
-    case '/writing':
-      return `# Writing
-
-Articles and notes about development, technology, performance, accessibility, and practical engineering.
 `;
     case '/contact':
       return `# Contact
@@ -148,8 +140,6 @@ export const config = {
     '/',
     '/about/:path*',
     '/projects/:path*',
-    '/writing/:path*',
     '/contact/:path*',
-    '/rss.xml',
   ],
 };

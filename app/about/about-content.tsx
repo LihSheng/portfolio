@@ -1,496 +1,157 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import SkillBadge from '@/components/SkillBadge';
-import Timeline from '@/components/Timeline';
 import { ProfilePicture } from '@/components/ProfilePicture';
 import { siteConfig } from '@/lib/site-config';
-import type { SkillCategory, ExperienceData, TimelineItem } from '@/types';
+import type { ExperienceData, SkillCategory } from '@/types';
 
-// Import data
 import skillsData from '@/content/data/skills.json';
 import experienceData from '@/content/data/experience.json';
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
+function yearOf(date: string): string {
+  return date.split('-')[0];
+}
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+function formatDateRange(startDate: string, endDate: string | null): string {
+  const start = yearOf(startDate);
+  const end = endDate ? yearOf(endDate) : 'now';
+  return `${start} to ${end}`;
+}
+
+// AI-and-automation tools live under `tools` in skills.json alongside testing
+// tools; split that group between the two sections shown on the page.
+const AI_AUTOMATION_TOOLS = new Set([
+  'n8n',
+  'Codex',
+  'OpenClaw',
+  'LoRA Fine-Tuning',
+  'Kiro',
+  'Figma',
+]);
+
+function names(items: { name: string }[]): string {
+  return items.map((item) => item.name).join(', ');
+}
 
 export default function AboutContent() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const skills = skillsData as SkillCategory;
   const experience = experienceData as ExperienceData;
 
-  useEffect(() => {
-    // Check for dark mode
-    const checkDarkMode = () => {
-      setIsDarkMode(document.documentElement.classList.contains('dark'));
-    };
+  const testingTools = (skills.tools || []).filter((tool) => !AI_AUTOMATION_TOOLS.has(tool.name));
+  const aiTools = (skills.tools || []).filter((tool) => AI_AUTOMATION_TOOLS.has(tool.name));
 
-    checkDarkMode();
-
-    // Watch for changes
-    const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Transform work experience to timeline items
-  const workTimelineItems: TimelineItem[] = experience.work.map(work => ({
-    date: work.current ? `${work.startDate} - Present` : `${work.startDate} - ${work.endDate}`,
-    title: work.title,
-    organization: work.company,
-    description: work.description,
-    type: 'work' as const,
-    technologies: work.technologies,
-    achievements: work.achievements,
-  }));
-
-  // Transform education to timeline items
-  const educationTimelineItems: TimelineItem[] = experience.education.map(edu => ({
-    date: `${edu.startDate} - ${edu.endDate}`,
-    title: edu.degree,
-    organization: edu.institution,
-    description: edu.description,
-    type: 'education' as const,
-    achievements: edu.achievements,
-  }));
+  const toolGroups: Array<{ label: string; value: string }> = [
+    { label: 'Frontend', value: names(skills.frontend || []) },
+    {
+      label: 'Backend',
+      value: names([...(skills.backend || []), ...(skills.database || [])]),
+    },
+    { label: 'Cloud', value: names(skills.cloud || []) },
+    { label: 'Testing', value: names(testingTools) },
+    { label: 'AI and automation', value: names(aiTools) },
+  ];
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <motion.section
-          className="text-center mb-16"
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-        >
-          <motion.div
-            className="relative w-32 h-32 mx-auto mb-8"
-            variants={fadeInUp}
-          >
-            <ProfilePicture
-              size="medium"
-              priority={false}
-              animate={false}
-              className="border-4 border-white dark:border-gray-800 shadow-lg"
-              showFallback={true}
-              ariaLabel={`Medium-sized profile picture of ${siteConfig.author.name} on the about page`}
-              includeScreenReaderText={true}
-              screenReaderText={`This is ${siteConfig.author.name}'s profile picture on the about page, showing a professional headshot of the developer.`}
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  // Could trigger a modal or larger view
-                  console.log('Profile picture activated via keyboard');
-                }
-              }}
-              onError={(error) => {
-                console.error('About page profile picture failed to load:', error);
-              }}
-            />
-          </motion.div>
+    <div className="flex flex-col">
+      <section className="grid grid-cols-1 gap-6 py-20 sm:grid-cols-[96px_minmax(0,1fr)] sm:gap-8">
+        <ProfilePicture size={96} priority />
+        <div className="flex flex-col gap-5">
+          <h1 className="font-serif text-4xl leading-[1.1]">About</h1>
+          <p className="m-0 text-lg leading-relaxed text-ink">
+            I am a full stack software developer with 5+ years of experience building enterprise
+            web applications, analytics platforms and agentic AI systems. I build with React,
+            TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms.
+          </p>
+          <p className="m-0 text-lg leading-relaxed text-body-secondary">
+            I enjoy turning business processes into reliable software, whether that means shipping
+            product features, designing multi-tenant analytics platforms, or removing repetitive
+            operational work. Lately I have been building AI agents that use tools, work with
+            business data, and automate multi-step workflows &mdash; treating agents as software
+            systems: give them clear tools and context, then verify what they do.
+          </p>
+        </div>
+      </section>
 
-          <motion.h1
-            className="text-4xl sm:text-5xl font-bold mb-6"
-            variants={fadeInUp}
-            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-          >
-            About Me
-          </motion.h1>
-
-          <motion.div
-            className="max-w-2xl mx-auto"
-            variants={fadeInUp}
-          >
-            <p
-              className="text-lg leading-relaxed mb-6"
-              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
-            >
-              {siteConfig.author.bio}
-            </p>
-
-            <p
-              className="leading-relaxed mb-4"
-              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
-            >
-              I’m especially passionate about AI agents and automation. I enjoy building AI that can use tools,
-              understand context, connect with existing systems, and help automate real work.
-            </p>
-
-            <p
-              className="leading-relaxed"
-              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
-            >
-              My goal is to combine solid software engineering with AI to build products that are practical,
-              reliable, and useful.
-            </p>
-          </motion.div>
-        </motion.section>
-
-        {/* AI & Agent Engineering Section */}
-        <motion.section
-          className="mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-          >
-            AI & Agent Engineering
-          </h2>
-
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              className="text-center mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <p
-                className="text-lg leading-relaxed mb-6"
-                style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
-              >
-                I enjoy building AI agents that can use tools, work with business data, and automate multi-step
-                workflows. My focus is on making AI useful in real software, not just building demos.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <motion.div
-                className="p-5 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-sm">ADK</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      Agent Engineering & Orchestration
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      Google ADK · Agent Runtimes · Multi-Agent Flows
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  Building agent runtimes and orchestration patterns for tool-using, stateful, and multi-step agents.
-                  This includes routing requests to specialized agents, managing context and sessions, and separating
-                  reusable runtime capabilities from domain-specific agent logic.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="p-5 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-sm">MCP</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      MCP, WebMCP & Tool Integration
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      Structured Tools · Context · Authorized APIs
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  Exploring MCP and WebMCP-style integrations to expose well-defined tools and page or application
-                  context to agents. I prefer constrained interfaces that preserve existing permissions and business
-                  rules rather than giving agents unrestricted access to underlying systems.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="p-5 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-sm">RAG</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      Retrieval, Context & Evaluation
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      RAG · Memory · Evals · Observability
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  Designing retrieval and context layers with semantic data, bounded memory, grounding checks, and
-                  citation-aware responses. I also use targeted evals, regression checks, and observability to measure
-                  agent behavior instead of relying only on manual prompt testing.
-                </p>
-              </motion.div>
-
-              <motion.div
-                className="p-5 rounded-xl border"
-                style={{
-                  backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(255, 255, 255)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
-                    <span className="text-white font-bold text-sm">n8n</span>
-                  </div>
-                  <div>
-                    <h3
-                      className="text-xl font-semibold"
-                      style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-                    >
-                      Workflow Automation & AI-Assisted Delivery
-                    </h3>
-                    <p
-                      className="text-sm"
-                      style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-                    >
-                      n8n · Coding Agents · CI Guardrails
-                    </p>
-                  </div>
-                </div>
-                <p
-                  className="leading-relaxed"
-                  style={{ color: isDarkMode ? 'rgb(229, 231, 235)' : 'rgb(75, 85, 99)' }}
-                >
-                  Automating scheduled and event-driven workflows with n8n while using coding agents for implementation
-                  and review. I pair automation with explicit context, scoped instructions, static checks, tests, and
-                  verification gates so faster delivery does not come at the expense of code quality.
-                </p>
-              </motion.div>
-            </div>
-
-            <motion.div
-              className="mt-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-            >
-              <p
-                className="text-sm italic"
-                style={{ color: isDarkMode ? 'rgb(156, 163, 175)' : 'rgb(107, 114, 128)' }}
-              >
-                "I treat agents as software systems: give them clear tools and context, then verify what they do."
-              </p>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Skills Section */}
-        <motion.section
-          className="mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-          >
-            Skills & Technologies
-          </h2>
-
-          <div className="space-y-8">
-            {Object.entries(skills).map(([category, categorySkills], categoryIndex) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + categoryIndex * 0.1 }}
-              >
-                <h3
-                  className="text-xl font-semibold mb-4 capitalize"
-                  style={{ color: isDarkMode ? 'white' : 'rgb(31, 41, 55)' }}
-                >
-                  {category} Development
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {categorySkills.map((skill, index) => (
-                    <SkillBadge
-                      key={skill.name}
-                      skill={skill}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Experience Section */}
-        <motion.section
-          className="mb-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-          >
-            Experience & Education
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Timeline
-              items={workTimelineItems}
-              title="Work Experience"
-            />
-
-            <Timeline
-              items={educationTimelineItems}
-              title="Education"
-            />
-          </div>
-        </motion.section>
-
-        {/* Contact CTA */}
-        <motion.section
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
+      <section className="flex flex-col">
+        <h2 className="mb-3 font-mono text-xs uppercase tracking-[0.08em] text-muted">
+          Experience
+        </h2>
+        {experience.work.map((work, index) => (
           <div
-            className="rounded-2xl p-8"
-            style={{
-              backgroundColor: isDarkMode ? 'rgb(30, 41, 59)' : 'rgb(249, 250, 251)',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(229, 231, 235)'
-            }}
+            key={work.id}
+            className={`grid grid-cols-1 gap-2 border-t border-hairline py-5 sm:grid-cols-[128px_minmax(0,1fr)] sm:gap-6 ${
+              index === experience.work.length - 1 ? 'border-b' : ''
+            }`}
           >
-            <h2
-              className="text-2xl font-bold mb-4"
-              style={{ color: isDarkMode ? 'white' : 'rgb(17, 24, 39)' }}
-            >
-              Let's Work Together
-            </h2>
-
-            <p
-              className="mb-6 max-w-md mx-auto"
-              style={{ color: isDarkMode ? 'white' : 'rgb(75, 85, 99)' }}
-            >
-              I'm always interested in new opportunities and exciting projects.
-              Let's discuss how we can bring your ideas to life.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="
-                  inline-flex items-center justify-center px-6 py-3
-                  bg-blue-600 hover:bg-blue-700 text-white font-medium
-                  rounded-lg transition-colors
-                "
-              >
-                Get In Touch
-              </a>
-
-              <a
-                href={`mailto:${siteConfig.author.email}`}
-                className="
-                  inline-flex items-center justify-center px-6 py-3
-                  border font-medium rounded-lg transition-colors
-                "
-                style={{
-                  color: isDarkMode ? 'white' : 'rgb(55, 65, 81)',
-                  borderColor: isDarkMode ? 'rgb(75, 85, 99)' : 'rgb(209, 213, 219)',
-                  backgroundColor: 'transparent'
-                }}
-                onMouseEnter={(e) => {
-                  if (isDarkMode) {
-                    e.currentTarget.style.backgroundColor = 'rgb(229, 231, 235)';
-                    e.currentTarget.style.color = 'black';
-                  } else {
-                    e.currentTarget.style.backgroundColor = 'rgb(249, 250, 251)';
-                    e.currentTarget.style.color = 'rgb(17, 24, 39)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = isDarkMode ? 'white' : 'rgb(55, 65, 81)';
-                }}
-              >
-                Send Email
-              </a>
+            <span className="font-mono text-[13px] text-muted sm:pt-0.5">
+              {formatDateRange(work.startDate, work.endDate)}
+            </span>
+            <div className="flex flex-col gap-1.5">
+              <span className="text-[17px] font-medium">
+                {work.title}, {work.company}
+              </span>
+              <span className="text-sm text-muted">
+                {work.location} · {work.type.replace('-', ' ')}
+              </span>
+              <span className="pt-1 text-[15px] leading-relaxed text-body-secondary">
+                {work.description}
+              </span>
             </div>
           </div>
-        </motion.section>
-      </div>
+        ))}
+      </section>
+
+      <section className="flex flex-col pt-[72px]">
+        <h2 className="mb-3 font-mono text-xs uppercase tracking-[0.08em] text-muted">
+          Education
+        </h2>
+        {experience.education.map((edu, index) => (
+          <div
+            key={edu.id}
+            className={`grid grid-cols-1 gap-2 border-t border-hairline py-[18px] sm:grid-cols-[128px_minmax(0,1fr)] sm:gap-6 ${
+              index === experience.education.length - 1 ? 'border-b' : ''
+            }`}
+          >
+            <span className="font-mono text-[13px] text-muted sm:pt-0.5">
+              {formatDateRange(edu.startDate, edu.endDate)}
+            </span>
+            <div className="flex flex-col gap-1">
+              <span className="text-base font-medium">
+                {edu.degree}, {edu.institution}
+              </span>
+              {edu.gpa && (
+                <span className="text-sm text-muted">
+                  {edu.achievements[0] ?? `CGPA ${edu.gpa}`}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="flex flex-col pt-[72px]">
+        <h2 className="mb-3 font-mono text-xs uppercase tracking-[0.08em] text-muted">
+          Tools I use
+        </h2>
+        {toolGroups.map((group, index) => (
+          <div
+            key={group.label}
+            className={`grid grid-cols-1 gap-1.5 border-t border-hairline py-3.5 text-[15px] leading-relaxed sm:grid-cols-[128px_minmax(0,1fr)] sm:gap-6 ${
+              index === toolGroups.length - 1 ? 'border-b' : ''
+            }`}
+          >
+            <span className="text-muted">{group.label}</span>
+            <span>{group.value}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="pt-[72px]">
+        <p className="m-0 text-lg leading-relaxed text-body-secondary">
+          If any of this is useful to you,{' '}
+          <a href="/contact">write to me</a>,{' '}
+          <a href="/Ng-Lih-Sheng-Resume.pdf">download my CV</a>, or find me on{' '}
+          <a href={siteConfig.author.social.github}>GitHub</a> and{' '}
+          <a href={siteConfig.author.social.linkedin}>LinkedIn</a>.
+        </p>
+      </section>
     </div>
   );
 }

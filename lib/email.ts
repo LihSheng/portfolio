@@ -55,8 +55,8 @@ export class EmailService {
   }
 
   private async sendNodemailerEmail(data: ContactFormData): Promise<void> {
-    const nodemailer = require('nodemailer');
-    
+    const { default: nodemailer } = await import('nodemailer');
+
     if (!this.config.smtp) {
       throw new Error('SMTP configuration is required for Nodemailer');
     }

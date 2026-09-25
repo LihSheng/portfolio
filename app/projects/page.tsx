@@ -1,41 +1,39 @@
 import { Metadata } from 'next';
-import { ProjectTextList } from '@/components/ProjectTextList';
 import { getAllProjects } from '@/lib/content';
+import { ProjectsClient } from './projects-client';
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Selected products, engineering systems, and practical experiments I have designed and built.',
+  description: 'Things I have built on the side, newest first. Most are open on GitHub.',
   openGraph: {
-    title: 'Projects | Ng Lih Sheng',
-    description: 'Selected products, engineering systems, and practical experiments I have designed and built.',
+    title: 'Projects',
+    description: 'Things I have built on the side, newest first. Most are open on GitHub.',
   },
 };
 
-export default async function ProjectsPage() {
-  const projects = await getAllProjects();
+interface ProjectsPageProps {
+  searchParams: Promise<{
+    tag?: string;
+    search?: string;
+  }>;
+}
+
+export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
+  const allProjects = await getAllProjects();
+  const { tag, search } = await searchParams;
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-950">
-      <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-        <header className="mb-14 max-w-3xl sm:mb-16">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
-            Projects
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-            A focused selection of products and engineering systems I have designed, built, and operated.
-          </p>
-        </header>
+    <div className="pb-20">
+      <section className="flex flex-col gap-5 pt-20 pb-12">
+        <h1 className="font-serif text-[44px] font-normal leading-[1.1] text-ink">
+          Projects
+        </h1>
+        <p className="max-w-[560px] text-[17px] leading-relaxed text-body-secondary">
+          Things I have built on the side, newest first. Most are open on GitHub.
+        </p>
+      </section>
 
-        <section aria-labelledby="selected-work-heading">
-          <h2
-            id="selected-work-heading"
-            className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400"
-          >
-            Selected work
-          </h2>
-          <ProjectTextList projects={projects} />
-        </section>
-      </div>
-    </main>
+      <ProjectsClient projects={allProjects} initialTag={tag} initialSearch={search} />
+    </div>
   );
 }

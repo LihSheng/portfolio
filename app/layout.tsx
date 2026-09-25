@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Instrument_Serif, Instrument_Sans, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { FeatureFlagProvider } from '@/components/FeatureFlagProvider';
@@ -8,13 +8,30 @@ import { WebMCPProvider } from '@/components/WebMCPProvider';
 import { StructuredData } from '@/components/StructuredData';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { PageColumn } from '@/components/PageColumn';
 import { siteConfig } from '@/lib/site-config';
 
-const inter = Inter({
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
-  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-serif',
+  weight: '400',
+  style: ['normal', 'italic'],
+});
+
+const instrumentSans = Instrument_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -47,21 +64,11 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [
-      {
-        url: `${siteConfig.url}/api/og`,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.title,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/api/og`],
-    creator: '@yourusername',
   },
   robots: {
     index: true,
@@ -95,20 +102,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${instrumentSerif.variable} ${instrumentSans.variable} ${geistMono.variable}`}
+    >
       <head>
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <StructuredData />
       </head>
-      <body className={`${inter.className} flex min-h-screen flex-col bg-background font-sans antialiased`} suppressHydrationWarning>
+      <body className="flex min-h-screen flex-col bg-paper font-sans text-ink antialiased" suppressHydrationWarning>
         <FeatureFlagProvider>
           <ThemeProvider
             attribute="class"
@@ -117,7 +119,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navigation />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              <PageColumn>{children}</PageColumn>
+            </main>
             <Footer />
           </ThemeProvider>
         </FeatureFlagProvider>

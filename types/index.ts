@@ -5,8 +5,7 @@ export interface Project {
   title: string;
   description: string;
   longDescription?: string;
-  image: string;
-  images?: string[];
+  screenshot?: string; // Optional path under /images/projects/
   tags: string[];
   techStack: string[];
   demoUrl?: string;
@@ -14,23 +13,6 @@ export interface Project {
   featured: boolean;
   date: string;
   content?: string; // MDX content
-}
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string; // MDX content
-  date: string;
-  updated?: string;
-  tags: string[];
-  author: {
-    name: string;
-    avatar?: string;
-  };
-  readingTime: number;
-  published: boolean;
-  coverImage?: string;
 }
 
 export interface NavigationItem {
@@ -173,12 +155,10 @@ export interface ContactFormResponse {
 
 // Feature flag types
 export interface FeatureFlags {
-  blog: boolean;
   projects: boolean;
   contact: boolean;
   about: boolean;
   analytics: boolean;
-  rss: boolean;
 }
 
 export interface NavigationItemWithFlag extends NavigationItem {
