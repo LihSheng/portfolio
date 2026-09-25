@@ -71,12 +71,16 @@ export interface Skill {
   icon?: string;
 }
 
+// Display groups shown on the About page, in display order. `tools` is the
+// catch-all for anything that doesn't fit the other groups (e.g. GitHub,
+// Apache ECharts, Postman).
 export interface SkillsData {
   frontend: Skill[];
   backend: Skill[];
-  database: Skill[];
-  devops: Skill[];
-  tools: Skill[];
+  cloud: Skill[];
+  testing: Skill[];
+  ai: Skill[];
+  tools?: Skill[];
 }
 
 export interface SkillCategory {
