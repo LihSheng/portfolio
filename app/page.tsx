@@ -30,11 +30,11 @@ const atAGlance: Array<{ label: string; value: string }> = [
   },
   {
     label: 'Core stack',
-    value: 'TypeScript, React, Next.js, PHP, Laravel, MySQL, AWS',
+    value: 'React, TypeScript, Angular, Laravel, PostgreSQL, Python',
   },
   {
     label: 'Also',
-    value: 'Angular, Jest, Cypress, CI/CD, n8n, LLM tooling and agents',
+    value: 'Next.js, AWS, Jest, Cypress, CI/CD, n8n, LLM tooling and agents',
   },
   {
     label: 'Education',
@@ -54,12 +54,12 @@ export default async function Home() {
           {siteConfig.name}, full-stack software developer in Singapore.
         </h1>
         <p className="max-w-[600px] text-lg leading-relaxed text-body-secondary">
-          I build enterprise web applications and the automation around them, with TypeScript, React,
-          Next.js, PHP, Laravel and AWS. Lately also LLMs, agents and low-friction automation for real
-          teams.
+          I build enterprise web, analytics and agentic AI systems with React, TypeScript, Angular,
+          Laravel, PostgreSQL and Python. Lately also LLMs, agents and low-friction automation for
+          real teams.
         </p>
         <div className="flex flex-wrap gap-6 pt-1 text-[15px]">
-          <Link href="/cv.pdf">CV (PDF)</Link>
+          <Link href="/Ng-Lih-Sheng-Resume.pdf">CV (PDF)</Link>
           <a href="https://github.com/LihSheng">GitHub</a>
           <a href="https://www.linkedin.com/in/lihshengng/">LinkedIn</a>
           <Link href="/contact">Email</Link>

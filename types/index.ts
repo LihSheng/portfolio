@@ -144,6 +144,7 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+  website?: string;
 }
 
 export interface ContactFormResponse {

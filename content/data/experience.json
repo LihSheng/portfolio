@@ -9,14 +9,16 @@
       "startDate": "2025-07",
       "endDate": null,
       "current": true,
-      "description": "Maintain and enhance a Laravel and Angular-based HR system used across regional clients, with a focus on feature delivery, stability, and maintainability.",
+      "description": "Build and enhance enterprise HR products while leading the design and implementation of WizHR, a multi-tenant HR analytics and business intelligence platform for companies operating across multiple countries.",
       "achievements": [
-        "Maintain and enhance a Laravel and Angular-based HR system used across regional clients",
-        "Implement new features including roster workflows and system reminders",
-        "Refactor legacy code and resolve critical bugs to improve stability and maintainability",
-        "Collaborate with product stakeholders to align feature delivery with business goals and user needs"
+        "Maintain and enhance a Laravel and Angular HR platform covering workforce, roster, leave, reporting, reminders, and background jobs",
+        "Refactor legacy modules and resolve production issues to improve system reliability and maintainability",
+        "Appointed to design and build WizHR, a multi-tenant HR analytics and BI platform for multiple companies and countries",
+        "Design WizHR with Angular, Laravel, PostgreSQL, and reusable Apache ECharts components for configurable dashboards and HR data imports",
+        "Design tenant and data isolation with PostgreSQL Row-Level Security and fine-grained access control",
+        "Design AI-assisted analytics through a Python service that uses authorized Laravel APIs and preserves user access rules"
       ],
-      "technologies": ["Laravel", "Angular", "MySQL", "Microservices"]
+      "technologies": ["Laravel", "Angular", "PostgreSQL", "Apache ECharts", "AWS Cognito", "Python", "Microservices"]
     },
     {
       "id": "software-developer-ayp",
@@ -27,15 +29,14 @@
       "startDate": "2024-02",
       "endDate": "2025-06",
       "current": false,
-      "description": "Built and maintained full-stack web applications for business users across APAC using TypeScript, Laravel, and AWS, with strong emphasis on testability and delivery quality.",
+      "description": "Built and maintained full-stack web applications for business users across APAC using TypeScript, Next.js, Laravel, and AWS, with strong emphasis on testability and delivery quality.",
       "achievements": [
-        "Built and maintained full-stack web applications with TypeScript, Laravel, and AWS for business users across APAC",
-        "Wrote unit and integration tests with Jest and Cypress while maintaining over 85% test coverage",
-        "Participated in code reviews and architecture discussions to improve scalability and enforce best practices",
-        "Automated CI/CD pipelines for staging and production to reduce manual deployment errors",
-        "Worked closely with QA and product teams to align sprint goals and deliver high-impact features on schedule"
+        "Built and maintained full-stack applications with TypeScript, Next.js, Laravel, and AWS for APAC business users",
+        "Wrote Jest and Cypress tests and maintained over 85% test coverage for key application areas",
+        "Automated staging and production CI/CD pipelines to reduce manual deployment work and release risk",
+        "Reviewed code and joined architecture and sprint discussions to improve delivery quality and scalability"
       ],
-      "technologies": ["TypeScript", "Next.js", "Cypress", "Jest", "Laravel", "AWS"]
+      "technologies": ["TypeScript", "Next.js", "Laravel", "AWS", "Cypress", "Jest", "MySQL", "CI/CD"]
     },
     {
       "id": "senior-software-developer-xeersoft",
@@ -46,15 +47,14 @@
       "startDate": "2021-01",
       "endDate": "2024-02",
       "current": false,
-      "description": "Led frontend development work on internal and client-facing modules while improving application performance and team enablement.",
+      "description": "Led frontend development work on internal and client-facing modules while improving application usability, maintainability, and team delivery.",
       "achievements": [
-        "Led juniors and interns in day-to-day development tasks",
-        "Redesigned major frontend modules using React.js and MVC principles to improve page load speed and UX",
-        "Developed reusable components and custom hooks to reduce duplication in the codebase",
-        "Integrated REST APIs and resolved cross-origin and latency issues to improve data sync reliability",
-        "Created an internal knowledge base for onboarding and developer guides"
+        "Led junior developers and interns in daily development, code quality, and feature delivery",
+        "Redesigned major frontend modules with React.js and MVC to improve usability and maintainability",
+        "Built reusable React components and custom hooks to reduce duplicate code",
+        "Integrated REST APIs and resolved cross-origin, latency, and data synchronization issues"
       ],
-      "technologies": ["React.js", "PHP", "HTML", "JavaScript", "MySQL"]
+      "technologies": ["React.js", "PHP", "JavaScript", "REST APIs", "MVC", "MySQL"]
     }
   ],
   "education": [
@@ -64,9 +64,9 @@
       "institution": "Universiti Tun Hussein Onn Malaysia",
       "location": "Malaysia",
       "startDate": "2017-08",
-      "endDate": "2020-08",
+      "endDate": "2020-12",
       "gpa": "3.83",
-      "description": "Comprehensive software engineering program with focus on software development, algorithms, and system design.",
+      "description": "Comprehensive software engineering program with focus on software development, algorithms, databases, and system design.",
       "coursework": [
         "Software Engineering Principles",
         "Data Structures and Algorithms",
@@ -76,10 +76,10 @@
         "System Analysis and Design"
       ],
       "achievements": [
-        "First Class Honors (CGPA: 3.83/4)",
+        "First Class Honours (CGPA: 3.83/4.00)",
         "Dean's List for all semesters",
-        "Actively joined university association activity as a committee",
-        "Chief of secretary for PTHUTHM 2019"
+        "Chief Secretary, Festival Tiong Hua UTHM 2019",
+        "Treasurer, Tiong Hua Chinese Cultural Carnival UTHM"
       ]
     },
     {
@@ -98,9 +98,8 @@
         "General Studies"
       ],
       "achievements": [
-        "Science Stream (CGPA: 3.08/4)",
-        "President of bowling club",
-        "Treasurer and technical support for KKCTHUTHM"
+        "Science Stream (CGPA: 3.08/4.00)",
+        "President of Bowling Club"
       ]
     }
   ],

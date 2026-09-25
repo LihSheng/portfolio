@@ -51,16 +51,16 @@ export const socialLinks: SocialLink[] = [
 // Main site configuration
 export const siteConfig: SiteConfig = {
   name: 'Ng Lih Sheng',
-  title: 'Ng Lih Sheng - Software Developer',
-  description: 'Ng Lih Sheng is a full-stack software developer in Singapore building enterprise web applications and workflow automation with TypeScript, React, Next.js, PHP, Laravel and AWS, and exploring AI agents and AI-native development.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.space',
+  title: 'Ng Lih Sheng - Full Stack Software Developer',
+  description: 'Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.dev',
   author: {
     name: 'Ng Lih Sheng',
     email: getContactEmail(),
     avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2MzY2RjEiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo8L3N2Zz4K', // Keep for backward compatibility
-    profilePicture: process.env.NEXT_PUBLIC_PROFILE_PICTURE_URL || undefined, // Can be configured via environment variable
-    profilePictureAlt: 'Profile picture of Ng Lih Sheng, Software Developer',
-    bio: 'Software Developer focused on enterprise web applications, workflow automation, and practical AI-driven solutions. I build scalable systems with TypeScript, PHP, React, Next.js, Laravel, and AWS while exploring LLMs, AI agents, and low-friction automation for real-world teams.',
+    profilePicture: process.env.NEXT_PUBLIC_PROFILE_PICTURE_URL || '/images/profile.png',
+    profilePictureAlt: 'Profile picture of Ng Lih Sheng, Full Stack Software Developer',
+    bio: 'Full stack software developer with 5+ years of experience building enterprise web applications, analytics platforms and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms. I focus on turning business processes into reliable software, and lately on connecting LLMs and AI agents to real production systems.',
     social: {
       github: 'https://github.com/LihSheng',
       linkedin: 'https://www.linkedin.com/in/lihshengng/',

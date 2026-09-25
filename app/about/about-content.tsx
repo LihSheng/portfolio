@@ -55,15 +55,16 @@ export default function AboutContent() {
         <div className="flex flex-col gap-5">
           <h1 className="font-serif text-4xl leading-[1.1]">About</h1>
           <p className="m-0 text-lg leading-relaxed text-ink">
-            I am a software developer focused on enterprise web applications, workflow automation
-            and practical AI-driven tools. I build with TypeScript, PHP, React, Next.js, Laravel and
-            AWS.
+            I am a full stack software developer with 5+ years of experience building enterprise
+            web applications, analytics platforms and agentic AI systems. I build with React,
+            TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms.
           </p>
           <p className="m-0 text-lg leading-relaxed text-body-secondary">
             I enjoy turning business processes into reliable software, whether that means shipping
-            product features, improving developer workflows, or removing repetitive operational
-            work. Lately I have been exploring LLMs, agents and workflow platforms to connect new AI
-            capability with real production systems.
+            product features, designing multi-tenant analytics platforms, or removing repetitive
+            operational work. Lately I have been building AI agents that use tools, work with
+            business data, and automate multi-step workflows &mdash; treating agents as software
+            systems: give them clear tools and context, then verify what they do.
           </p>
         </div>
       </section>
@@ -145,7 +146,8 @@ export default function AboutContent() {
       <section className="pt-[72px]">
         <p className="m-0 text-lg leading-relaxed text-body-secondary">
           If any of this is useful to you,{' '}
-          <a href="/contact">write to me</a>, <a href="/cv.pdf">download my CV</a>, or find me on{' '}
+          <a href="/contact">write to me</a>,{' '}
+          <a href="/Ng-Lih-Sheng-Resume.pdf">download my CV</a>, or find me on{' '}
           <a href={siteConfig.author.social.github}>GitHub</a> and{' '}
           <a href={siteConfig.author.social.linkedin}>LinkedIn</a>.
         </p>

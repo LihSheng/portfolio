@@ -3,7 +3,7 @@
     {
       "name": "TypeScript",
       "level": "advanced",
-      "yearsOfExperience": 2
+      "yearsOfExperience": 3
     },
     {
       "name": "React.js",
@@ -13,11 +13,6 @@
     {
       "name": "Next.js",
       "level": "advanced",
-      "yearsOfExperience": 2
-    },
-    {
-      "name": "Material UI",
-      "level": "intermediate",
       "yearsOfExperience": 2
     },
     {
@@ -31,14 +26,14 @@
       "yearsOfExperience": 5
     },
     {
-      "name": "HTML5",
-      "level": "expert",
-      "yearsOfExperience": 5
+      "name": "Mantine",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     },
     {
-      "name": "CSS3",
-      "level": "advanced",
-      "yearsOfExperience": 5
+      "name": "Tailwind CSS",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     }
   ],
   "backend": [
@@ -50,17 +45,22 @@
     {
       "name": "Laravel",
       "level": "advanced",
-      "yearsOfExperience": 2
+      "yearsOfExperience": 3
     },
     {
       "name": "Python",
-      "level": "beginner",
+      "level": "intermediate",
       "yearsOfExperience": 1
     },
     {
       "name": "REST APIs",
       "level": "advanced",
-      "yearsOfExperience": 3
+      "yearsOfExperience": 4
+    },
+    {
+      "name": "Microservices",
+      "level": "intermediate",
+      "yearsOfExperience": 2
     }
   ],
   "database": [
@@ -68,50 +68,75 @@
       "name": "MySQL",
       "level": "advanced",
       "yearsOfExperience": 5
+    },
+    {
+      "name": "PostgreSQL",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Row-Level Security",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Prisma",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Supabase",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     }
   ],
-  "cloud": [
+  "cloud & devops": [
     {
-      "name": "AWS S3",
+      "name": "AWS",
       "level": "intermediate",
       "yearsOfExperience": 2
     },
     {
-      "name": "AWS EC2",
-      "level": "intermediate",
-      "yearsOfExperience": 1
-    },
-    {
-      "name": "AWS Lambda",
-      "level": "intermediate",
-      "yearsOfExperience": 1
-    },
-    {
-      "name": "AWS SQS",
+      "name": "Google Cloud",
       "level": "intermediate",
       "yearsOfExperience": 1
     },
     {
       "name": "Docker",
-      "level": "beginner",
+      "level": "intermediate",
       "yearsOfExperience": 1
+    },
+    {
+      "name": "GitHub Actions",
+      "level": "intermediate",
+      "yearsOfExperience": 2
     },
     {
       "name": "CI/CD Pipelines",
       "level": "intermediate",
       "yearsOfExperience": 2
+    },
+    {
+      "name": "systemd",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     }
   ],
-  "tools": [
+  "testing & quality": [
     {
       "name": "Cypress",
       "level": "intermediate",
-      "yearsOfExperience": 1
+      "yearsOfExperience": 2
     },
     {
       "name": "Jest",
       "level": "intermediate",
       "yearsOfExperience": 2
+    },
+    {
+      "name": "Vitest",
+      "level": "intermediate",
+      "yearsOfExperience": 1
     },
     {
       "name": "PHPUnit",
@@ -122,16 +147,60 @@
       "name": "Postman",
       "level": "advanced",
       "yearsOfExperience": 4
-    },
+    }
+  ],
+  "ai & agents": [
     {
-      "name": "Figma",
-      "level": "intermediate",
-      "yearsOfExperience": 2
-    },
-    {
-      "name": "n8n",
+      "name": "LLM Applications",
       "level": "intermediate",
       "yearsOfExperience": 1
+    },
+    {
+      "name": "Agentic AI",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Google ADK",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "RAG Workflows",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Structured LLM Outputs",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Langfuse",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Ollama / LM Studio",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Prompt Engineering",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    }
+  ],
+  "tools": [
+    {
+      "name": "Apache ECharts",
+      "level": "intermediate",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "GitHub",
+      "level": "advanced",
+      "yearsOfExperience": 5
     },
     {
       "name": "Codex",
@@ -139,13 +208,8 @@
       "yearsOfExperience": 1
     },
     {
-      "name": "OpenClaw",
+      "name": "n8n",
       "level": "intermediate",
-      "yearsOfExperience": 1
-    },
-    {
-      "name": "LoRA Fine-Tuning",
-      "level": "beginner",
       "yearsOfExperience": 1
     }
   ]

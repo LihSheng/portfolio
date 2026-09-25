@@ -20,7 +20,7 @@ export function Footer({ className = '' }: FooterProps) {
         <a href="https://www.linkedin.com/in/lihshengng/" target="_blank" rel="noopener noreferrer">
           LinkedIn
         </a>
-        <Link href="/cv.pdf">CV</Link>
+        <Link href="/Ng-Lih-Sheng-Resume.pdf">CV</Link>
       </div>
     </footer>
   );

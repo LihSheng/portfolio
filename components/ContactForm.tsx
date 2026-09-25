@@ -19,6 +19,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     email: '',
     subject: '',
     message: '',
+    website: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,6 +28,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [submitMessage, setSubmitMessage] = useState('');
 
   const validateField = (name: keyof ContactFormData, value: string) => {
+    if (name === 'website') {
+      return;
+    }
+
     const result = contactFormSchema.shape[name].safeParse(value);
 
     if (result.success) {
@@ -106,7 +111,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       if (response.success) {
         setSubmitStatus('success');
         setSubmitMessage(response.message || 'Message sent successfully!');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', website: '' });
       } else {
         setSubmitStatus('error');
         setSubmitMessage(response.message || 'Failed to send message. Please try again.');
@@ -127,6 +132,25 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       onSubmit={handleSubmit}
       className="grid grid-cols-1 gap-x-8 gap-y-7 border-t border-hairline pt-10 sm:grid-cols-2"
     >
+      {/* Honeypot field: hidden from sighted users, left blank by real visitors */}
+      <div
+        className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden"
+        aria-hidden="true"
+      >
+        <label htmlFor="website" className="sr-only">
+          Website
+        </label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          value={formData.website || ''}
+          onChange={handleInputChange}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="flex flex-col gap-1">
         <label htmlFor="name" className={labelClassName}>
           Name
