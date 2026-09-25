@@ -12,6 +12,7 @@ export const defaultFeatureFlags: FeatureFlags = {
   contact: true,
   about: true,
   analytics: true,
+  easterEggs: true,
 };
 
 /**
@@ -25,6 +26,7 @@ export const getFeatureFlags = (): FeatureFlags => {
     contact: process.env.NEXT_PUBLIC_FEATURE_CONTACT !== 'false',
     about: process.env.NEXT_PUBLIC_FEATURE_ABOUT !== 'false',
     analytics: process.env.NEXT_PUBLIC_FEATURE_ANALYTICS !== 'false',
+    easterEggs: process.env.NEXT_PUBLIC_FEATURE_EASTER_EGGS !== 'false',
   };
 };
 

@@ -9,6 +9,7 @@ import { StructuredData } from '@/components/StructuredData';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { PageColumn } from '@/components/PageColumn';
+import EasterEggs from '@/components/easter-eggs/EasterEggs';
 import { siteConfig } from '@/lib/site-config';
 
 const instrumentSerif = Instrument_Serif({
@@ -123,6 +124,7 @@ export default function RootLayout({
               <PageColumn>{children}</PageColumn>
             </main>
             <Footer />
+            <EasterEggs />
           </ThemeProvider>
         </FeatureFlagProvider>
         <WebMCPProvider />

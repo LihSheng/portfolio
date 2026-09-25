@@ -10,6 +10,8 @@ export interface ProfilePictureProps {
   size?: number;
   priority?: boolean;
   className?: string;
+  /** Optional override for the configured profile picture. */
+  src?: string;
 }
 
 function InitialsFallback({ size, className = '' }: { size: number; className?: string }) {
@@ -25,9 +27,9 @@ function InitialsFallback({ size, className = '' }: { size: number; className?: 
   );
 }
 
-function ProfilePictureImage({ size = 96, priority = false, className = '' }: ProfilePictureProps) {
+function ProfilePictureImage({ size = 96, priority = false, className = '', src }: ProfilePictureProps) {
   const [imageError, setImageError] = useState(false);
-  const profileSrc = siteConfig.author.profilePicture;
+  const profileSrc = src || siteConfig.author.profilePicture;
 
   if (!profileSrc || imageError) {
     return <InitialsFallback size={size} className={className} />;
@@ -39,6 +41,7 @@ function ProfilePictureImage({ size = 96, priority = false, className = '' }: Pr
       style={{ width: size, height: size }}
     >
       <Image
+        key={profileSrc}
         src={profileSrc}
         alt={siteConfig.author.profilePictureAlt || `Profile picture of ${siteConfig.author.name}`}
         fill

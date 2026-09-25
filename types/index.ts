@@ -163,6 +163,7 @@ export interface FeatureFlags {
   contact: boolean;
   about: boolean;
   analytics: boolean;
+  easterEggs: boolean;
 }
 
 export interface NavigationItemWithFlag extends NavigationItem {

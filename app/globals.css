@@ -40,6 +40,34 @@
   --moss: #7FB59F;
 }
 
+/* Easter egg: secret terminal theme, unlocked from the theme toggle */
+.theme-terminal,
+.theme-terminal.dark,
+.theme-terminal[data-theme="dark"] {
+  --paper: #0B0F0B;
+  --ink: #8CF29A;
+  --body-secondary: #6FD37E;
+  --muted: #4FA65D;
+  --faint: #3D8449;
+  --hairline: #1E3A23;
+  --hairline-strong: #2F5C37;
+  --screenshot-fill: #122014;
+  --moss: #C6FFCF;
+  color-scheme: dark;
+}
+
+.theme-terminal body,
+.theme-terminal h1,
+.theme-terminal h2,
+.theme-terminal h3 {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-shadow: 0 0 6px rgba(140, 242, 154, 0.35);
+}
+
+.theme-terminal img {
+  filter: sepia(1) hue-rotate(60deg) saturate(3) contrast(0.9);
+}
+
 @theme inline {
   --color-paper: var(--paper);
   --color-ink: var(--ink);
@@ -160,8 +188,38 @@ code[class*='language-'] {
   animation: page-fade-rise 240ms ease-out both;
 }
 
+/* Easter egg motion: toast slide-in and portrait wobble */
+@keyframes egg-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes egg-wobble {
+  0% { transform: scale(1) rotate(0); }
+  25% { transform: scale(1.12) rotate(-4deg); }
+  50% { transform: scale(0.96) rotate(3deg); }
+  75% { transform: scale(1.04) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.egg-toast {
+  animation: egg-toast-in 200ms ease-out both;
+}
+
+.egg-wobble {
+  animation: egg-wobble 600ms ease-in-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-page-fade-rise {
+  .animate-page-fade-rise,
+  .egg-toast,
+  .egg-wobble {
     animation: none;
   }
 }
