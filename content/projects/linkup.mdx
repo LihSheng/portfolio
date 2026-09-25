@@ -1,0 +1,26 @@
+---
+title: "LinkUp"
+description: "Schema-intelligence workspace for mapping Excel workbooks into a target JSON schema."
+tags: ["Full stack", "AI", "Next.js"]
+techStack: ["Next.js", "React 19", "TypeScript", "Prisma", "PostgreSQL", "ExcelJS", "Ajv", "Zod", "SWR"]
+demoUrl: ""
+repoUrl: ""
+featured: true
+date: "2026-09-12"
+---
+
+## The problem
+
+Mapping data out of an arbitrary Excel workbook into a fixed JSON schema usually means matching columns by hand, guessing at name variations, and re-checking the result every time a workbook is laid out a little differently. LinkUp turns that into a guided, review-first workflow instead of a one-off spreadsheet exercise.
+
+## What I built
+
+A four-step wizard covers schema selection, workbook upload, AI-assisted mapping, and review and export, backed by reusable schema templates with fields auto-detected from CSV and XLSX files.
+
+Column matching runs through multiple layers: exact header match, synonym match, heuristic scoring, then an LLM suggestion via Ollama, LM Studio or NVIDIA, falling back gracefully when a layer can't decide. A review-first mapping workbench splits columns into Need Review and Ready views, with confidence scores, conflict reasons, mapping explanations, and undo/redo. Deterministic readiness rules apply hard blockers that prevent confirmation when required fields aren't safely mapped.
+
+Workbook profiling covers header detection, null rate, unique count and detected type per column. Output is validated against JSON Schema with Ajv before export to JSON or Excel, mapping templates can be saved for reuse, and the app includes a dashboard, i18n, and optional Langfuse tracing.
+
+## What it shows
+
+Building an AI-assisted feature with deterministic fallbacks and explicit confidence rather than trusting a single LLM call, a review workbench designed around trust and correction rather than full automation, and schema validation as a hard gate before data leaves the system.

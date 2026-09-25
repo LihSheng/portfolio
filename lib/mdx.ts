@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { compileMDX } from 'next-mdx-remote/rsc';
+import type { MDXComponents } from 'mdx/types';
 import remarkGfm from 'remark-gfm';
 import rehypePrism from 'rehype-prism-plus';
 import rehypeSlug from 'rehype-slug';
@@ -69,9 +70,13 @@ export function parseMDXFile(filePath: string) {
  * @param source - MDX source string
  * @returns Compiled MDX with frontmatter
  */
-export async function compileMDXWithPlugins<TFrontmatter>(source: string) {
+export async function compileMDXWithPlugins<TFrontmatter>(
+  source: string,
+  components?: MDXComponents
+) {
   return await compileMDX<TFrontmatter>({
     source,
+    components,
     options: {
       parseFrontmatter: true,
       mdxOptions: {

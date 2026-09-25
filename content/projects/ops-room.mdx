@@ -1,0 +1,24 @@
+---
+title: "Ops Room"
+description: "Control surface for coding agents: webhook receiver, task poller, claim CLI, and GitHub automation with an automated PR review and repair loop."
+tags: ["AI agents", "Developer tool", "TypeScript"]
+techStack: ["TypeScript", "Node.js", "GitHub Apps", "Docker Compose", "systemd"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/ops-room"
+featured: true
+date: "2026-09-17"
+---
+
+## The problem
+
+Running coding agents against real repositories means someone still has to route work to them, look at the pull requests they open, and act as a gate before a human reviewer gets involved. Ops Room automates that middle layer instead of doing it by hand for every issue and PR.
+
+## What I built
+
+A webhook receiver, task poller and claim CLI that route commands from GitHub issues to coding agents. On top of that, an automated review step uses AI to review the PRs the agents open, then auto-fixes findings and loops through review cycles as a tollgate before a human reviews the change.
+
+A dashboard shows agent status and task logs, running on Docker Compose and systemd, so the state of every agent and task is visible in one place.
+
+## What it shows
+
+GitHub App integration and webhook-driven automation in TypeScript and Node.js, an AI review and repair loop built as an explicit tollgate rather than a replacement for human review, and an operations dashboard for monitoring long-running agent work.

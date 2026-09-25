@@ -1,0 +1,26 @@
+---
+title: "Trip Planner"
+description: "A collaborative, map-first workspace for planning a trip and running each travel day."
+tags: ["Full stack", "React", "AI"]
+techStack: ["React", "TypeScript", "Mantine", "React Leaflet", "dnd-kit", "Supabase"]
+demoUrl: ""
+repoUrl: "https://github.com/LihSheng/trip-planner"
+featured: true
+date: "2026-08-04"
+---
+
+## The problem
+
+Trip planning ends up spread across notes, Google Maps links, booking emails and a spreadsheet for money, and none of it is usable on the day while walking around. Trip Planner keeps saved places, the day-by-day plan, and spending in one place, and gives the same data a workspace built for running the trip itself, not just planning it.
+
+## What I built
+
+An interactive map with day-numbered pins and route lines, with drag-and-drop between unscheduled places and itinerary days using dnd-kit. A Today mode shows the current day with live location and task tracking, so the plan stays usable while travelling.
+
+Budget tracking covers multi-currency expenses, and collaboration works through email invitations and read-only share links, with authentication and data on Supabase.
+
+An AI import turns pasted travel notes and Google Maps links into places on the map, and the itinerary can be exported to Markdown, Excel and JSON.
+
+## What it shows
+
+Map UI and drag-and-drop state management in React, multi-user data with authentication and sharing on Supabase, an AI feature placed inside a real workflow rather than bolted on, and a mode designed for the moment of use rather than only the planning stage.

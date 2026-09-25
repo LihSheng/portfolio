@@ -13,11 +13,11 @@ import { FeatureFlags } from '@/types';
  * 
  * @example
  * ```tsx
- * const isBlogEnabled = useFeatureFlag('blog');
+ * const isProjectsEnabled = useFeatureFlag('projects');
  * 
  * return (
  *   <div>
- *     {isBlogEnabled && <BlogSection />}
+ *     {isProjectsEnabled && <ProjectsSection />}
  *   </div>
  * );
  * ```
@@ -47,7 +47,7 @@ export function useFeatureFlag(flag: keyof FeatureFlags): boolean {
  * 
  * return (
  *   <div>
- *     {flags.blog && <BlogSection />}
+ *     {flags.projects && <ProjectsSection />}
  *     {flags.projects && <ProjectsSection />}
  *   </div>
  * );
@@ -78,7 +78,7 @@ export function useFeatureFlags(): FeatureFlags {
  * 
  * return (
  *   <div>
- *     {isEnabled('blog') && <BlogSection />}
+ *     {isEnabled('projects') && <ProjectsSection />}
  *     {isEnabled('projects') && <ProjectsSection />}
  *   </div>
  * );

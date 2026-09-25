@@ -5,15 +5,13 @@
 import { FeatureFlags } from '@/types';
 
 /**
- * Default feature flag values - all features enabled by default except RSS
+ * Default feature flag values - all features enabled by default
  */
 export const defaultFeatureFlags: FeatureFlags = {
-  blog: true,
   projects: true,
   contact: true,
   about: true,
   analytics: true,
-  rss: false,
 };
 
 /**
@@ -23,12 +21,10 @@ export const defaultFeatureFlags: FeatureFlags = {
  */
 export const getFeatureFlags = (): FeatureFlags => {
   return {
-    blog: process.env.NEXT_PUBLIC_FEATURE_BLOG !== 'false',
     projects: process.env.NEXT_PUBLIC_FEATURE_PROJECTS !== 'false',
     contact: process.env.NEXT_PUBLIC_FEATURE_CONTACT !== 'false',
     about: process.env.NEXT_PUBLIC_FEATURE_ABOUT !== 'false',
     analytics: process.env.NEXT_PUBLIC_FEATURE_ANALYTICS !== 'false',
-    rss: process.env.NEXT_PUBLIC_FEATURE_RSS === 'true',
   };
 };
 

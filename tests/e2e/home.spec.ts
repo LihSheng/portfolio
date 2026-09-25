@@ -5,27 +5,30 @@ test.describe('Home Page', () => {
     await page.goto('/');
   });
 
-  test('should have correct title', async ({ page }) => {
-    // Page title is "Home | Ng Lih Sheng"
+  test('has correct title', async ({ page }) => {
     await expect(page).toHaveTitle(/Home/);
   });
 
-  test('should display main heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Ng Lih Sheng', level: 1 })).toBeVisible();
+  test('displays the intro heading', async ({ page }) => {
+    await expect(
+      page.getByRole('heading', { name: /Ng Lih Sheng.*full-stack software developer in Singapore/, level: 1 })
+    ).toBeVisible();
   });
 
-  test('should display introductory text', async ({ page }) => {
-    // Text is in an h2, matching by role/name is usually best even if text is split by spans
-    await expect(page.getByRole('heading', { name: /Results-oriented Software Developer/, level: 2 })).toBeVisible();
+  test('displays the "At a glance" section', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: 'At a glance', level: 2 })).toBeVisible();
   });
 
-  test('should have call-to-action buttons', async ({ page }) => {
-    // Using CSS selectors for links to be robust against text rendering/animation issues
+  test('displays the "How I work" section', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: 'How I work', level: 2 })).toBeVisible();
+  });
+
+  test('displays the "Selected work" section linking to projects', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: 'Selected work', level: 2 })).toBeVisible();
     await expect(page.locator('a[href="/projects"]').first()).toBeVisible();
-    await expect(page.locator('a[href="/contact"]').first()).toBeVisible();
   });
 
-  test('should display featured projects section', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Featured Projects', level: 2 })).toBeVisible();
+  test('has a link to contact', async ({ page }) => {
+    await expect(page.locator('a[href="/contact"]').first()).toBeVisible();
   });
 });

@@ -10,19 +10,6 @@
   },
   "headers": [
     {
-      "source": "/rss.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=3600, stale-while-revalidate=86400"
-        }
-      ]
-    },
-    {
       "source": "/sitemap.xml",
       "headers": [
         {
@@ -55,23 +42,6 @@
           "value": "strict-origin-when-cross-origin"
         }
       ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/blog/:path*",
-      "destination": "/writing/:path*",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/feed",
-      "destination": "/rss.xml"
-    },
-    {
-      "source": "/feed.xml",
-      "destination": "/rss.xml"
     }
   ]
 }

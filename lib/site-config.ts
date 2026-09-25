@@ -20,11 +20,6 @@ export const navigationItems: NavigationItemWithFlag[] = [
     flag: 'projects',
   },
   {
-    label: 'Writing',
-    href: '/writing',
-    flag: 'blog',
-  },
-  {
     label: 'Contact',
     href: '/contact',
     flag: 'contact',
@@ -57,7 +52,7 @@ export const socialLinks: SocialLink[] = [
 export const siteConfig: SiteConfig = {
   name: 'Ng Lih Sheng',
   title: 'Ng Lih Sheng - Software Developer',
-  description: 'Software Developer building enterprise web applications, automation systems, and practical AI-driven workflows with TypeScript, PHP, React, Next.js, Laravel, and AWS.',
+  description: 'Ng Lih Sheng is a full-stack software developer in Singapore building enterprise web applications and workflow automation with TypeScript, React, Next.js, PHP, Laravel and AWS, and exploring AI agents and AI-native development.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.space',
   author: {
     name: 'Ng Lih Sheng',

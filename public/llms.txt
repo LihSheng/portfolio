@@ -1,0 +1,21 @@
+# Ng Lih Sheng
+
+Ng Lih Sheng is a full-stack software developer in Singapore building enterprise web applications and workflow automation with TypeScript, React, Next.js, PHP, Laravel and AWS, and exploring AI agents and AI-native development.
+
+## Links
+
+- [Site](https://lihsheng.space)
+- [About](https://lihsheng.space/about)
+- [Projects](https://lihsheng.space/projects)
+- [Contact](https://lihsheng.space/contact)
+- [GitHub](https://github.com/LihSheng)
+- [LinkedIn](https://www.linkedin.com/in/lihshengng/)
+
+## Projects
+
+- [Trip Planner](https://lihsheng.space/projects/trip-planner): A collaborative, map-first workspace for planning a trip and running each travel day (React, Supabase)
+- [Ops Room](https://lihsheng.space/projects/ops-room): Control surface for coding agents with an automated PR review and repair loop (TypeScript, GitHub Apps)
+- [LinkUp](https://lihsheng.space/projects/linkup): Maps Excel workbooks into a target JSON schema with AI-assisted column matching (Next.js, Prisma, PostgreSQL)
+- [AnyDraw](https://lihsheng.space/projects/anydraw): Lucky draw tools for events and classrooms (Vue 3)
+- [Duty Roster](https://lihsheng.space/projects/duty-roster): Cleaning duties and routine tasks with automated scheduling (Node, React)
+- [Context Hopper](https://lihsheng.space/projects/context-hopper): VS Code extension that bundles files and notes into context for AI chats (TypeScript)

@@ -9,9 +9,7 @@ import type { FeatureFlags } from './types';
 const routeFlags: Record<string, keyof FeatureFlags> = {
   '/about': 'about',
   '/projects': 'projects',
-  '/writing': 'blog',
   '/contact': 'contact',
-  '/rss.xml': 'rss',
 };
 
 /**
@@ -40,9 +38,7 @@ export default function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     '/about/:path*',
-    '/projects/:path*', 
-    '/writing/:path*',
+    '/projects/:path*',
     '/contact/:path*',
-    '/rss.xml'
   ]
 };

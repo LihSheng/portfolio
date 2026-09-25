@@ -35,12 +35,10 @@ const checks = [
     check: () => {
       const projectsExist = fs.existsSync('content/projects') && 
         fs.readdirSync('content/projects').length > 0;
-      const blogExists = fs.existsSync('content/blog') && 
-        fs.readdirSync('content/blog').length > 0;
-      return projectsExist && blogExists;
+      return projectsExist;
     },
     required: true,
-    message: 'Add content files in content/projects and content/blog'
+    message: 'Add content files in content/projects'
   },
   {
     name: 'Vercel configuration exists',
