@@ -1,4 +1,4 @@
-import { ProfilePicture } from '@/components/ProfilePicture';
+import { AvatarEgg } from '@/components/easter-eggs/AvatarEgg';
 import { siteConfig } from '@/lib/site-config';
 import type { ExperienceData, SkillCategory } from '@/types';
 
@@ -47,7 +47,7 @@ export default function AboutContent() {
   return (
     <div className="flex flex-col">
       <section className="grid grid-cols-1 gap-6 py-20 sm:grid-cols-[96px_minmax(0,1fr)] sm:gap-8">
-        <ProfilePicture size={96} priority />
+        <AvatarEgg size={96} priority />
         <div className="flex flex-col gap-5">
           <h1 className="font-serif text-4xl leading-[1.1]">About</h1>
           <p className="m-0 text-lg leading-relaxed text-ink">
