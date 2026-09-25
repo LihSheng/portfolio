@@ -15,16 +15,19 @@ function formatDateRange(startDate: string, endDate: string | null): string {
   return `${start} to ${end}`;
 }
 
-// AI-and-automation tools live under `tools` in skills.json alongside testing
-// tools; split that group between the two sections shown on the page.
-const AI_AUTOMATION_TOOLS = new Set([
-  'n8n',
-  'Codex',
-  'OpenClaw',
-  'LoRA Fine-Tuning',
-  'Kiro',
-  'Figma',
-]);
+// Display label for each top-level group key in skills.json, in the order
+// they should render. Groups are rendered directly from the JSON — no
+// name-based routing of individual skills.
+const SKILL_GROUP_LABELS: Record<string, string> = {
+  frontend: 'Frontend',
+  backend: 'Backend',
+  cloud: 'Cloud',
+  testing: 'Testing',
+  ai: 'AI and automation',
+  tools: 'Tools',
+};
+
+const SKILL_GROUP_ORDER = ['frontend', 'backend', 'cloud', 'testing', 'ai', 'tools'];
 
 function names(items: { name: string }[]): string {
   return items.map((item) => item.name).join(', ');
@@ -34,19 +37,12 @@ export default function AboutContent() {
   const skills = skillsData as SkillCategory;
   const experience = experienceData as ExperienceData;
 
-  const testingTools = (skills.tools || []).filter((tool) => !AI_AUTOMATION_TOOLS.has(tool.name));
-  const aiTools = (skills.tools || []).filter((tool) => AI_AUTOMATION_TOOLS.has(tool.name));
-
-  const toolGroups: Array<{ label: string; value: string }> = [
-    { label: 'Frontend', value: names(skills.frontend || []) },
-    {
-      label: 'Backend',
-      value: names([...(skills.backend || []), ...(skills.database || [])]),
-    },
-    { label: 'Cloud', value: names(skills.cloud || []) },
-    { label: 'Testing', value: names(testingTools) },
-    { label: 'AI and automation', value: names(aiTools) },
-  ];
+  const toolGroups: Array<{ label: string; value: string }> = SKILL_GROUP_ORDER.filter(
+    (key) => (skills[key] || []).length > 0
+  ).map((key) => ({
+    label: SKILL_GROUP_LABELS[key] ?? key,
+    value: names(skills[key] || []),
+  }));
 
   return (
     <div className="flex flex-col">
