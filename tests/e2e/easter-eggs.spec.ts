@@ -68,11 +68,60 @@ test.describe('Easter eggs', () => {
     await expect(page).toHaveURL(/contact/);
   });
 
-  test('the 404 page keeps its links usable with the star field behind it', async ({ page }) => {
+  test('the 404 star game spans the viewport, collects stars and keeps links usable', async ({ page }) => {
     await page.goto('/this-page-does-not-exist');
+
     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+
+    const progress = page.getByTestId('void-progress');
+    await expect(progress).toHaveText('The void is not empty. Catch 10 drifting stars.');
+
+    const canvas = page.getByTestId('void-field-canvas');
+    await expect(canvas).toBeAttached();
+
+    const viewport = page.viewportSize();
+    expect(viewport).not.toBeNull();
+    if (!viewport) return;
+
+    await expect.poll(async () => (await canvas.boundingBox())?.width).toBe(viewport.width);
+    await expect.poll(async () => (await canvas.boundingBox())?.height).toBe(viewport.height);
+
+    // The first star starts at a predictable position so the interaction
+    // has a reliable first target and remains testable.
+    await page.mouse.click(viewport.width * 0.88, viewport.height * 0.32);
+    await expect(progress).toHaveText('Stars caught: 1 / 10');
+
     await page.getByRole('link', { name: 'Home' }).first().click();
     await expect(page).toHaveURL(/\/$/);
+  });
+
+  test('the 404 star hover clears when a star drifts away from a stationary pointer', async ({ page }) => {
+    await page.goto('/this-page-does-not-exist');
+
+    const viewport = page.viewportSize();
+    expect(viewport).not.toBeNull();
+    if (!viewport) return;
+
+    const startX = viewport.width * 0.88;
+    const startY = viewport.height * 0.32;
+
+    await page.mouse.move(startX, startY);
+    await expect.poll(async () => page.evaluate(() => document.body.style.cursor)).toBe('pointer');
+
+    // The starter star drifts right while the pointer stays still. Hover
+    // should be recomputed from the star's current position each frame.
+    await expect.poll(
+      async () => page.evaluate(() => document.body.style.cursor),
+      { timeout: 4000 }
+    ).not.toBe('pointer');
+  });
+
+  test('the 404 star field initializes on a tiny viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 64, height: 64 });
+    await page.goto('/this-page-does-not-exist');
+
+    await expect(page.getByTestId('void-field-canvas')).toBeAttached();
+    await expect(page.getByTestId('void-progress')).toContainText('Catch 10 drifting stars');
   });
 
   test('normal pages log no console errors', async ({ page }) => {

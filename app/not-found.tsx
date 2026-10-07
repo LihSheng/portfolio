@@ -13,7 +13,6 @@ export default function NotFound() {
 
   return (
     <div className="py-24">
-      {flags.easterEggs && <VoidField />}
       <h1 className="text-3xl mb-4">Page not found</h1>
       <p className="text-body-secondary mb-8">
         The page you&apos;re looking for doesn&apos;t exist or has been moved.
@@ -25,6 +24,8 @@ export default function NotFound() {
         {flags.projects && <Link href="/projects">Projects</Link>}
         {flags.contact && <Link href="/contact">Contact</Link>}
       </div>
+
+      {flags.easterEggs && <VoidField />}
     </div>
   );
 }
