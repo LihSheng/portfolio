@@ -51,6 +51,9 @@ export default function VoidField() {
     let raf = 0;
     let localCaught = 0;
     let hoveredIndex = -1;
+    let pointerX = 0;
+    let pointerY = 0;
+    let pointerCanCollect = false;
     const previousBodyCursor = document.body.style.cursor;
 
     const isInteractiveTarget = (target: EventTarget | null) =>
@@ -64,18 +67,39 @@ export default function VoidField() {
     const hit = (x: number, y: number) =>
       stars.findIndex((s) => Math.hypot(s.x - x, s.y - y) < HIT_RADIUS);
 
+    const refreshHover = () => {
+      const nextHoveredIndex =
+        pointerCanCollect && localCaught < GOAL ? hit(pointerX, pointerY) : -1;
+
+      if (nextHoveredIndex === hoveredIndex) return;
+
+      hoveredIndex = nextHoveredIndex;
+      document.body.style.cursor = hoveredIndex >= 0 ? 'pointer' : previousBodyCursor;
+    };
+
     const draw = (t: number) => {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = color();
 
-      stars.forEach((s, index) => {
-        if (!reducedMotion) {
-          s.x = (s.x + s.vx + width) % width;
-          s.y = (s.y + s.vy + height) % height;
+      if (!reducedMotion) {
+        for (const star of stars) {
+          star.x = (star.x + star.vx + width) % width;
+          star.y = (star.y + star.vy + height) % height;
         }
+      }
 
+      // Stars can move even while the pointer is stationary, so hover state
+      // must be recomputed every frame from the last known pointer position.
+      refreshHover();
+
+      stars.forEach((s, index) => {
         const hovered = index === hoveredIndex;
-        const alpha = reducedMotion ? (hovered ? 0.85 : 0.5) : 0.32 + 0.3 * Math.sin(t / 700 + s.twinkle);
+        const alpha = reducedMotion
+          ? hovered
+            ? 0.85
+            : 0.5
+          : 0.32 + 0.3 * Math.sin(t / 700 + s.twinkle);
+
         ctx.globalAlpha = hovered ? 0.9 : alpha;
         ctx.beginPath();
         ctx.arc(s.x, s.y, hovered ? s.r + 2 : s.r, 0, Math.PI * 2);
@@ -109,7 +133,7 @@ export default function VoidField() {
         x: width * 0.88,
         y: height * 0.32,
         r: 3,
-        vx: 0,
+        vx: 0.25,
         vy: 0,
         twinkle: 0,
       };
@@ -128,15 +152,17 @@ export default function VoidField() {
     };
 
     const onMove = (e: PointerEvent) => {
-      if (isInteractiveTarget(e.target) || localCaught >= GOAL) {
-        hoveredIndex = -1;
-        document.body.style.cursor = previousBodyCursor;
-        if (reducedMotion) draw(performance.now());
-        return;
-      }
+      pointerX = e.clientX;
+      pointerY = e.clientY;
+      pointerCanCollect = !isInteractiveTarget(e.target) && localCaught < GOAL;
 
-      hoveredIndex = hit(e.clientX, e.clientY);
-      document.body.style.cursor = hoveredIndex >= 0 ? 'pointer' : previousBodyCursor;
+      refreshHover();
+      if (reducedMotion) draw(performance.now());
+    };
+
+    const onPointerLeave = () => {
+      pointerCanCollect = false;
+      refreshHover();
       if (reducedMotion) draw(performance.now());
     };
 
@@ -168,12 +194,14 @@ export default function VoidField() {
 
     window.addEventListener('resize', resize);
     window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerleave', onPointerLeave);
     window.addEventListener('click', onClick);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerleave', onPointerLeave);
       window.removeEventListener('click', onClick);
       document.body.style.cursor = previousBodyCursor;
     };
