@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { announceEasterEgg, usePrefersReducedMotion } from '@/lib/easter-eggs';
 
 interface Star {
@@ -14,19 +15,32 @@ interface Star {
 
 const STAR_COUNT = 90;
 const GOAL = 10;
+const HIT_RADIUS = 22;
+const INTERACTIVE_SELECTOR =
+  'a, button, input, textarea, select, summary, [role="button"], [contenteditable="true"]';
 
 /**
- * 404 easter egg: a drifting star field behind the whole viewport. Click
- * stars to collect them. The canvas sits below the page content, so the real
- * 404 links stay fully usable; only clicks on empty paper reach it.
+ * 404 easter egg: a viewport-wide drifting star field.
+ *
+ * The canvas is portalled to document.body so PageFade's transform cannot
+ * constrain position: fixed to the 680px content column. It is visual-only
+ * (pointer-events: none); pointer hit-testing happens at window level so the
+ * normal 404 links remain fully interactive.
  */
 export default function VoidField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reducedMotion = usePrefersReducedMotion();
+  const [mounted, setMounted] = useState(false);
   const [caught, setCaught] = useState(0);
-  const [done, setDone] = useState(false);
+  const done = caught >= GOAL;
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
@@ -36,101 +50,159 @@ export default function VoidField() {
     let stars: Star[] = [];
     let raf = 0;
     let localCaught = 0;
+    let hoveredIndex = -1;
+    const previousBodyCursor = document.body.style.cursor;
 
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = canvas.clientWidth;
-      height = canvas.clientHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    const seed = () => {
-      stars = Array.from({ length: STAR_COUNT }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: 1 + Math.random() * 2,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        twinkle: Math.random() * Math.PI * 2,
-      }));
-    };
+    const isInteractiveTarget = (target: EventTarget | null) =>
+      target instanceof Element && Boolean(target.closest(INTERACTIVE_SELECTOR));
 
     const color = () => {
       const styles = getComputedStyle(document.documentElement);
       return styles.getPropertyValue('--ink').trim() || '#1D1B17';
     };
 
+    const hit = (x: number, y: number) =>
+      stars.findIndex((s) => Math.hypot(s.x - x, s.y - y) < HIT_RADIUS);
+
     const draw = (t: number) => {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = color();
-      for (const s of stars) {
+
+      stars.forEach((s, index) => {
         if (!reducedMotion) {
           s.x = (s.x + s.vx + width) % width;
           s.y = (s.y + s.vy + height) % height;
         }
-        const alpha = reducedMotion ? 0.5 : 0.35 + 0.35 * Math.sin(t / 700 + s.twinkle);
-        ctx.globalAlpha = alpha;
+
+        const hovered = index === hoveredIndex;
+        const alpha = reducedMotion ? (hovered ? 0.85 : 0.5) : 0.32 + 0.3 * Math.sin(t / 700 + s.twinkle);
+        ctx.globalAlpha = hovered ? 0.9 : alpha;
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, hovered ? s.r + 2 : s.r, 0, Math.PI * 2);
         ctx.fill();
-      }
+      });
+
       ctx.globalAlpha = 1;
       if (!reducedMotion) raf = requestAnimationFrame(draw);
     };
 
-    const hit = (x: number, y: number) => stars.findIndex((s) => Math.hypot(s.x - x, s.y - y) < 14);
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      for (const star of stars) {
+        star.x = Math.min(Math.max(star.x, 0), width);
+        star.y = Math.min(Math.max(star.y, 0), height);
+      }
+
+      if (reducedMotion) draw(performance.now());
+    };
+
+    const seed = () => {
+      const starter: Star = {
+        x: width * 0.88,
+        y: height * 0.32,
+        r: 3,
+        vx: 0,
+        vy: 0,
+        twinkle: 0,
+      };
+
+      stars = [
+        starter,
+        ...Array.from({ length: STAR_COUNT - 1 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: 1 + Math.random() * 2,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          twinkle: Math.random() * Math.PI * 2,
+        })),
+      ];
+    };
 
     const onMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.style.cursor = hit(e.clientX - rect.left, e.clientY - rect.top) >= 0 ? 'pointer' : '';
+      if (isInteractiveTarget(e.target) || localCaught >= GOAL) {
+        hoveredIndex = -1;
+        document.body.style.cursor = previousBodyCursor;
+        if (reducedMotion) draw(performance.now());
+        return;
+      }
+
+      hoveredIndex = hit(e.clientX, e.clientY);
+      document.body.style.cursor = hoveredIndex >= 0 ? 'pointer' : previousBodyCursor;
+      if (reducedMotion) draw(performance.now());
     };
 
     const onClick = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const i = hit(e.clientX - rect.left, e.clientY - rect.top);
-      if (i < 0) return;
-      stars.splice(i, 1);
+      if (isInteractiveTarget(e.target) || localCaught >= GOAL) return;
+
+      const index = hit(e.clientX, e.clientY);
+      if (index < 0) return;
+
+      stars.splice(index, 1);
+      hoveredIndex = -1;
       localCaught += 1;
       setCaught(localCaught);
+      document.body.style.cursor = previousBodyCursor;
+
       if (reducedMotion) draw(performance.now());
+
       if (localCaught === GOAL) {
-        setDone(true);
-        announceEasterEgg({ id: 'void', message: 'You collected 10 stars from the void. The page is still missing, though.' });
+        announceEasterEgg({
+          id: 'void',
+          message: 'You collected 10 stars from the void. The page is still missing, though.',
+        });
       }
     };
 
     resize();
     seed();
     raf = requestAnimationFrame(draw);
+
     window.addEventListener('resize', resize);
-    canvas.addEventListener('pointermove', onMove);
-    canvas.addEventListener('click', onClick);
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('click', onClick);
+
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('pointermove', onMove);
-      canvas.removeEventListener('click', onClick);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('click', onClick);
+      document.body.style.cursor = previousBodyCursor;
     };
-  }, [reducedMotion]);
+  }, [mounted, reducedMotion]);
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="fixed inset-0 -z-10 h-full w-full"
-      />
-      {caught > 0 && (
-        <p
-          className="pointer-events-none fixed bottom-16 left-1/2 -translate-x-1/2 font-mono text-xs text-muted"
-          aria-live="polite"
-        >
-          {done ? 'Void cleared.' : `Stars collected: ${caught} / ${GOAL}`}
-        </p>
-      )}
+      <p
+        className="mt-8 font-mono text-xs text-muted"
+        aria-live="polite"
+        data-testid="void-progress"
+      >
+        {done
+          ? 'Void cleared. 10 / 10 stars caught.'
+          : caught > 0
+            ? `Stars caught: ${caught} / ${GOAL}`
+            : 'The void is not empty. Catch 10 drifting stars.'}
+      </p>
+
+      {mounted &&
+        createPortal(
+          <canvas
+            ref={canvasRef}
+            aria-hidden="true"
+            data-testid="void-field-canvas"
+            className="pointer-events-none fixed inset-0 z-0"
+          />,
+          document.body
+        )}
     </>
   );
 }
-
