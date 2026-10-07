@@ -16,6 +16,7 @@ interface Star {
 const STAR_COUNT = 90;
 const GOAL = 10;
 const HIT_RADIUS = 22;
+const MAX_PLACEMENT_ATTEMPTS = 20;
 const INTERACTIVE_SELECTOR =
   'a, button, input, textarea, select, summary, [role="button"], [contenteditable="true"]';
 
@@ -112,8 +113,10 @@ export default function VoidField() {
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      // Keep dimensions non-zero so animation math cannot produce NaN in
+      // hidden/tiny browsing contexts.
+      width = Math.max(window.innerWidth, 1);
+      height = Math.max(window.innerHeight, 1);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
@@ -140,6 +143,7 @@ export default function VoidField() {
 
       const randomStar = (): Star => {
         let star: Star;
+        let attempts = 0;
 
         do {
           star = {
@@ -150,7 +154,11 @@ export default function VoidField() {
             vy: (Math.random() - 0.5) * 0.25,
             twinkle: Math.random() * Math.PI * 2,
           };
-        } while (Math.hypot(star.x - starter.x, star.y - starter.y) < HIT_RADIUS * 4);
+          attempts += 1;
+        } while (
+          attempts < MAX_PLACEMENT_ATTEMPTS &&
+          Math.hypot(star.x - starter.x, star.y - starter.y) < HIT_RADIUS * 4
+        );
 
         return star;
       };
