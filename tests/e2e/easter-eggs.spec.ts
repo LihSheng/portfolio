@@ -68,9 +68,29 @@ test.describe('Easter eggs', () => {
     await expect(page).toHaveURL(/contact/);
   });
 
-  test('the 404 page keeps its links usable with the star field behind it', async ({ page }) => {
+  test('the 404 star game spans the viewport, collects stars and keeps links usable', async ({ page }) => {
     await page.goto('/this-page-does-not-exist');
+
     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+
+    const progress = page.getByTestId('void-progress');
+    await expect(progress).toHaveText('The void is not empty. Catch 10 drifting stars.');
+
+    const canvas = page.getByTestId('void-field-canvas');
+    await expect(canvas).toBeAttached();
+
+    const viewport = page.viewportSize();
+    expect(viewport).not.toBeNull();
+    if (!viewport) return;
+
+    await expect.poll(async () => (await canvas.boundingBox())?.width).toBe(viewport.width);
+    await expect.poll(async () => (await canvas.boundingBox())?.height).toBe(viewport.height);
+
+    // The first star is intentionally seeded at a stable position so the
+    // interaction has a reliable first target and remains testable.
+    await page.mouse.click(viewport.width * 0.88, viewport.height * 0.32);
+    await expect(progress).toHaveText('Stars caught: 1 / 10');
+
     await page.getByRole('link', { name: 'Home' }).first().click();
     await expect(page).toHaveURL(/\/$/);
   });
