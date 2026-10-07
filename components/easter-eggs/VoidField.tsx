@@ -138,16 +138,26 @@ export default function VoidField() {
         twinkle: 0,
       };
 
+      const randomStar = (): Star => {
+        let star: Star;
+
+        do {
+          star = {
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: 1 + Math.random() * 2,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25,
+            twinkle: Math.random() * Math.PI * 2,
+          };
+        } while (Math.hypot(star.x - starter.x, star.y - starter.y) < HIT_RADIUS * 4);
+
+        return star;
+      };
+
       stars = [
         starter,
-        ...Array.from({ length: STAR_COUNT - 1 }, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          r: 1 + Math.random() * 2,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          twinkle: Math.random() * Math.PI * 2,
-        })),
+        ...Array.from({ length: STAR_COUNT - 1 }, randomStar),
       ];
     };
 
