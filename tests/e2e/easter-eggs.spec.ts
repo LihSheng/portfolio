@@ -86,13 +86,34 @@ test.describe('Easter eggs', () => {
     await expect.poll(async () => (await canvas.boundingBox())?.width).toBe(viewport.width);
     await expect.poll(async () => (await canvas.boundingBox())?.height).toBe(viewport.height);
 
-    // The first star is intentionally seeded at a stable position so the
-    // interaction has a reliable first target and remains testable.
+    // The first star starts at a predictable position so the interaction
+    // has a reliable first target and remains testable.
     await page.mouse.click(viewport.width * 0.88, viewport.height * 0.32);
     await expect(progress).toHaveText('Stars caught: 1 / 10');
 
     await page.getByRole('link', { name: 'Home' }).first().click();
     await expect(page).toHaveURL(/\/$/);
+  });
+
+  test('the 404 star hover clears when a star drifts away from a stationary pointer', async ({ page }) => {
+    await page.goto('/this-page-does-not-exist');
+
+    const viewport = page.viewportSize();
+    expect(viewport).not.toBeNull();
+    if (!viewport) return;
+
+    const startX = viewport.width * 0.88;
+    const startY = viewport.height * 0.32;
+
+    await page.mouse.move(startX, startY);
+    await expect.poll(async () => page.evaluate(() => document.body.style.cursor)).toBe('pointer');
+
+    // The starter star drifts right while the pointer stays still. Hover
+    // should be recomputed from the star's current position each frame.
+    await expect.poll(
+      async () => page.evaluate(() => document.body.style.cursor),
+      { timeout: 4000 }
+    ).not.toBe('pointer');
   });
 
   test('normal pages log no console errors', async ({ page }) => {
