@@ -116,6 +116,14 @@ test.describe('Easter eggs', () => {
     ).not.toBe('pointer');
   });
 
+  test('the 404 star field initializes on a tiny viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 64, height: 64 });
+    await page.goto('/this-page-does-not-exist');
+
+    await expect(page.getByTestId('void-field-canvas')).toBeAttached();
+    await expect(page.getByTestId('void-progress')).toContainText('Catch 10 drifting stars');
+  });
+
   test('normal pages log no console errors', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
