@@ -1,3 +1,4 @@
+import publicProfile from '@/content/data/profile.public.json';
 import { SiteConfig, NavigationItem, NavigationItemWithFlag, SocialLink } from '@/types';
 import { getContactEmail, getMailtoLink } from './contact-utils';
 import { getProfilePictureConfig, generateInitialsAvatar } from './image-utils';
@@ -53,17 +54,17 @@ export const siteConfig: SiteConfig = {
   name: 'Ng Lih Sheng',
   title: 'Ng Lih Sheng - Full Stack Software Developer',
   description: 'Full Stack Software Developer building enterprise web, analytics, LLM, and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python, and cloud platforms.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://lihsheng.dev',
+  url: process.env.NEXT_PUBLIC_SITE_URL || publicProfile.website,
   author: {
-    name: 'Ng Lih Sheng',
+    name: publicProfile.name,
     email: getContactEmail(),
     avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2MzY2RjEiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0yMCAyMXYtMmE0IDQgMCAwIDAtNC00SDhhNCA0IDAgMCAwLTQgNHYyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIxMiIgY3k9IjciIHI9IjQiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo8L3N2Zz4K', // Keep for backward compatibility
     profilePicture: process.env.NEXT_PUBLIC_PROFILE_PICTURE_URL || '/images/profile.png',
     profilePictureAlt: 'Profile picture of Ng Lih Sheng, Full Stack Software Developer',
-    bio: 'Full stack software developer with 5+ years of experience building enterprise web applications, analytics platforms and agentic AI systems with React, TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms. I focus on turning business processes into reliable software, and lately on connecting LLMs and AI agents to real production systems.',
+    bio: publicProfile.bio,
     social: {
-      github: 'https://github.com/LihSheng',
-      linkedin: 'https://www.linkedin.com/in/lihshengng/',
+      github: publicProfile.github,
+      linkedin: publicProfile.linkedin,
     },
   },
   navigation: legacyNavigationItems,

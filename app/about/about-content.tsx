@@ -1,3 +1,4 @@
+import publicProfile from '@/content/data/profile.public.json';
 import { AvatarEgg } from '@/components/easter-eggs/AvatarEgg';
 import { siteConfig } from '@/lib/site-config';
 import type { ExperienceData, SkillCategory } from '@/types';
@@ -51,9 +52,7 @@ export default function AboutContent() {
         <div className="flex flex-col gap-5">
           <h1 className="font-serif text-4xl leading-[1.1]">About</h1>
           <p className="m-0 text-lg leading-relaxed text-ink">
-            I am a full stack software developer with 5+ years of experience building enterprise
-            web applications, analytics platforms and agentic AI systems. I build with React,
-            TypeScript, Angular, Laravel, PostgreSQL, Python and cloud platforms.
+            {publicProfile.bio}
           </p>
           <p className="m-0 text-lg leading-relaxed text-body-secondary">
             I enjoy turning business processes into reliable software, whether that means shipping
