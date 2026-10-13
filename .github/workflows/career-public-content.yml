@@ -1,0 +1,22 @@
+name: Career public content contract
+on:
+  pull_request:
+    paths:
+      - 'content/data/profile.public.json'
+      - 'content/projects/tollgate.mdx'
+      - 'lib/site-config.ts'
+      - 'app/about/about-content.tsx'
+      - 'scripts/check-career-public-data.mjs'
+      - 'tests/career-public-profile.test.mjs'
+      - '.github/workflows/career-public-content.yml'
+permissions:
+  contents: read
+jobs:
+  career-public-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test tests/career-public-profile.test.mjs
