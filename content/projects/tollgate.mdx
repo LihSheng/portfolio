@@ -1,0 +1,27 @@
+---
+title: "Tollgate"
+description: "Versioned development harness combining change-aware verification and quality checks for AI-assisted software delivery."
+tags: ["AI agents", "Developer tooling", "Testing"]
+techStack: ["Python", "Bash", "PHP", "Node.js", "Playwright", "Git Hooks", "Git Worktrees"]
+featured: true
+date: "2026-10-13"
+---
+
+## The problem
+
+AI coding assistants can make changes quickly, but development teams still need reproducible checks, review boundaries and visible evidence before accepting those changes.
+
+## What I built
+
+Tollgate packages reusable development workflows, verification scripts and agent guidance into a versioned harness. It supports change-aware checks for Laravel and Angular, targeted browser tests with Playwright, and risk-based paths for independent QA review.
+
+## Design decisions
+
+- Verify the changed surface before running more expensive checks.
+- Keep checks deterministic and separate from the AI agent proposing code.
+- Use pre-push verification and optional guarded commit workflows.
+- Preserve human review rather than representing optional gates as universally enforced.
+
+## What it demonstrates
+
+Building safety rails for AI-assisted software development through testing, explicit workflow boundaries and developer ergonomics.
