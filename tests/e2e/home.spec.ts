@@ -31,4 +31,30 @@ test.describe('Home Page', () => {
   test('has a link to contact', async ({ page }) => {
     await expect(page.locator('a[href="/contact"]').first()).toBeVisible();
   });
+
+  test('draws the pointing hand and lets the visitor hide it', async ({ page }) => {
+    const canvas = page.locator('canvas[data-pointing-hand]');
+    await expect(canvas).toHaveCount(1);
+    await expect(canvas).toHaveCSS('pointer-events', 'none');
+
+    await page.getByRole('button', { name: 'Hide hand' }).click();
+    await expect(canvas).toHaveCount(0);
+
+    await page.reload();
+    await expect(page.locator('canvas[data-pointing-hand]')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Show hand' }).click();
+    await expect(page.locator('canvas[data-pointing-hand]')).toHaveCount(1);
+  });
+
+  test('does not show the pointing hand or its toggle on phones', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 800 });
+    await page.reload();
+    await expect(page.locator('canvas[data-pointing-hand]')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Hide hand' })).toBeHidden();
+  });
+
+  test('does not show the pointing hand on other pages', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page.locator('canvas[data-pointing-hand]')).toHaveCount(0);
+  });
 });

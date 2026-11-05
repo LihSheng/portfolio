@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getFeaturedProjects } from '@/lib/content';
 import { getFeatureFlags } from '@/lib';
 import { siteConfig } from '@/lib/site-config';
+import { PointingHand } from '@/components/pointing-hand/PointingHand';
+import { PointingHandToggle } from '@/components/pointing-hand/PointingHandToggle';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -50,7 +52,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       <section className="flex flex-col gap-7 py-24 sm:py-16">
-        <h1 className="max-w-[640px] font-serif text-4xl leading-[1.1] tracking-[-0.01em] sm:text-[52px]">
+        <h1 data-hand-rest className="max-w-[640px] font-serif text-4xl leading-[1.1] tracking-[-0.01em] sm:text-[52px]">
           {siteConfig.name}, full-stack software developer in Singapore.
         </h1>
         <p className="max-w-[600px] text-lg leading-relaxed text-body-secondary">
@@ -63,7 +65,9 @@ export default async function Home() {
           <a href="https://github.com/LihSheng">GitHub</a>
           <a href="https://www.linkedin.com/in/lihshengng/">LinkedIn</a>
           <Link href="/contact">Email</Link>
+          <PointingHandToggle />
         </div>
+        <PointingHand />
       </section>
 
       <section className="flex flex-col">
