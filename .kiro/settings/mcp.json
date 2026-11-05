@@ -4,20 +4,17 @@
       "command": "npx",
       "args": [
         "-y",
-        "@executeautomation/playwright-mcp-server@latest"
+        "@executeautomation/playwright-mcp-server@1.0.12"
       ],
       "disabled": false,
       "autoApprove": [
         "playwright_navigate",
         "playwright_screenshot",
-        "playwright_evaluate",
-        "playwright_evaluate",
         "playwright_console_logs",
         "playwright_close",
         "playwright_hover",
         "playwright_click",
         "playwright_fill",
-        "playwright_post",
         "playwright_expect_response",
         "playwright_assert_response",
         "playwright_get_visible_text",
@@ -29,7 +26,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-github@latest"
+        "@modelcontextprotocol/server-github@2025.4.8"
       ],
       "env": {
         "GITHUB_TOKEN": "${GITHUB_TOKEN}"

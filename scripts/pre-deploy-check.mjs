@@ -22,7 +22,7 @@ const checks = [
     check: () => {
       try {
         const siteConfig = fs.readFileSync('lib/site-config.ts', 'utf8');
-        return siteConfig.includes('lihsheng.space');
+        return siteConfig.includes('lihsheng.dev');
       } catch {
         return false;
       }

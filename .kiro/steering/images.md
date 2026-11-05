@@ -104,12 +104,8 @@ import { OptimizedImage } from '@/components/OptimizedImage';
 
 ```javascript
 images: {
-  remotePatterns: [
-    {
-      protocol: 'https',
-      hostname: 'images.unsplash.com',
-    },
-  ],
+  // No remotePatterns: only local images are served. Add a specific host
+  // here only when an image really comes from it.
   formats: ['image/webp', 'image/avif'],
   deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

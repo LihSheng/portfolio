@@ -6,7 +6,7 @@ This guide explains the development workflow for the portfolio website using Git
 
 ### Main Branches
 
-- **`main`** - Production branch (deployed to lihsheng.space)
+- **`main`** - Production branch (deployed to lihsheng.dev)
 - **`development`** - Development branch (for testing and integration)
 - **`feature/*`** - Feature branches (for individual features/fixes)
 
@@ -90,7 +90,7 @@ npm run git:help            # Show help for Git commands
 - ✅ Direct pushes are discouraged
 - ✅ Should only receive merges from development
 - ✅ Represents production-ready code
-- ✅ Automatically deployed to lihsheng.space
+- ✅ Automatically deployed to lihsheng.dev
 
 ### Development Branch
 - ✅ Integration branch for testing

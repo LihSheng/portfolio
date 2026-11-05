@@ -27,11 +27,17 @@ function mapZodIssues(issues: ZodIssue[]): Record<string, string> {
   return errors;
 }
 
+let default_dependencies: SubmitContactMessageDependencies | null = null;
+
+// Built once per server instance so the delivery adapter (and its SMTP
+// transporter) is reused across requests.
 function buildDefaultDependencies(): SubmitContactMessageDependencies {
-  return {
+  default_dependencies ??= {
     delivery: createContactDeliveryAdapterFromEnv(),
     rate_limiter: defaultContactRateLimiter,
   };
+
+  return default_dependencies;
 }
 
 export async function submitContactMessage(

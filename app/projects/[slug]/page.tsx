@@ -6,6 +6,7 @@ import { getAllProjects, getProjectBySlug } from '@/lib/content';
 import { compileMDXWithPlugins } from '@/lib/mdx';
 import { useMDXComponents } from '@/mdx-components';
 import { siteConfig } from '@/lib/site-config';
+import { serializeJsonLd } from '@/lib/json-ld';
 import { Project } from '@/types';
 
 interface ProjectPageProps {
@@ -126,7 +127,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <div className="pb-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       {/* Header */}

@@ -3,7 +3,7 @@ import { createFormspreeContactDeliveryAdapter } from './adapters/formspree.ts';
 import { createNodemailerContactDeliveryAdapter } from './adapters/nodemailer.ts';
 import type { ContactDeliveryAdapter } from './types.ts';
 
-type ContactDeliveryProvider = 'console' | 'nodemailer' | 'formspree';
+type ContactDeliveryProvider = 'console' | 'nodemailer' | 'formspree' | 'unconfigured';
 
 function getProviderFromEnv(): ContactDeliveryProvider {
   const provider = process.env.EMAIL_PROVIDER;
@@ -12,7 +12,19 @@ function getProviderFromEnv(): ContactDeliveryProvider {
     return provider;
   }
 
-  return 'console';
+  // Fail closed in production: without this, a missing EMAIL_PROVIDER would
+  // silently "accept" messages and only write them to the server logs.
+  return process.env.NODE_ENV === 'production' ? 'unconfigured' : 'console';
+}
+
+function createUnconfiguredContactDeliveryAdapter(): ContactDeliveryAdapter {
+  return {
+    async send(): Promise<void> {
+      throw new Error(
+        'Contact delivery is not configured. Set EMAIL_PROVIDER to nodemailer, formspree or console.'
+      );
+    },
+  };
 }
 
 export function createContactDeliveryAdapterFromEnv(): ContactDeliveryAdapter {
@@ -38,7 +50,9 @@ export function createContactDeliveryAdapterFromEnv(): ContactDeliveryAdapter {
         endpoint: process.env.FORMSPREE_ENDPOINT || '',
       });
     case 'console':
-    default:
       return createConsoleContactDeliveryAdapter();
+    case 'unconfigured':
+    default:
+      return createUnconfiguredContactDeliveryAdapter();
   }
 }

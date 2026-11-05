@@ -17,11 +17,12 @@ export async function GET(): Promise<NextResponse> {
           inputSchema: {
             type: 'object',
             properties: {
-              name: { type: 'string', description: 'Your full name' },
-              email: { type: 'string', format: 'email', description: 'Your email address' },
-              message: { type: 'string', description: 'Your message' },
+              name: { type: 'string', minLength: 2, maxLength: 100, description: 'Your full name' },
+              email: { type: 'string', format: 'email', maxLength: 255, description: 'Your email address' },
+              subject: { type: 'string', minLength: 5, maxLength: 200, description: 'What the message is about' },
+              message: { type: 'string', minLength: 10, maxLength: 2000, description: 'Your message' },
             },
-            required: ['name', 'email', 'message'],
+            required: ['name', 'email', 'subject', 'message'],
           },
         },
       ],

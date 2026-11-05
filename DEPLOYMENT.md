@@ -1,11 +1,11 @@
 # Deployment Guide
 
-This guide covers deploying your portfolio website to Vercel with your custom domain `lihsheng.space`.
+This guide covers deploying your portfolio website to Vercel with your custom domain `lihsheng.dev`.
 
 ## Prerequisites
 
 1. **Vercel Account**: Sign up at [vercel.com](https://vercel.com)
-2. **Domain**: You have `lihsheng.space` ready to configure
+2. **Domain**: You have `lihsheng.dev` ready to configure
 3. **Environment Variables**: Set up your production environment variables
 
 ## Quick Deployment
@@ -44,7 +44,7 @@ In your Vercel dashboard, go to Project Settings > Environment Variables and add
 ### Required Variables
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://lihsheng.space
+NEXT_PUBLIC_SITE_URL=https://lihsheng.dev
 NEXT_PUBLIC_CONTACT_EMAIL=your.email@example.com
 ```
 
@@ -67,7 +67,7 @@ FORMSPREE_ENDPOINT=https://formspree.io/f/your-form-id
 
 **Plausible Analytics**
 ```env
-NEXT_PUBLIC_ANALYTICS_SITE_ID=lihsheng.space
+NEXT_PUBLIC_ANALYTICS_SITE_ID=lihsheng.dev
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=plausible.io
 ```
 
@@ -83,13 +83,13 @@ NEXT_PUBLIC_UMAMI_URL=https://your-umami-instance.com
 
 1. Go to your project dashboard
 2. Click "Settings" > "Domains"
-3. Add `lihsheng.space` and `www.lihsheng.space`
+3. Add `lihsheng.dev` and `www.lihsheng.dev`
 
 ### 2. Configure DNS Records
 
 Add these DNS records in your domain registrar:
 
-**For apex domain (lihsheng.space):**
+**For apex domain (lihsheng.dev):**
 ```
 Type: A
 Name: @
@@ -127,10 +127,10 @@ The project uses these build settings (configured in `vercel.json`):
 
 ### Headers Configuration
 
+Security headers (Content-Security-Policy, HSTS, X-Frame-Options, Permissions-Policy, etc.) are set in `next.config.mjs` (`headers()`), so they apply on Vercel and on `npm run start` alike.
+
 The `vercel.json` includes:
-- Security headers (X-Frame-Options, X-XSS-Protection, etc.)
-- Cache headers for RSS feed and sitemap
-- Content-Type headers for XML files
+- Cache and Content-Type headers for the sitemap
 
 ### Redirects & Rewrites
 

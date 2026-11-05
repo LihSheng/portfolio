@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/site-config';
 import skills from '@/content/data/skills.json';
+import { serializeJsonLd } from '@/lib/json-ld';
 
 type SkillEntry = { name: string };
 type SkillsData = Record<string, SkillEntry[]>;
@@ -46,11 +47,11 @@ export function StructuredData() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(personSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteSchema) }}
       />
     </>
   );

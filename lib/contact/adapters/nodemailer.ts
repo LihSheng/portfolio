@@ -58,7 +58,7 @@ function generateEmailHtml(message: {
           </div>
           <div class="field">
             <div class="label">Email:</div>
-            <div class="value"><a href="mailto:${message.email}">${escapeHtml(message.email)}</a></div>
+            <div class="value"><a href="mailto:${escapeHtml(message.email)}">${escapeHtml(message.email)}</a></div>
           </div>
           <div class="field">
             <div class="label">Subject:</div>
@@ -77,6 +77,10 @@ function generateEmailHtml(message: {
 export function createNodemailerContactDeliveryAdapter(
   options: NodemailerContactDeliveryAdapterOptions
 ): ContactDeliveryAdapter {
+  // One transporter per adapter. No verify() per request: it opened an extra
+  // SMTP session for every submission, and sendMail reports failures anyway.
+  let transporter: ReturnType<typeof nodemailer.createTransport> | null = null;
+
   return {
     async send(message): Promise<void> {
       const { smtp } = options;
@@ -85,14 +89,7 @@ export function createNodemailerContactDeliveryAdapter(
         throw new Error('SMTP configuration is required for Nodemailer');
       }
 
-      const transporter = nodemailer.createTransport(smtp);
-
-      try {
-        await transporter.verify();
-      } catch (error) {
-        const error_message = error instanceof Error ? error.message : 'Unknown error';
-        throw new Error(`SMTP connection failed: ${error_message}`);
-      }
+      transporter ??= nodemailer.createTransport(smtp);
 
       await transporter.sendMail({
         from: options.from || smtp.auth.user,

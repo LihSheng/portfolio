@@ -28,7 +28,7 @@ export default async function Image() {
         <div style={{ display: 'flex', fontSize: 34, color: '#504C43' }}>
           Full-stack software developer, Singapore
         </div>
-        <div style={{ display: 'flex', fontSize: 24, color: '#6E6A60' }}>lihsheng.space</div>
+        <div style={{ display: 'flex', fontSize: 24, color: '#6E6A60' }}>lihsheng.dev</div>
       </div>
     ),
     {
