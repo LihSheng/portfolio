@@ -47,6 +47,7 @@ export function Terminal({ flags }: TerminalProps) {
           '  contact     open the contact page',
           '  social      links to find me elsewhere',
           '  hire        the fast path',
+          '  snake       play a game of Snake',
           '  date        current date',
           '  clear       clear the screen',
           '  exit        back to the home page',
@@ -75,6 +76,9 @@ export function Terminal({ flags }: TerminalProps) {
         return socialLinks
           .filter((l) => l.name !== 'Email')
           .map((l) => `  ${l.name.padEnd(10)} ${l.url}`);
+      case 'snake':
+        router.push('/snake');
+        return ['Opening /snake ...'];
       case 'date':
         return [new Date().toString()];
       case 'exit':
