@@ -5,8 +5,12 @@ import { useFeatureFlag } from '@/lib/feature-flags';
 import { onEasterEgg, usePrefersReducedMotion, useSecretKeys } from '@/lib/easter-eggs';
 import { fireConfetti } from './confetti';
 
-const CONSOLE_GREETING_KEY = 'lihsheng:console-greeted';
 const TOAST_MS = 3500;
+
+// Module scope, so it resets on every full page load (the greeting shows each
+// time DevTools users reload) but survives React Strict Mode's double effect
+// run and client-side navigations, which keep the root layout mounted.
+let consoleGreeted = false;
 
 /**
  * Global easter egg host, mounted once from the root layout.
@@ -25,15 +29,10 @@ export default function EasterEggs() {
 
   useSecretKeys(enabled);
 
-  // Console greeting, once per tab session
+  // Console greeting, once per page load
   useEffect(() => {
-    if (!enabled) return;
-    try {
-      if (sessionStorage.getItem(CONSOLE_GREETING_KEY)) return;
-      sessionStorage.setItem(CONSOLE_GREETING_KEY, '1');
-    } catch {
-      // Storage blocked; greet anyway.
-    }
+    if (!enabled || consoleGreeted) return;
+    consoleGreeted = true;
     console.log('%cHello, curious developer.', 'font-size:16px;font-weight:600;color:#2E5B4C;');
     console.log(
       '%cYou found the first egg. There are more.\n' +
