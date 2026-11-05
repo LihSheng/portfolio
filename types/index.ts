@@ -164,6 +164,7 @@ export interface FeatureFlags {
   about: boolean;
   analytics: boolean;
   easterEggs: boolean;
+  pointingHand: boolean;
 }
 
 export interface NavigationItemWithFlag extends NavigationItem {
