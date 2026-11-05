@@ -859,7 +859,7 @@ This project is licensed under the ISC License - see the [package.json](package.
 
 ## 🔗 Links
 
-- **Live Site**: [lihsheng.space](https://lihsheng.space)
+- **Live Site**: [lihsheng.dev](https://lihsheng.dev)
 - **GitHub**: [LihSheng](https://github.com/LihSheng)
 - **LinkedIn**: [lihshengng](https://www.linkedin.com/in/lihshengng/)
 

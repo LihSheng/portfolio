@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getFeatureFlags } from '@/lib';
+import { siteConfig } from '@/lib/site-config';
+import { checkContactRequest } from '@/lib/contact/request-guard';
 import { submitContactMessage } from '@/lib/contact/submit-contact-message';
 
 function getRequestIp(request: NextRequest): string {
@@ -9,6 +12,30 @@ function getRequestIp(request: NextRequest): string {
 }
 
 export async function POST(request: NextRequest) {
+  // The proxy only gates the /contact page, so the API checks the flag itself.
+  if (!getFeatureFlags().contact) {
+    return NextResponse.json(
+      { success: false, message: 'Not found', code: 'NOT_FOUND' },
+      { status: 404 }
+    );
+  }
+
+  const rejection = checkContactRequest(
+    {
+      content_type: request.headers.get('content-type'),
+      origin: request.headers.get('origin'),
+      host: request.headers.get('x-forwarded-host') || request.headers.get('host'),
+    },
+    [siteConfig.url]
+  );
+
+  if (rejection) {
+    return NextResponse.json(
+      { success: false, message: rejection.message, code: rejection.code },
+      { status: rejection.status }
+    );
+  }
+
   try {
     let body: unknown;
 

@@ -5,6 +5,10 @@ on:
     branches:
       - production   # only trigger on production branch commits
 
+# Read-only token: no job here needs to write to the repository.
+permissions:
+  contents: read
+
 jobs:
   test:
     timeout-minutes: 60

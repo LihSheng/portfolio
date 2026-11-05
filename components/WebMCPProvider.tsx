@@ -8,6 +8,8 @@ interface ToolParameter {
   description?: string;
   format?: string;
   enum?: string[];
+  minLength?: number;
+  maxLength?: number;
 }
 
 interface ToolDefinition {
@@ -27,11 +29,12 @@ const TOOLS: ToolDefinition[] = [
     inputSchema: {
       type: 'object',
       properties: {
-        name: { type: 'string', description: 'Your full name' },
-        email: { type: 'string', description: 'Your email address', format: 'email' },
-        message: { type: 'string', description: 'Your message' },
+        name: { type: 'string', description: 'Your full name', minLength: 2, maxLength: 100 },
+        email: { type: 'string', description: 'Your email address', format: 'email', maxLength: 255 },
+        subject: { type: 'string', description: 'What the message is about', minLength: 5, maxLength: 200 },
+        message: { type: 'string', description: 'Your message', minLength: 10, maxLength: 2000 },
       },
-      required: ['name', 'email', 'message'],
+      required: ['name', 'email', 'subject', 'message'],
     },
   },
 ];

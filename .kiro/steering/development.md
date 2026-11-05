@@ -72,7 +72,7 @@ npm run git:status       # Show current status
 ### Required Environment Variables
 ```env
 # Site Configuration
-NEXT_PUBLIC_SITE_URL=https://lihsheng.space
+NEXT_PUBLIC_SITE_URL=https://lihsheng.dev
 
 # Analytics (Optional)
 NEXT_PUBLIC_ANALYTICS_SITE_ID=your-site-id
