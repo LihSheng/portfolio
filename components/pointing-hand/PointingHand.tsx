@@ -49,7 +49,13 @@ export function PointingHand() {
     const ctx = canvas?.getContext('2d');
     if (!active || !canvas || !ctx) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Kept live: a visitor can turn on reduced motion while the page is open
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let reduceMotion = reducedMotionQuery.matches;
+    const onReducedMotionChange = (e: MediaQueryListEvent) => {
+      reduceMotion = e.matches;
+    };
+    reducedMotionQuery.addEventListener('change', onReducedMotionChange);
     let width = 0;
     let height = 0;
     let dpr = 1;
@@ -190,6 +196,7 @@ export function PointingHand() {
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(touchRelease);
+      reducedMotionQuery.removeEventListener('change', onReducedMotionChange);
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerdown', onDown);
